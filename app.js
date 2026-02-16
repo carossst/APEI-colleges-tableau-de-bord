@@ -41,6 +41,25 @@ loadData().then(DATA => {
 
 // ===== 1. RADAR CHART — VERSION AMÉLIORÉE =====
 function createRadarChart(DATA) {
+  const wrapRadarLabel = (label) => {
+    const s = String(label || '').trim();
+    if (!s) return s;
+
+    // Si c’est court, on garde tel quel
+    if (s.length <= 18) return s;
+
+    // Split simple en 2 lignes, au meilleur endroit
+    const parts = s.split(/\s+/).filter(Boolean);
+    if (parts.length <= 2) return parts;
+
+    const mid = Math.ceil(parts.length / 2);
+    const line1 = parts.slice(0, mid).join(' ');
+    const line2 = parts.slice(mid).join(' ');
+
+    // Chart.js accepte un array => multi-lignes
+    return [line1, line2];
+  };
+
   new Chart(document.getElementById('radarChart'), {
     type: 'radar',
     data: {
@@ -81,7 +100,10 @@ function createRadarChart(DATA) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      layout: { padding: 8 },
+
+      // Plus de marge => labels non coupés
+      layout: { padding: 18 },
+
       scales: {
         r: {
           min: 0,
@@ -92,16 +114,13 @@ function createRadarChart(DATA) {
             color: 'rgba(26,39,68,.55)',
             font: { size: 12 }
           },
-          grid: {
-            color: 'rgba(26,39,68,.10)'
-          },
-          angleLines: {
-            color: 'rgba(26,39,68,.10)'
-          },
+          grid: { color: 'rgba(26,39,68,.10)' },
+          angleLines: { color: 'rgba(26,39,68,.10)' },
           pointLabels: {
             color: C.navy,
-            font: { size: 13, weight: 700 },
-            padding: 6
+            font: { size: 14, weight: 800 },
+            padding: 10,
+            callback: (v) => wrapRadarLabel(v)
           }
         }
       },
