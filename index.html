@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Val d'Oise - Actions Innovantes Colleges</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.10.3/Recharts.min.js"></script>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#0F1923;color:#E8EDF2;font-family:'DM Sans',-apple-system,sans-serif}
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:#0F1923}
+    ::-webkit-scrollbar-thumb{background:#1E3A50;border-radius:3px}
+    button{font-family:inherit}
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const{useState}=React;
+const{RadarChart,PolarGrid,PolarAngleAxis,PolarRadiusAxis,Radar,Legend,ResponsiveContainer,BarChart,Bar,XAxis,YAxis,Tooltip,CartesianGrid,LineChart,Line}=Recharts;
+const C={bg:"#0F1923",card:"#162331",accent:"#00C9A7",a2:"#FF6B6B",a3:"#FFD93D",a4:"#6C5CE7",a5:"#74B9FF",text:"#E8EDF2",m:"#7B8FA3",bdr:"#1E3A50"};
+const AS=["Espaces","Enseignements","Outils","Eleves","Partenaires"];
+const AF=["Transformation des espaces","Organisation enseignements","Outils numeriques","Relation aux eleves","Parties prenantes"];
+const KS=["espaces","enseignements","outils","eleves","partenaires"];
+const gd={2021:{espaces:3.4,enseignements:2.4,outils:3.2,eleves:3.0,partenaires:2.2},2023:{espaces:3.2,enseignements:2.4,outils:2.7,eleves:3.1,partenaires:1.9},2024:{espaces:3.4,enseignements:2.8,outils:2.9,eleves:2.9,partenaires:1.9}};
+const cols={
+"L'Ardilliere-de-Nezant":{v:"Saint-Brice-sous-Foret",a:"2017",e:569,s:{2021:[4,3,3,3,2],2023:[4,3.5,3,3.5,3]}},
+"Eugenie Cotton":{v:"Argenteuil",a:"2018",e:694,t:80,s:{2021:[4,2,4,3,2]}},
+"Epine Guyon":{v:"Franconville",a:"2017",e:720,s:{2021:[2,2,2,3,2],2023:[3,2,2.5,3,1.5]}},
+"Pierre et Marie Curie":{v:"L'Isle-Adam",a:"2017/21",e:809,t:85,s:{2021:[3,2,3,3,2],2023:[3,2.5,2,3,1.5]}},
+"Louise Weiss":{v:"Cormeilles-en-Parisis",a:"2019",e:335,s:{2021:[4,3,4,3,3]}},
+"Ariane":{v:"Argenteuil",a:"2017",e:635,s:{2023:[3,1,3,3,2]}},
+"Georges Charpak":{v:"Goussainville",a:"2017",e:533,s:{2023:[3,3,3,3,1.5]}},
+"Pablo Picasso":{v:"Eragny",a:"2018",e:597,t:60,s:{}},
+"Les Hautiers":{v:"Marines",a:"2018",e:712,t:90,s:{}},
+"Paul Vaillant Couturier":{v:"Argenteuil",a:"2018",e:734,t:10,s:{}},
+"Montesquieu":{v:"Beauchamp",a:"2021",e:559,t:75,s:{}},
+"J-C Chabanne":{v:"Pontoise",a:"2021",e:651,t:25,s:{}},
+"Nicolas Flamel":{v:"Pontoise",a:"2021",e:633,t:45,s:{}}
+};
+const av=(a)=>(a.reduce((x,y)=>x+y,0)/a.length).toFixed(1);
+const avo=(o)=>{const v=Object.values(o);return(v.reduce((x,y)=>x+y,0)/v.length).toFixed(1)};
+const ic=(s)=>s>=3.5?C.accent:s>=2.5?C.a5:s>=1.5?C.a3:C.a2;
+const il=(s)=>s>=3.5?"Tres fort":s>=2.5?"Fort":s>=1.5?"Modere":"Faible";
+const cs={background:C.card,borderRadius:14,padding:20,border:`1px solid ${C.bdr}`};
+const ts={background:C.card,border:`1px solid ${C.bdr}`,borderRadius:8,color:C.text};
+
+function Bd({score}){const c=ic(score);return <span style={{padding:"3px 10px",borderRadius:20,fontSize:11,fontWeight:700,background:c+"22",color:c,border:`1px solid ${c}44`}}>{score}/4 - {il(score)}</span>}
+function SB({label,score}){const c=ic(score);return(<div style={{marginBottom:10}}><div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}><span style={{fontSize:12,color:C.text}}>{label}</span><span style={{fontSize:12,fontWeight:700,color:c}}>{score}/4</span></div><div style={{height:7,background:C.bdr,borderRadius:4,overflow:"hidden"}}><div style={{height:"100%",width:`${(score/4)*100}%`,background:c,borderRadius:4,transition:"width 0.5s"}}/></div></div>)}
+function Ga({taux,nom}){const c=taux>=70?C.accent:taux>=40?C.a3:C.a2;return(<div style={{textAlign:"center",padding:10,background:C.card,borderRadius:10,border:`1px solid ${C.bdr}`,minWidth:110,flex:"1 1 110px"}}><div style={{position:"relative",width:64,height:64,margin:"0 auto 6px"}}><svg width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="26" fill="none" stroke={C.bdr} strokeWidth="5"/><circle cx="32" cy="32" r="26" fill="none" stroke={c} strokeWidth="5" strokeDasharray={`${(taux/100)*163.4} 163.4`} strokeLinecap="round" transform="rotate(-90 32 32)"/></svg><div style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",fontSize:14,fontWeight:800,color:c}}>{taux}%</div></div><div style={{fontSize:10,color:C.m,lineHeight:1.2}}>{nom}</div></div>)}
+
+function App(){
+const[tab,sT]=useState("global");
+const[sc,sC]=useState(null);
+const rd=AS.map((a,i)=>({axis:a,"2021":gd[2021][KS[i]],"2023":gd[2023][KS[i]],"2024":gd[2024][KS[i]]}));
+const ed=[2021,2023,2024].map(y=>({year:String(y),...gd[y]}));
+const ws=Object.entries(cols).filter(([,d])=>Object.keys(d.s).length>0);
+const wt=Object.entries(cols).filter(([,d])=>d.t!=null).sort((a,b)=>b[1].t-a[1].t);
+const tb=(id,lb)=><button key={id} onClick={()=>{sT(id);sC(null)}} style={{padding:"9px 18px",borderRadius:8,border:"none",cursor:"pointer",fontSize:13,fontWeight:600,background:tab===id?C.accent:"transparent",color:tab===id?C.bg:C.m,transition:"all 0.2s"}}>{lb}</button>;
+
+return(<div style={{background:C.bg,minHeight:"100vh",color:C.text,fontFamily:"'DM Sans',-apple-system,sans-serif",paddingBottom:40}}>
+<header style={{padding:"24px 24px 18px",borderBottom:`1px solid ${C.bdr}`}}>
+<div style={{display:"flex",alignItems:"center",gap:10}}>
+<div style={{width:36,height:36,borderRadius:9,background:`linear-gradient(135deg,${C.accent},${C.a4})`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,fontWeight:800,color:"#fff"}}>95</div>
+<div><h1 style={{margin:0,fontSize:18,fontWeight:800,letterSpacing:-0.3}}>Val d'Oise - Actions Innovantes dans les Colleges</h1>
+<p style={{margin:0,fontSize:12,color:C.m}}>Analyse d'impact qualitative - 2017-2024 - Departement du Val d'Oise</p></div>
+</div></header>
+
+<nav style={{padding:"12px 24px",display:"flex",gap:6,borderBottom:`1px solid ${C.bdr}`}}>
+{tb("global","Vue Globale")}{tb("colleges","Par College")}{tb("2024","Bilan 2024")}
+</nav>
+
+<main style={{padding:"20px 24px",maxWidth:1100,margin:"0 auto"}}>
+
+{tab==="global"&&<>
+<div style={{display:"flex",gap:12,flexWrap:"wrap",marginBottom:24}}>
+{[["Colleges analyses","14","depuis 2017",C.accent],["Score moyen 2024",avo(gd[2024]),"/4",C.a3],["Meilleur axe","3.4/4","Espaces",C.accent],["Axe le plus faible","1.9/4","Partenaires",C.a2]].map(([l,v,s,c])=>
+<div key={l} style={{...cs,flex:"1 1 140px",minWidth:140}}><div style={{fontSize:11,color:C.m,textTransform:"uppercase",letterSpacing:1,marginBottom:6}}>{l}</div><div style={{fontSize:30,fontWeight:800,color:c}}>{v}</div><div style={{fontSize:12,color:C.m,marginTop:2}}>{s}</div></div>)}
+</div>
+
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,marginBottom:24}}>
+<div style={cs}><h3 style={{margin:"0 0 12px",fontSize:15,fontWeight:700}}>Matrice d'impact comparative</h3>
+<ResponsiveContainer width="100%" height={290}><RadarChart data={rd} outerRadius="68%"><PolarGrid stroke={C.bdr}/><PolarAngleAxis dataKey="axis" tick={{fill:C.m,fontSize:10}}/><PolarRadiusAxis domain={[0,4]} tick={{fill:C.m,fontSize:9}}/>
+<Radar name="2021" dataKey="2021" stroke={C.a5} fill={C.a5} fillOpacity={0.12} strokeWidth={2}/>
+<Radar name="2023" dataKey="2023" stroke={C.a3} fill={C.a3} fillOpacity={0.12} strokeWidth={2}/>
+<Radar name="2024" dataKey="2024" stroke={C.accent} fill={C.accent} fillOpacity={0.18} strokeWidth={2}/>
+<Legend wrapperStyle={{fontSize:11}}/></RadarChart></ResponsiveContainer></div>
+
+<div style={cs}><h3 style={{margin:"0 0 12px",fontSize:15,fontWeight:700}}>Evolution par axe (2021-2024)</h3>
+<ResponsiveContainer width="100%" height={290}><LineChart data={ed}><CartesianGrid strokeDasharray="3 3" stroke={C.bdr}/><XAxis dataKey="year" tick={{fill:C.m,fontSize:11}}/><YAxis domain={[0,4]} tick={{fill:C.m,fontSize:10}}/><Tooltip contentStyle={ts}/>
+<Line type="monotone" dataKey="espaces" stroke={C.accent} strokeWidth={2.5} name="Espaces" dot={{r:4}}/>
+<Line type="monotone" dataKey="enseignements" stroke={C.a3} strokeWidth={2.5} name="Enseignements" dot={{r:4}}/>
+<Line type="monotone" dataKey="outils" stroke={C.a5} strokeWidth={2.5} name="Outils" dot={{r:4}}/>
+<Line type="monotone" dataKey="eleves" stroke={C.a4} strokeWidth={2.5} name="Eleves" dot={{r:4}}/>
+<Line type="monotone" dataKey="partenaires" stroke={C.a2} strokeWidth={2.5} name="Partenaires" dot={{r:4}}/>
+<Legend wrapperStyle={{fontSize:10}}/></LineChart></ResponsiveContainer></div>
+</div>
+
+<div style={{...cs,marginBottom:24}}><h3 style={{margin:"0 0 16px",fontSize:15,fontWeight:700}}>Scores globaux 2024</h3>
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:"4px 32px"}}>{AF.map((a,i)=><SB key={a} label={a} score={gd[2024][KS[i]]}/>)}</div></div>
+
+<div style={cs}><h3 style={{margin:"0 0 14px",fontSize:15,fontWeight:700}}>Enseignements cles</h3>
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12}}>
+{[["Espaces transformes","Impact le plus fort et stable (3.2-3.4/4). Salles modulables, FabLabs, espaces Zen."],
+["Partenaires : axe faible","Peu d'echanges entre etablissements. Score en baisse (2.2-1.9/4)."],
+["Enseignements en hausse","Progres de 2.4-2.8/4 grace aux enseignants moteurs."],
+["Bien-etre eleves","Moins de conflits en permanence, plus d'autonomie et de travail en groupe."],
+["iPads plebiscites","Tres utilises mais reduisent l'usage des salles connectees dediees."],
+["Formation insuffisante","Manque de formation et de communication interne sur les possibilites."]
+].map(([t,d])=><div key={t} style={{padding:14,background:C.bg,borderRadius:9,border:`1px solid ${C.bdr}`}}><div style={{fontSize:13,fontWeight:700,color:C.accent,marginBottom:4}}>{t}</div><div style={{fontSize:11,color:C.m,lineHeight:1.5}}>{d}</div></div>)}
+</div></div>
+</>}
+
+{tab==="colleges"&&<>
+<div style={{display:"flex",gap:6,flexWrap:"wrap",marginBottom:20}}>
+{ws.map(([n])=><button key={n} onClick={()=>sC(sc===n?null:n)} style={{padding:"7px 14px",borderRadius:7,border:`1px solid ${sc===n?C.accent:C.bdr}`,background:sc===n?C.accent+"22":"transparent",color:sc===n?C.accent:C.m,cursor:"pointer",fontSize:12,fontWeight:600}}>{n}</button>)}
+</div>
+{(sc?[[sc,cols[sc]]]:ws).map(([name,data])=>{
+const yrs=Object.keys(data.s).sort();const last=data.s[yrs[yrs.length-1]];
+const cr=AS.map((a,i)=>{const r={axis:a};yrs.forEach(y=>{r[y]=data.s[y][i]});return r});
+const yc={2021:C.a5,2023:C.a3,2024:C.accent};
+return(<div key={name} style={{...cs,marginBottom:16}}>
+<div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
+<div><h3 style={{margin:0,fontSize:16,fontWeight:800}}>{name}</h3><p style={{margin:"3px 0 0",fontSize:12,color:C.m}}>{data.v} - APEI {data.a} - {data.e} eleves</p></div>
+<Bd score={+av(last)}/></div>
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20}}>
+<ResponsiveContainer width="100%" height={230}><RadarChart data={cr} outerRadius="68%"><PolarGrid stroke={C.bdr}/><PolarAngleAxis dataKey="axis" tick={{fill:C.m,fontSize:9}}/><PolarRadiusAxis domain={[0,4]} tick={{fill:C.m,fontSize:8}}/>
+{yrs.map(y=><Radar key={y} name={y} dataKey={y} stroke={yc[y]||C.accent} fill={yc[y]||C.accent} fillOpacity={0.13} strokeWidth={2}/>)}
+<Legend wrapperStyle={{fontSize:10}}/></RadarChart></ResponsiveContainer>
+<div><div style={{fontSize:12,fontWeight:600,color:C.m,marginBottom:10}}>Evaluation {yrs[yrs.length-1]}</div>
+{AF.map((a,i)=><SB key={a} label={a} score={last[i]}/>)}
+<div style={{marginTop:10,padding:"8px 12px",background:C.bg,borderRadius:7,fontSize:11,color:C.m}}>
+<strong style={{color:C.text}}>Moy: {av(last)}/4</strong>
+{yrs.length>1&&<span> - Evolution: {av(data.s[yrs[0]])} &rarr; {av(last)}</span>}
+</div></div></div></div>)})}
+</>}
+
+{tab==="2024"&&<>
+<h2 style={{fontSize:18,fontWeight:800,margin:"0 0 4px"}}>Bilan 2024</h2>
+<p style={{color:C.m,fontSize:13,marginBottom:20}}>8 etablissements - 4 clotures (APEI 2018) + 4 mi-parcours (APEI 2021)</p>
+<div style={{...cs,marginBottom:20}}><h3 style={{margin:"0 0 16px",fontSize:15,fontWeight:700}}>Taux de reussite des projets</h3>
+<div style={{display:"flex",gap:12,flexWrap:"wrap",justifyContent:"center"}}>{wt.map(([n,d])=><Ga key={n} taux={d.t} nom={n}/>)}</div></div>
+
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:20,marginBottom:20}}>
+<div style={cs}><h3 style={{margin:"0 0 12px",fontSize:15,fontWeight:700}}>Comparatif taux de reussite</h3>
+<ResponsiveContainer width="100%" height={260}><BarChart data={wt.map(([n,d])=>({name:n.length>16?n.slice(0,14)+"...":n,taux:d.t}))} layout="vertical"><CartesianGrid strokeDasharray="3 3" stroke={C.bdr}/><XAxis type="number" domain={[0,100]} tick={{fill:C.m,fontSize:10}}/><YAxis type="category" dataKey="name" width={110} tick={{fill:C.m,fontSize:10}}/><Tooltip contentStyle={ts}/><Bar dataKey="taux" fill={C.accent} radius={[0,4,4,0]} name="Reussite %"/></BarChart></ResponsiveContainer></div>
+<div style={cs}><h3 style={{margin:"0 0 12px",fontSize:15,fontWeight:700}}>Scores 2024 par axe</h3>
+<ResponsiveContainer width="100%" height={260}><BarChart data={AS.map((a,i)=>({axis:a,score:Object.values(gd[2024])[i]}))}>
+<CartesianGrid strokeDasharray="3 3" stroke={C.bdr}/><XAxis dataKey="axis" tick={{fill:C.m,fontSize:10}}/><YAxis domain={[0,4]} tick={{fill:C.m,fontSize:10}}/><Tooltip contentStyle={ts}/><Bar dataKey="score" fill={C.a4} radius={[4,4,0,0]} name="Score /4"/></BarChart></ResponsiveContainer></div></div>
+
+<div style={cs}><h3 style={{margin:"0 0 14px",fontSize:15,fontWeight:700}}>6/8 etablissements ont atteint leurs objectifs</h3>
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12}}>
+{[["Vie scolaire apaisee","Permanences repensees : conflits quasi supprimes. Pierre et Marie Curie : sanctions 105 a 0."],
+["Web TV / Web Radio","Competences nouvelles mais usage limite aux petits groupes. Moyens humains necessaires."],
+["Salles innovantes","Travail debout, en groupes, en autonomie. Nouvelle posture enseignant-eleve."],
+["Les Hautiers : 90%","500h+ d'utilisation/an. Troupes de theatre accueillies. Oral et autonomie."],
+["Paul V. Couturier : 10%","Projet quasi a l'arret. Problemes d'espace, equipe fragile, COVID."],
+["Propositions cles","Former AED, communiquer en interne, tutoriels, ambassadeurs, visites inter-colleges."]
+].map(([t,d])=><div key={t} style={{padding:14,background:C.bg,borderRadius:9,border:`1px solid ${C.bdr}`}}><div style={{fontSize:13,fontWeight:700,color:C.accent,marginBottom:4}}>{t}</div><div style={{fontSize:11,color:C.m,lineHeight:1.5}}>{d}</div></div>)}
+</div></div>
+</>}
+
+</main></div>)}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
