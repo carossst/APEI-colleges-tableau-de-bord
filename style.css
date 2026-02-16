@@ -222,11 +222,7 @@ body {
   color: var(--text-2);
 }
 
-.badge-2024 {
-  background: rgba(233, 79, 53, 0.12);
-  border: 1px solid rgba(233, 79, 53, 0.40);
-  color: var(--text);
-}
+
 
 /* ===== NAV ===== */
 .nav {
