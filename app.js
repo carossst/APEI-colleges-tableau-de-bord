@@ -33,11 +33,15 @@ loadData().then(DATA => {
   createLineAxesChart(DATA);
   buildHeatmapTables(DATA);
   createQuantiCharts(DATA);
-  createColleges2024Charts(DATA);
-  buildCollegeCards(DATA);
+
+  // Section "Collèges 2024" supprimée dans index.html
+  // createColleges2024Charts(DATA);
+  // buildCollegeCards(DATA);
+
   buildTimelines(DATA);
   initNavActiveOnClick();
 });
+
 
 // ===== 1. RADAR CHART — VERSION AMÉLIORÉE =====
 function createRadarChart(DATA) {
