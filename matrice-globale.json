@@ -1,0 +1,80 @@
+{
+  "axes": [
+    { "label": "Transformation des espaces", "values": { "2021": 3.4, "2023": 3.2, "2024": 3.4 } },
+    { "label": "Organisation des enseignements", "values": { "2021": 2.4, "2023": 2.4, "2024": 2.8 } },
+    { "label": "Usage outils numériques", "values": { "2021": 3.2, "2023": 2.7, "2024": 2.9 } },
+    { "label": "Relation aux élèves", "values": { "2021": 3.0, "2023": 3.1, "2024": 2.9 } },
+    { "label": "Relation parties prenantes", "values": { "2021": 2.2, "2023": 1.9, "2024": 1.9 } }
+  ],
+  "etablissements2021": [
+    { "nom": "L'Ardillière-de-Nézant", "ville": "Saint-Brice", "scores": [4, 3, 3, 3, 2], "eleves": 626, "budget": 61000, "note": 34.31 },
+    { "nom": "Louise Weiss", "ville": "Cormeilles", "scores": [4, 3, 4, 3, 3], "eleves": 335, "budget": 98613, "note": null },
+    { "nom": "Eugénie Cotton", "ville": "Argenteuil", "scores": [4, 2, 4, 3, 2], "eleves": 710, "budget": 69290, "note": 32.50 },
+    { "nom": "Epine Guyon", "ville": "Franconville", "scores": [2, 2, 2, 3, 2], "eleves": 618, "budget": 64500, "note": 33.58 },
+    { "nom": "Pierre et Marie Curie", "ville": "L'Isle-Adam", "scores": [3, 2, 3, 3, 2], "eleves": 778, "budget": 51500, "note": 31.17 }
+  ],
+  "etablissements2023": [
+    { "nom": "Ariane", "ville": "Argenteuil", "scores": [3, 1, 3, 3, 2], "eleves": 635 },
+    { "nom": "Pierre et Marie Curie", "ville": "L'Isle-Adam", "scores": [3, 2.5, 2, 3, 1.5], "eleves": 820 },
+    { "nom": "Epine Guyon", "ville": "Franconville", "scores": [3, 2, 2.5, 3, 1.5], "eleves": 720 },
+    { "nom": "Georges Charpak", "ville": "Goussainville", "scores": [3, 3, 3, 3, 1.5], "eleves": 533 },
+    { "nom": "L'Ardillière-de-Nézant", "ville": "Saint-Brice", "scores": [4, 3.5, 3, 3.5, 3], "eleves": 569 }
+  ],
+  "etablissements2024": [
+    { "nom": "Eugénie Cotton", "ville": "Argenteuil", "type": "Clôture 2018", "taux": 80, "eleves": 694, "enseignants": 51 },
+    { "nom": "Paul Vaillant Couturier", "ville": "Argenteuil", "type": "Clôture 2018", "taux": 10, "eleves": 734, "enseignants": 54 },
+    { "nom": "Pablo Picasso", "ville": "Éragny", "type": "Clôture 2018", "taux": 60, "eleves": 597, "enseignants": 39 },
+    { "nom": "Les Hautiers", "ville": "Marines", "type": "Clôture 2018", "taux": 90, "eleves": 712, "enseignants": 45 },
+    { "nom": "Pierre et Marie Curie", "ville": "L'Isle-Adam", "type": "Mi-parcours 2021", "taux": 85, "eleves": 809, "enseignants": 56 },
+    { "nom": "Montesquieu", "ville": "Beauchamp", "type": "Mi-parcours 2021", "taux": 75, "eleves": 559, "enseignants": 35 },
+    { "nom": "Jean-Claude Chabanne", "ville": "Pontoise", "type": "Mi-parcours 2021", "taux": 25, "eleves": 651, "enseignants": 41 },
+    { "nom": "Nicolas Flamel", "ville": "Pontoise", "type": "Mi-parcours 2021", "taux": 45, "eleves": 633, "enseignants": 45 }
+  ],
+  "quanti": {
+    "sanctions_pmc": { "labels": ["2018/19", "2020/21", "2021/22", "2022/23"], "values": [105, 70, 0, 0] },
+    "sanctions_picasso": { "labels": ["2020/21", "2021/22+"], "values": [1628, 3] },
+    "heures_flamel": { "labels": ["2022", "2023", "2024"], "values": [88, 169, 200] },
+    "heures_hautiers": { "labels": ["2021/22", "2023/24"], "values": [362, 450] },
+    "eleves_hautiers": { "labels": ["2022/23", "2023/24"], "values": [500, 700] },
+    "eleves_montesquieu": { "labels": ["2022", "2023", "2024"], "values": [150, 450, 570] },
+    "enseignants_montesquieu": { "labels": ["2023", "2024"], "values": [12, 30] },
+    "enseignants_picasso": { "labels": ["2018/19", "Phase 1-3"], "values": [4, 15] },
+    "formes2021": {
+      "labels": ["Eugénie Cotton", "Epine Guyon (2019)", "Epine Guyon (2020)", "Pierre et MC"],
+      "values": [31, 63, 0, 48],
+      "objectif": 50
+    },
+    "pratiques2021": {
+      "labels": ["Eugénie Cotton", "Epine Guyon", "Pierre et MC"],
+      "values": [15, 8, 25],
+      "objectif": 25
+    },
+    "satisfaits2021": {
+      "labels": ["Eugénie Cotton", "Epine Guyon", "Pierre et MC"],
+      "values": [80, 80, 80],
+      "objectif": 70
+    }
+  },
+  "pointsPositifs": [
+    { "annee": "2021", "titre": "Transformation des pratiques", "detail": "Enseignants commencent à transformer leurs pratiques pédagogiques", "source": "Laurence Mouret, L'Ardillière" },
+    { "annee": "2021", "titre": "Nouvelles compétences élèves", "detail": "Élèves développent compétences vidéo, montage, travail autonome", "source": "Isabelle Culleron, Pierre et MC" },
+    { "annee": "2021", "titre": "Bien-être élèves", "detail": "Élèves plus épanouis dans les nouveaux environnements", "source": "Didier Deternoz, Epine Guyon" },
+    { "annee": "2023", "titre": "Nouvelles compétences", "detail": "Web TV développe compétences et valorise les élèves", "source": "Didier Deternoz, Epine Guyon" },
+    { "annee": "2023", "titre": "Autonomie renforcée", "detail": "Élèves travaillent en autonomie avec tableaux et espaces dédiés", "source": "Élève de 3e, L'Ardillière" },
+    { "annee": "2023", "titre": "Évolution pratiques", "detail": "Certains professeurs revoient entièrement leurs séquences", "source": "Camille Pion, L'Ardillière" },
+    { "annee": "2024", "titre": "Travail groupe & autonomie", "detail": "Pédagogie active, coopérative, raccrochage des élèves en difficulté", "source": "Prof anglais, Pablo Picasso" },
+    { "annee": "2024", "titre": "Nouvelle posture enseignants", "detail": "Plus abordables, circulent, dialogue facilité", "source": "Prof physique-chimie, JC Chabanne" },
+    { "annee": "2024", "titre": "Apaisement climat scolaire", "detail": "Zéro problématique en permanence, bien-être des élèves", "source": "CPE, Eugénie Cotton" }
+  ],
+  "difficultes": [
+    { "annee": "2021", "titre": "Manque accompagnement", "detail": "Pas d'assistant pédagogique, besoin de formation entre pairs" },
+    { "annee": "2021", "titre": "Réticence enseignants", "detail": "Enseignants encore ancrés dans les pratiques traditionnelles" },
+    { "annee": "2021", "titre": "Classes de 30 élèves", "detail": "Organisation difficile avec des effectifs importants" },
+    { "annee": "2023", "titre": "Appréhension numérique", "detail": "Enseignants n'osent pas se lancer par peur ou méconnaissance" },
+    { "annee": "2023", "titre": "Manque de temps", "detail": "50 minutes de cours trop juste, besoin de 2-3h" },
+    { "annee": "2023", "titre": "Communication interne", "detail": "Enseignants ignorent ce qui est possible dans les espaces" },
+    { "annee": "2024", "titre": "Moyens humains", "detail": "Espaces innovants gourmands en personnel, besoin co-animation" },
+    { "annee": "2024", "titre": "Espaces petits groupes", "detail": "Web TV/Radio : 5 élèves max, chronophage, besoin 3 enseignants" },
+    { "annee": "2024", "titre": "Communication interne", "detail": "Formations nouveaux arrivants, formaliser à chaque rentrée" }
+  ]
+}

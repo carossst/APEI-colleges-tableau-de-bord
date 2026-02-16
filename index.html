@@ -1,156 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>APEI - Tableau de bord (exécutif)</title>
-  <meta name="description" content="Tableau de bord exécutif - Analyse d'impact qualitative des actions innovantes dans les collèges (Val-d'Oise)." />
-  <link rel="stylesheet" href="./style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Val-d'Oise Lab2034 — Dashboard Impact Qualitative</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <a class="sr-only" href="#main">Aller au contenu</a>
 
-  <header class="topbar">
-    <div class="topbar__inner">
-      <div class="brand">
-        <div class="brand__mark" aria-hidden="true"></div>
-        <div class="brand__text">
-          <div class="brand__title">APEI - Tableau de bord</div>
-          <div class="brand__subtitle">Impact qualitatif - collèges (Val-d'Oise)</div>
-        </div>
-      </div>
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <h1>Analyse d'impact qualitative</h1>
+  <p>Espaces innovants dans les collèges du Val-d'Oise · Lab2034</p>
+  <div class="badge-row">
+    <span class="badge badge-2021">● 2021 · 5 collèges</span>
+    <span class="badge badge-2023">● 2023 · 5 collèges</span>
+    <span class="badge badge-2024">● 2024 · 8 collèges</span>
+  </div>
+</div>
 
-      <div class="controls" role="group" aria-label="Filtres">
-        <label class="control">
-          <span>Année</span>
-          <select id="yearSelect"></select>
-        </label>
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <a href="#matrice" class="active">Matrice Globale</a>
+  <a href="#etablissements">Établissements</a>
+  <a href="#quantitatif">Données Quantitatives</a>
+  <a href="#colleges2024">Collèges 2024</a>
+  <a href="#points-cles">Points Clés</a>
+</nav>
 
-        <label class="control">
-          <span>Groupe</span>
-          <select id="groupSelect"></select>
-        </label>
+<div class="container">
 
-        <label class="control control--wide">
-          <span>Recherche</span>
-          <input id="searchInput" type="search" placeholder="Collège, ville, tag..." autocomplete="off" />
-        </label>
-      </div>
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi navy"><div class="number">18</div><div class="label">Collèges analysés</div></div>
+    <div class="kpi coral"><div class="number">60+</div><div class="label">Entretiens réalisés</div></div>
+    <div class="kpi teal"><div class="number">6/8</div><div class="label">Objectifs atteints (2024)</div></div>
+    <div class="kpi gold"><div class="number">2,8</div><div class="label">Score moyen /4 (2024)</div></div>
+  </div>
+
+  <!-- ===== SECTION 1: MATRICE GLOBALE ===== -->
+  <div class="section" id="matrice">
+    <h2>Matrice globale</h2>
+    <p>Évolution des 5 axes d'impact sur 3 analyses (2021, 2023, 2024)</p>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h2>Radar comparatif</h2>
+      <div class="subtitle">Score moyen par axe, échelle /4</div>
+      <canvas id="radarChart"></canvas>
     </div>
-  </header>
+    <div class="card">
+      <h2>Comparaison par axe</h2>
+      <div class="subtitle">Barres groupées 2021 vs 2023 vs 2024</div>
+      <canvas id="barChart"></canvas>
+    </div>
+  </div>
 
-  <main id="main" class="page">
-    <section class="kpis" aria-label="Indicateurs clés">
-      <div class="kpi">
-        <div class="kpi__label">Moyenne globale</div>
-        <div class="kpi__value" id="kpiGlobal">-</div>
-        <div class="kpi__note" id="kpiGlobalNote">/4</div>
+  <div class="grid-2" style="margin-top:24px">
+    <div class="card">
+      <h2>Évolution moyenne globale</h2>
+      <div class="subtitle">Moyenne des 5 axes par année</div>
+      <canvas id="lineChart" class="chart-sm"></canvas>
+    </div>
+    <div class="card">
+      <h2>Détail par axe</h2>
+      <div class="subtitle">Évolution individuelle de chaque axe</div>
+      <canvas id="lineAxesChart" class="chart-sm"></canvas>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 2: ÉTABLISSEMENTS HEATMAP ===== -->
+  <div class="section" id="etablissements">
+    <h2>Scores par établissement</h2>
+    <p>Matrices individuelles extraites des rapports 2021 et 2023</p>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab(this,'tab2021')">2021 — 5 collèges</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab2023')">2023 — 5 collèges</button>
+    </div>
+    <div id="tab2021" class="tab-pane active">
+      <table class="heat-table">
+        <thead><tr><th>Collège</th><th>Espaces</th><th>Enseignements</th><th>Outils num.</th><th>Élèves</th><th>Parties pr.</th><th>Moy.</th></tr></thead>
+        <tbody id="tbody2021"></tbody>
+      </table>
+    </div>
+    <div id="tab2023" class="tab-pane">
+      <table class="heat-table">
+        <thead><tr><th>Collège</th><th>Espaces</th><th>Enseignements</th><th>Outils num.</th><th>Élèves</th><th>Parties pr.</th><th>Moy.</th></tr></thead>
+        <tbody id="tbody2023"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3: DONNÉES QUANTITATIVES ===== -->
+  <div class="section" id="quantitatif">
+    <h2>Données quantitatives</h2>
+    <p>Comparaison analyse qualitative & quantitative — chiffres clés des rapports</p>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h2>Sanctions — Pierre et Marie Curie</h2>
+      <div class="subtitle">De 105 sanctions à zéro après projet vie scolaire</div>
+      <canvas id="chartSanctionsPMC" class="chart-sm"></canvas>
+    </div>
+    <div class="card">
+      <h2>Sanctions — Pablo Picasso</h2>
+      <div class="subtitle">Chute drastique : 1 628 → 3</div>
+      <canvas id="chartSanctionsPicasso" class="chart-sm"></canvas>
+    </div>
+  </div>
+
+  <div class="grid-3" style="margin-top:24px">
+    <div class="card">
+      <h2>Fréquentation (heures)</h2>
+      <div class="subtitle">Nicolas Flamel — croissance continue</div>
+      <canvas id="chartHeuresFlamel" class="chart-sm"></canvas>
+    </div>
+    <div class="card">
+      <h2>Élèves impactés</h2>
+      <div class="subtitle">Montesquieu — ×3.8 en 2 ans</div>
+      <canvas id="chartElevesMontesquieu" class="chart-sm"></canvas>
+    </div>
+    <div class="card">
+      <h2>Enseignants formés</h2>
+      <div class="subtitle">2021 — % formés vs objectif CD95 (50%)</div>
+      <canvas id="chartFormes2021" class="chart-sm"></canvas>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 4: COLLÈGES 2024 ===== -->
+  <div class="section" id="colleges2024">
+    <h2>Les 8 collèges de 2024</h2>
+    <p>Taux de réussite auto-évalué et profil de chaque établissement</p>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h2>Taux de réussite des projets</h2>
+      <div class="subtitle">Évaluation qualitative par les établissements</div>
+      <canvas id="chartTaux2024" class="chart-sm"></canvas>
+    </div>
+    <div class="card">
+      <h2>Effectifs</h2>
+      <div class="subtitle">Élèves et enseignants par collège</div>
+      <canvas id="chartEffectifs2024" class="chart-sm"></canvas>
+    </div>
+  </div>
+
+  <div class="grid-2" style="margin-top:24px" id="college-cards-container"></div>
+
+  <!-- ===== SECTION 5: POINTS CLÉS ===== -->
+  <div class="section" id="points-cles">
+    <h2>Points clés transversaux</h2>
+    <p>Top 3 positifs et top 3 difficultés par année d'analyse</p>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h2 style="color:var(--teal)">✦ Points positifs</h2>
+      <div class="subtitle">Impacts les plus fréquemment cités</div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(this,'pos2021')">2021</button>
+        <button class="tab-btn" onclick="switchTab(this,'pos2023')">2023</button>
+        <button class="tab-btn" onclick="switchTab(this,'pos2024')">2024</button>
       </div>
-
-      <div class="kpi">
-        <div class="kpi__label">Établissements</div>
-        <div class="kpi__value" id="kpiCount">-</div>
-        <div class="kpi__note" id="kpiCountNote">filtrés</div>
+      <div id="pos2021" class="tab-pane active"><div class="timeline" id="tl-pos-2021"></div></div>
+      <div id="pos2023" class="tab-pane"><div class="timeline" id="tl-pos-2023"></div></div>
+      <div id="pos2024" class="tab-pane"><div class="timeline" id="tl-pos-2024"></div></div>
+    </div>
+    <div class="card">
+      <h2 style="color:var(--coral)">✦ Difficultés rencontrées</h2>
+      <div class="subtitle">Freins les plus fréquemment cités</div>
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(this,'neg2021')">2021</button>
+        <button class="tab-btn" onclick="switchTab(this,'neg2023')">2023</button>
+        <button class="tab-btn" onclick="switchTab(this,'neg2024')">2024</button>
       </div>
+      <div id="neg2021" class="tab-pane active"><div class="timeline" id="tl-neg-2021"></div></div>
+      <div id="neg2023" class="tab-pane"><div class="timeline" id="tl-neg-2023"></div></div>
+      <div id="neg2024" class="tab-pane"><div class="timeline" id="tl-neg-2024"></div></div>
+    </div>
+  </div>
 
-      <div class="kpi">
-        <div class="kpi__label">Meilleur axe</div>
-        <div class="kpi__value" id="kpiBestAxis">-</div>
-        <div class="kpi__note" id="kpiBestAxisNote">-</div>
-      </div>
+</div>
 
-      <div class="kpi">
-        <div class="kpi__label">Axe à renforcer</div>
-        <div class="kpi__value" id="kpiWeakAxis">-</div>
-        <div class="kpi__note" id="kpiWeakAxisNote">-</div>
-      </div>
-    </section>
+<footer>
+  <strong>Conseil départemental du Val-d'Oise</strong> · Lab2034 — Analyse d'impact qualitative 2021 / 2023 / 2024<br>
+  Contact : Marine Savouret · Frédéric Kerbeche · Direction de l'Éducation et des Collèges
+</footer>
 
-    <section class="grid">
-      <div class="card">
-        <div class="card__head">
-          <h2 class="card__title">Matrice (moyennes par axe)</h2>
-          <p class="card__sub" id="matrixHint">-</p>
-        </div>
-        <div class="matrix" id="matrix"></div>
-      </div>
-
-      <div class="card">
-        <div class="card__head">
-          <h2 class="card__title">Classement (moyenne des 5 axes)</h2>
-          <p class="card__sub">Top / Flop selon le filtre courant</p>
-        </div>
-        <div class="rank" id="rank"></div>
-      </div>
-    </section>
-
-    <section class="card card--table">
-      <div class="card__head">
-        <h2 class="card__title">Détail établissements</h2>
-        <p class="card__sub">Clique sur une ligne pour ouvrir la fiche.</p>
-      </div>
-
-      <div class="tableWrap" role="region" aria-label="Tableau établissements" tabindex="0">
-        <table class="table" id="table">
-          <thead>
-            <tr>
-              <th>Établissement</th>
-              <th>Ville</th>
-              <th>Type</th>
-              <th>Groupe</th>
-              <th title="Moyenne sur 5 axes">Score</th>
-              <th>Espaces</th>
-              <th>Organisation</th>
-              <th>Outils</th>
-              <th>Élèves</th>
-              <th>Parties prenantes</th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <dialog class="modal" id="modal">
-      <div class="modal__inner">
-        <div class="modal__head">
-          <div>
-            <div class="modal__title" id="modalTitle">-</div>
-            <div class="modal__sub" id="modalSub">-</div>
-          </div>
-          <button class="btn btn--ghost" id="modalClose" type="button">Fermer</button>
-        </div>
-
-        <div class="modal__body">
-          <div class="pillRow" id="modalPills"></div>
-
-          <div class="modalGrid">
-            <div class="panel">
-              <h3>Scores par axe</h3>
-              <div class="bars" id="modalBars"></div>
-            </div>
-
-            <div class="panel">
-              <h3>Notes</h3>
-              <div class="notes" id="modalNotes"></div>
-            </div>
-          </div>
-
-          <div class="modal__foot">
-            <div class="small" id="modalSource">-</div>
-          </div>
-        </div>
-      </div>
-    </dialog>
-
-    <footer class="footer">
-      <div class="footer__inner">
-        <div class="small">Données locales: <code>valdoise.json</code>. Aucune donnée externe chargée.</div>
-        <div class="small" id="buildInfo">-</div>
-      </div>
-    </footer>
-  </main>
-
-  <script src="./app.js" defer></script>
+<script src="app.js"></script>
 </body>
 </html>

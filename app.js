@@ -1,454 +1,354 @@
-/* Executive dashboard — no build, GitHub Pages ready */
-(() => {
-  "use strict";
+// ===================================================
+// Val-d'Oise Lab2034 — Dashboard Impact Qualitative
+// app.js — Charts, tables, and interactivity
+// ===================================================
 
-  const DATA_URL = "./valdoise.json";
+// Chart.js defaults
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.pointStyleWidth = 10;
 
-  const el = (id) => document.getElementById(id);
+// Color palette
+const C = {
+  b2021: '#1f77b4',
+  b2023: '#f2c94c',
+  b2024: '#e8634a',
+  navy: '#1a2744',
+  teal: '#27ae60',
+  coral: '#e8634a',
+  gold: '#f2994a'
+};
 
-  const ui = {
-    yearSelect: el("yearSelect"),
-    groupSelect: el("groupSelect"),
-    searchInput: el("searchInput"),
-    kpiGlobal: el("kpiGlobal"),
-    kpiGlobalNote: el("kpiGlobalNote"),
-    kpiCount: el("kpiCount"),
-    kpiCountNote: el("kpiCountNote"),
-    kpiBestAxis: el("kpiBestAxis"),
-    kpiBestAxisNote: el("kpiBestAxisNote"),
-    kpiWeakAxis: el("kpiWeakAxis"),
-    kpiWeakAxisNote: el("kpiWeakAxisNote"),
-    matrix: el("matrix"),
-    matrixHint: el("matrixHint"),
-    rank: el("rank"),
-    tbody: el("tbody"),
-    modal: el("modal"),
-    modalTitle: el("modalTitle"),
-    modalSub: el("modalSub"),
-    modalPills: el("modalPills"),
-    modalBars: el("modalBars"),
-    modalNotes: el("modalNotes"),
-    modalSource: el("modalSource"),
-    modalClose: el("modalClose"),
-    buildInfo: el("buildInfo"),
-  };
+// ===== LOAD DATA & INIT =====
+async function loadData() {
+  const response = await fetch('./matrice-globale.json');
+  return await response.json();
+}
 
-  const clamp01 = (n) => Math.max(0, Math.min(1, n));
-  const round1 = (n) => Math.round(n * 10) / 10;
+loadData().then(DATA => {
+  createRadarChart(DATA);
+  createBarChart(DATA);
+  createLineChart(DATA);
+  createLineAxesChart(DATA);
+  buildHeatmapTables(DATA);
+  createQuantiCharts(DATA);
+  createColleges2024Charts(DATA);
+  buildCollegeCards(DATA);
+  buildTimelines(DATA);
+  initNavScroll();
+});
 
-  function scoreBadgeClass(avg) {
-    if (avg >= 3.2) return "badge--good";
-    if (avg >= 2.4) return "badge--warn";
-    return "badge--bad";
-  }
+// ===== 1. RADAR CHART =====
+function createRadarChart(DATA) {
+  new Chart(document.getElementById('radarChart'), {
+    type: 'radar',
+    data: {
+      labels: DATA.axes.map(a => a.label),
+      datasets: [
+        {
+          label: '2021',
+          data: DATA.axes.map(a => a.values['2021']),
+          borderColor: C.b2021,
+          backgroundColor: 'rgba(31,119,180,.12)',
+          pointBackgroundColor: C.b2021,
+          borderWidth: 2
+        },
+        {
+          label: '2023',
+          data: DATA.axes.map(a => a.values['2023']),
+          borderColor: C.b2023,
+          backgroundColor: 'rgba(242,201,76,.12)',
+          pointBackgroundColor: C.b2023,
+          borderWidth: 2
+        },
+        {
+          label: '2024',
+          data: DATA.axes.map(a => a.values['2024']),
+          borderColor: C.b2024,
+          backgroundColor: 'rgba(232,99,74,.12)',
+          pointBackgroundColor: C.b2024,
+          borderWidth: 2
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        r: { min: 0, max: 4, ticks: { stepSize: 1 } }
+      }
+    }
+  });
+}
 
-  function safeText(v) {
-    return (v === null || v === undefined) ? "" : String(v);
-  }
+// ===== 2. BAR CHART =====
+function createBarChart(DATA) {
+  new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: DATA.axes.map(a => a.label),
+      datasets: [
+        { label: '2021', data: DATA.axes.map(a => a.values['2021']), backgroundColor: C.b2021, borderRadius: 4 },
+        { label: '2023', data: DATA.axes.map(a => a.values['2023']), backgroundColor: C.b2023, borderRadius: 4 },
+        { label: '2024', data: DATA.axes.map(a => a.values['2024']), backgroundColor: C.b2024, borderRadius: 4 }
+      ]
+    },
+    options: {
+      responsive: true,
+      scales: { y: { min: 0, max: 4, ticks: { stepSize: 1 } } }
+    }
+  });
+}
 
-  function avgScores(scoresObj, axisKeys) {
-    const vals = axisKeys
-      .map((k) => Number(scoresObj?.[k]))
-      .filter((x) => Number.isFinite(x));
-    if (!vals.length) return null;
-    return vals.reduce((a,b)=>a+b,0) / vals.length;
-  }
+// ===== 3. LINE AVERAGE =====
+function createLineChart(DATA) {
+  const years = ['2021', '2023', '2024'];
+  const avgs = years.map(y => {
+    const s = DATA.axes.reduce((a, x) => a + x.values[y], 0);
+    return +(s / DATA.axes.length).toFixed(2);
+  });
 
-  function computeAxisAverages(items, axisKeys) {
-    const sums = Object.fromEntries(axisKeys.map(k => [k, 0]));
-    const counts = Object.fromEntries(axisKeys.map(k => [k, 0]));
+  new Chart(document.getElementById('lineChart'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [{
+        label: 'Moyenne globale /4',
+        data: avgs,
+        borderColor: C.navy,
+        backgroundColor: 'rgba(26,39,68,.08)',
+        tension: .3,
+        fill: true,
+        pointRadius: 6,
+        pointBackgroundColor: C.navy
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: { y: { min: 1.5, max: 3.5 } }
+    }
+  });
+}
 
-    for (const it of items) {
-      for (const k of axisKeys) {
-        const v = Number(it.scores?.[k]);
-        if (Number.isFinite(v)) {
-          sums[k] += v;
-          counts[k] += 1;
+// ===== 4. LINE PER AXE =====
+function createLineAxesChart(DATA) {
+  const years = ['2021', '2023', '2024'];
+  const axColors = [C.b2021, C.b2023, C.b2024, C.teal, C.gold];
+
+  new Chart(document.getElementById('lineAxesChart'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: DATA.axes.map((a, i) => ({
+        label: a.label,
+        data: years.map(y => a.values[y]),
+        borderColor: axColors[i],
+        backgroundColor: 'transparent',
+        tension: .3,
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: axColors[i]
+      }))
+    },
+    options: {
+      responsive: true,
+      scales: { y: { min: 1, max: 4 } },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: { boxWidth: 12, font: { size: 10 } }
         }
       }
     }
-    const avgs = {};
-    for (const k of axisKeys) {
-      avgs[k] = counts[k] ? (sums[k] / counts[k]) : null;
+  });
+}
+
+// ===== 5. HEATMAP TABLES =====
+function heatClass(v) {
+  if (v >= 3.5) return 'h4';
+  if (v >= 2.5) return 'h3';
+  if (v >= 1.5) return 'h2';
+  return 'h1';
+}
+
+function buildHeatmapTables(DATA) {
+  buildTable('tbody2021', DATA.etablissements2021);
+  buildTable('tbody2023', DATA.etablissements2023);
+}
+
+function buildTable(id, list) {
+  const tb = document.getElementById(id);
+  list.forEach(e => {
+    const avg = (e.scores.reduce((a, b) => a + b, 0) / 5).toFixed(1);
+    tb.innerHTML += `<tr>
+      <td class="name">${e.nom}<br><small style="color:var(--muted)">${e.ville}</small></td>
+      ${e.scores.map(s => `<td class="${heatClass(s)}">${s}</td>`).join('')}
+      <td class="${heatClass(+avg)}"><strong>${avg}</strong></td>
+    </tr>`;
+  });
+}
+
+// ===== 6. QUANTITATIVE CHARTS =====
+function miniBar(id, labels, values, color, label) {
+  new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ label, data: values, backgroundColor: color, borderRadius: 6 }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true } }
     }
-    return avgs;
-  }
+  });
+}
 
-  function normalize(str) {
-    return safeText(str).toLowerCase()
-      .normalize("NFD").replace(/\p{Diacritic}/gu, "");
-  }
+function createQuantiCharts(DATA) {
+  miniBar('chartSanctionsPMC', DATA.quanti.sanctions_pmc.labels, DATA.quanti.sanctions_pmc.values, C.b2021, 'Sanctions');
+  miniBar('chartSanctionsPicasso', DATA.quanti.sanctions_picasso.labels, DATA.quanti.sanctions_picasso.values, C.coral, 'Sanctions');
+  miniBar('chartHeuresFlamel', DATA.quanti.heures_flamel.labels, DATA.quanti.heures_flamel.values, C.teal, 'Heures');
+  miniBar('chartElevesMontesquieu', DATA.quanti.eleves_montesquieu.labels, DATA.quanti.eleves_montesquieu.values, C.gold, 'Élèves');
 
-  function buildYearOptions(cohorts) {
-    const years = Object.keys(cohorts)
-      .map((y) => Number(y))
-      .filter((n) => Number.isFinite(n))
-      .sort((a,b)=>b-a)
-      .map(String);
+  // Enseignants formés 2021 avec ligne objectif
+  new Chart(document.getElementById('chartFormes2021'), {
+    type: 'bar',
+    data: {
+      labels: DATA.quanti.formes2021.labels,
+      datasets: [{
+        label: '% formés',
+        data: DATA.quanti.formes2021.values,
+        backgroundColor: [C.b2021, C.teal, C.coral, C.gold],
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, max: 100 } }
+    },
+    plugins: [{
+      id: 'objectifLine',
+      afterDraw(chart) {
+        const y = chart.scales.y.getPixelForValue(50);
+        const ctx = chart.ctx;
+        ctx.save();
+        ctx.strokeStyle = '#e8634a';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        ctx.moveTo(chart.chartArea.left, y);
+        ctx.lineTo(chart.chartArea.right, y);
+        ctx.stroke();
+        ctx.fillStyle = '#e8634a';
+        ctx.font = '11px DM Sans';
+        ctx.fillText('Objectif 50%', chart.chartArea.right - 75, y - 6);
+        ctx.restore();
+      }
+    }]
+  });
+}
 
-    ui.yearSelect.innerHTML = years.map((y) => `<option value="${y}">${y}</option>`).join("");
-    return years[0] || null;
-  }
+// ===== 7. COLLEGES 2024 CHARTS =====
+function createColleges2024Charts(DATA) {
+  const sorted = [...DATA.etablissements2024].sort((a, b) => b.taux - a.taux);
 
-  function buildGroupOptions(cohort) {
-    const groups = cohort?.groups || [];
-    const opts = [{ key: "all", label: "Tous" }].concat(
-      groups.map(g => ({ key: g.key, label: g.label }))
-    );
-    ui.groupSelect.innerHTML = opts.map(o => `<option value="${o.key}">${o.label}</option>`).join("");
-  }
-
-  function getCollegeMetaById(data, collegeId) {
-    const list = data?.colleges || [];
-    return list.find(c => c.id === collegeId) || null;
-  }
-
-  function getScoresForCollegeYear(data, collegeId, year) {
-    const list = data?.college_scores || [];
-    return list.find(x => x.college_id === collegeId && Number(x.year) === Number(year)) || null;
-  }
-
-  function buildRows(data, year) {
-    const cohort = data?.cohorts?.[String(year)];
-    const axisKeys = Object.keys(data?.axes || {});
-    const axisLabels = data?.axes || {};
-
-    const cohortColleges = cohort?.colleges || [];
-    const groupsByKey = Object.fromEntries((cohort?.groups || []).map(g => [g.key, g.label]));
-
-    const rows = cohortColleges.map((c) => {
-      const meta = getCollegeMetaById(data, c.id);
-      const scoreRec = getScoresForCollegeYear(data, c.id, year);
-      const scores = scoreRec?.scores || {};
-      const avg = avgScores(scores, axisKeys);
-      const groupLabel = groupsByKey[c.groupKey] || c.groupKey || "";
-
-      return {
-        id: c.id,
-        name: meta?.name || c.name || c.id,
-        city: meta?.city || "",
-        type: c.type || "",
-        groupKey: c.groupKey || "",
-        groupLabel,
-        notes: c.notes || [],
-        highlights: c.highlights || [],
-        scores,
-        avg,
-        source_ref: scoreRec?.source_ref || "",
-        axisLabels,
-        axisKeys
-      };
-    });
-
-    return { rows, axisKeys, axisLabels, cohort };
-  }
-
-  function applyFilters(allRows) {
-    const year = ui.yearSelect.value;
-    const groupKey = ui.groupSelect.value;
-    const q = normalize(ui.searchInput.value);
-
-    return allRows.filter((r) => {
-      if (groupKey && groupKey !== "all" && r.groupKey !== groupKey) return false;
-      if (!q) return true;
-
-      const hay = normalize([
-        r.name, r.city, r.type, r.groupLabel,
-        ...(r.highlights || []),
-        ...(r.notes || [])
-      ].join(" | "));
-      return hay.includes(q);
-    });
-  }
-
-  function renderKPIs(filteredRows, axisKeys, axisLabels, year, cohort) {
-    ui.kpiCount.textContent = String(filteredRows.length);
-
-    const axisAvgs = computeAxisAverages(filteredRows, axisKeys);
-    const axisPairs = axisKeys
-      .map(k => ({ k, label: axisLabels[k] || k, v: axisAvgs[k] }))
-      .filter(x => Number.isFinite(x.v));
-
-    const globalAvg = axisPairs.length ? axisPairs.reduce((a,b)=>a+b.v,0) / axisPairs.length : null;
-
-    ui.kpiGlobal.textContent = (globalAvg === null) ? "-" : String(round1(globalAvg));
-
-    if (axisPairs.length) {
-      axisPairs.sort((a,b)=>b.v - a.v);
-      const best = axisPairs[0];
-      const worst = axisPairs[axisPairs.length - 1];
-
-      ui.kpiBestAxis.textContent = best.label;
-      ui.kpiBestAxisNote.textContent = String(round1(best.v)) + " / 4";
-
-      ui.kpiWeakAxis.textContent = worst.label;
-      ui.kpiWeakAxisNote.textContent = String(round1(worst.v)) + " / 4";
-    } else {
-      ui.kpiBestAxis.textContent = "-";
-      ui.kpiBestAxisNote.textContent = "-";
-      ui.kpiWeakAxis.textContent = "-";
-      ui.kpiWeakAxisNote.textContent = "-";
+  // Taux de réussite
+  new Chart(document.getElementById('chartTaux2024'), {
+    type: 'bar',
+    data: {
+      labels: sorted.map(e => e.nom),
+      datasets: [{
+        label: 'Taux de réussite %',
+        data: sorted.map(e => e.taux),
+        backgroundColor: sorted.map(e => e.taux >= 75 ? C.teal : e.taux >= 50 ? C.gold : C.coral),
+        borderRadius: 6
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: { x: { min: 0, max: 100 } }
     }
+  });
 
-    const cohortLabel = cohort?.label ? `- ${cohort.label}` : "";
-    ui.matrixHint.textContent = `Averages sur le filtre courant (année ${year}${cohortLabel})`;
-  }
-
-  function renderMatrix(filteredRows, axisKeys, axisLabels) {
-    const axisAvgs = computeAxisAverages(filteredRows, axisKeys);
-
-    ui.matrix.innerHTML = axisKeys.map((k) => {
-      const v = axisAvgs[k];
-      const pct = (v === null) ? 0 : clamp01(v / 4) * 100;
-      const label = axisLabels[k] || k;
-
-      return `
-        <div class="axisRow">
-          <div class="axisRow__label">${label}</div>
-          <div class="bar" aria-label="${label}">
-            <span style="width:${pct}%"></span>
-          </div>
-          <div class="axisRow__score">${v === null ? "-" : round1(v)}</div>
-        </div>
-      `;
-    }).join("");
-  }
-
-  function renderRank(filteredRows) {
-    const rows = filteredRows
-      .filter(r => Number.isFinite(r.avg))
-      .slice()
-      .sort((a,b)=>b.avg - a.avg);
-
-    const top = rows.slice(0, 3);
-    const flop = rows.slice(-3).reverse();
-
-    const renderItem = (r, tag) => {
-      const cls = scoreBadgeClass(r.avg);
-      return `
-        <div class="rankItem" data-id="${r.id}">
-          <div class="rankItem__left">
-            <div class="rankItem__name">${safeText(r.name)}</div>
-            <div class="rankItem__meta">${safeText(r.city)} • ${safeText(r.type)} • ${safeText(tag)}</div>
-          </div>
-          <div class="badge ${cls}">${round1(r.avg)}</div>
-        </div>
-      `;
-    };
-
-    ui.rank.innerHTML = `
-      ${top.length ? `<div class="small">Top 3</div>${top.map(r => renderItem(r, "Top")).join("")}` : `<div class="small">Aucun score</div>`}
-      ${flop.length ? `<div class="small" style="margin-top:6px">Flop 3</div>${flop.map(r => renderItem(r, "À renforcer")).join("")}` : ``}
-    `;
-
-    // click
-    ui.rank.querySelectorAll(".rankItem").forEach((node) => {
-      node.addEventListener("click", () => openModal(node.getAttribute("data-id")));
-    });
-  }
-
-  function scorePill(avg) {
-    const cls = scoreBadgeClass(avg);
-    return `<span class="scorePill ${cls}">${Number.isFinite(avg) ? round1(avg) : "-"}</span>`;
-  }
-
-  function renderTable(filteredRows, axisKeys) {
-    const rows = filteredRows
-      .slice()
-      .sort((a,b) => (b.avg ?? -999) - (a.avg ?? -999));
-
-    ui.tbody.innerHTML = rows.map((r) => {
-      const s = r.scores || {};
-      const v = (k) => {
-        const n = Number(s[k]);
-        return Number.isFinite(n) ? String(n) : "-";
-      };
-
-      return `
-        <tr data-id="${r.id}">
-          <td><strong>${safeText(r.name)}</strong></td>
-          <td class="cellMuted">${safeText(r.city)}</td>
-          <td class="cellMuted">${safeText(r.type)}</td>
-          <td class="cellMuted">${safeText(r.groupLabel)}</td>
-          <td>${scorePill(r.avg)}</td>
-          <td>${v("espaces")}</td>
-          <td>${v("enseignements")}</td>
-          <td>${v("outils")}</td>
-          <td>${v("eleves")}</td>
-          <td>${v("partenaires")}</td>
-        </tr>
-      `;
-    }).join("");
-
-    ui.tbody.querySelectorAll("tr").forEach((tr) => {
-      tr.addEventListener("click", () => openModal(tr.getAttribute("data-id")));
-    });
-  }
-
-  let STATE = {
-    data: null,
-    year: null,
-    allRows: [],
-    axisKeys: [],
-    axisLabels: {},
-    cohort: null
-  };
-
-  function buildModalPills(row) {
-    const items = [
-      row.type ? `Type: ${row.type}` : null,
-      row.groupLabel ? `Groupe: ${row.groupLabel}` : null,
-      row.city ? `Ville: ${row.city}` : null,
-      Number.isFinite(row.avg) ? `Score moyen: ${round1(row.avg)} / 4` : null,
-    ].filter(Boolean);
-
-    ui.modalPills.innerHTML = items.map(t => `<div class="pill">${safeText(t)}</div>`).join("");
-  }
-
-  function buildModalBars(row) {
-    const axisKeys = row.axisKeys || [];
-    const axisLabels = row.axisLabels || {};
-    const scores = row.scores || {};
-
-    ui.modalBars.innerHTML = axisKeys.map((k) => {
-      const label = axisLabels[k] || k;
-      const v = Number(scores[k]);
-      const value = Number.isFinite(v) ? v : null;
-      const pct = value === null ? 0 : clamp01(value / 4) * 100;
-
-      return `
-        <div class="barLine">
-          <div class="barLine__label">${safeText(label)}</div>
-          <div class="bar" aria-label="${safeText(label)}">
-            <span style="width:${pct}%"></span>
-          </div>
-          <div class="barLine__score">${value === null ? "-" : String(value)}</div>
-        </div>
-      `;
-    }).join("");
-  }
-
-  function buildModalNotes(row) {
-    const notes = []
-      .concat((row.highlights || []).map(t => ({ title: "Points saillants", text: t })))
-      .concat((row.notes || []).map(t => ({ title: "Points d'attention", text: t })));
-
-    if (!notes.length) {
-      ui.modalNotes.innerHTML = `<div class="small">Aucune note dans le dataset.</div>`;
-      return;
+  // Effectifs
+  new Chart(document.getElementById('chartEffectifs2024'), {
+    type: 'bar',
+    data: {
+      labels: DATA.etablissements2024.map(e => e.nom),
+      datasets: [
+        { label: 'Élèves', data: DATA.etablissements2024.map(e => e.eleves), backgroundColor: C.b2021, borderRadius: 4 },
+        { label: 'Enseignants (×10)', data: DATA.etablissements2024.map(e => e.enseignants * 10), backgroundColor: C.gold, borderRadius: 4 }
+      ]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      scales: { x: { beginAtZero: true } },
+      plugins: { legend: { position: 'bottom' } }
     }
+  });
+}
 
-    ui.modalNotes.innerHTML = notes.map((n) => `
-      <div class="note">
-        <div class="note__title">${safeText(n.title)}</div>
-        <div class="note__text">${safeText(n.text)}</div>
+// ===== 8. COLLEGE CARDS =====
+function buildCollegeCards(DATA) {
+  const container = document.getElementById('college-cards-container');
+  DATA.etablissements2024.forEach(e => {
+    const bg = e.taux >= 75 ? '#d1fae5' : e.taux >= 50 ? '#fef3c7' : '#fee2e2';
+    const fg = e.taux >= 75 ? '#065f46' : e.taux >= 50 ? '#92400e' : '#991b1b';
+    const cls = e.taux >= 75 ? 'high' : e.taux >= 50 ? 'mid' : 'low';
+
+    container.innerHTML += `<div class="college-card">
+      <div class="top">
+        <h3>${e.nom}</h3>
+        <span class="taux-badge" style="background:${bg};color:${fg}">${e.taux}%</span>
       </div>
-    `).join("");
-  }
+      <div class="meta">${e.ville} · ${e.type} · ${e.eleves} élèves · ${e.enseignants} enseignants</div>
+      <div class="taux-bar"><div class="taux-fill ${cls}" style="width:${e.taux}%"></div></div>
+    </div>`;
+  });
+}
 
-  function openModal(collegeId) {
-    const row = STATE.allRows.find(r => r.id === collegeId);
-    if (!row) return;
+// ===== 9. TIMELINES =====
+function renderTimeline(items, containerId, type) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  items.forEach(i => {
+    el.innerHTML += `<div class="tl-item">
+      <div class="tl-dot ${type}"></div>
+      <div class="tl-content">
+        <strong>${i.titre}</strong>
+        <p>${i.detail}</p>
+        ${i.source ? `<div class="src">— ${i.source}</div>` : ''}
+      </div>
+    </div>`;
+  });
+}
 
-    ui.modalTitle.textContent = row.name;
-    ui.modalSub.textContent = [row.city, row.type, row.groupLabel].filter(Boolean).join(" • ") || "-";
+function buildTimelines(DATA) {
+  ['2021', '2023', '2024'].forEach(y => {
+    renderTimeline(DATA.pointsPositifs.filter(p => p.annee === y), `tl-pos-${y}`, 'pos');
+    renderTimeline(DATA.difficultes.filter(p => p.annee === y), `tl-neg-${y}`, 'neg');
+  });
+}
 
-    buildModalPills(row);
-    buildModalBars(row);
-    buildModalNotes(row);
+// ===== TAB SYSTEM =====
+function switchTab(btn, paneId) {
+  const card = btn.closest('.card');
+  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  card.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(paneId).classList.add('active');
+}
 
-    ui.modalSource.textContent = row.source_ref ? `Source: ${row.source_ref}` : "Source: -";
-
-    if (typeof ui.modal.showModal === "function") {
-      ui.modal.showModal();
-    } else {
-      // Fallback: if dialog not supported, navigate to hash.
-      window.location.hash = "#college-" + encodeURIComponent(collegeId);
-      alert(row.name + "\n\n" + ui.modalSub.textContent);
-    }
-  }
-
-  function closeModal() {
-    if (ui.modal.open) ui.modal.close();
-  }
-
-  function render() {
-    const filteredRows = applyFilters(STATE.allRows);
-    renderKPIs(filteredRows, STATE.axisKeys, STATE.axisLabels, STATE.year, STATE.cohort);
-    renderMatrix(filteredRows, STATE.axisKeys, STATE.axisLabels);
-    renderRank(filteredRows);
-    renderTable(filteredRows, STATE.axisKeys);
-  }
-
-  async function load() {
-    const res = await fetch(DATA_URL, { cache: "no-store" });
-    if (!res.ok) throw new Error("Impossible de charger " + DATA_URL);
-    const data = await res.json();
-
-    STATE.data = data;
-
-    const defaultYear = buildYearOptions(data.cohorts || {});
-    STATE.year = defaultYear;
-
-    const cohort = data.cohorts?.[defaultYear];
-    STATE.cohort = cohort;
-    buildGroupOptions(cohort);
-
-    const built = buildRows(data, defaultYear);
-    STATE.allRows = built.rows;
-    STATE.axisKeys = built.axisKeys;
-    STATE.axisLabels = built.axisLabels;
-
-    ui.buildInfo.textContent = `Dataset: ${safeText(data.meta?.title || "valdoise")} • Updated: ${safeText(data.meta?.updated_at || "-")}`;
-
-    render();
-  }
-
-  function onYearChange() {
-    const year = ui.yearSelect.value;
-    STATE.year = year;
-
-    const cohort = STATE.data?.cohorts?.[String(year)];
-    STATE.cohort = cohort;
-    buildGroupOptions(cohort);
-
-    const built = buildRows(STATE.data, year);
-    STATE.allRows = built.rows;
-    STATE.axisKeys = built.axisKeys;
-    STATE.axisLabels = built.axisLabels;
-
-    // reset group + search
-    ui.groupSelect.value = "all";
-    ui.searchInput.value = "";
-
-    render();
-  }
-
-  function wire() {
-    ui.yearSelect.addEventListener("change", onYearChange);
-    ui.groupSelect.addEventListener("change", render);
-    ui.searchInput.addEventListener("input", () => {
-      window.clearTimeout(wire._t);
-      wire._t = window.setTimeout(render, 60);
+// ===== NAV SCROLL HIGHLIGHT =====
+function initNavScroll() {
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.addEventListener('click', function () {
+      document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
+      this.classList.add('active');
     });
-
-    ui.modalClose.addEventListener("click", closeModal);
-    ui.modal.addEventListener("click", (e) => {
-      if (e.target === ui.modal) closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
-  }
-
-  (async () => {
-    try {
-      wire();
-      await load();
-    } catch (err) {
-      console.error(err);
-      ui.kpiGlobal.textContent = "Erreur";
-      ui.kpiGlobalNote.textContent = "données";
-    }
-  })();
-})();
+  });
+}
