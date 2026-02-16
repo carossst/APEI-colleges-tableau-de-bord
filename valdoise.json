@@ -1,0 +1,446 @@
+{
+  "meta": {
+    "title": "Val d'Oise - Actions innovantes dans les collèges",
+    "source_pdfs": [
+      "20210727_Valdoise_Lab2034_Analyse_impact_quali_Livrable.pptx.pdf",
+      "2023_Analyse_impact_qualitative_Valdoise.pptx.pdf",
+      "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf"
+    ],
+    "notes": [
+      "Données globales (matrices) : présentes dans les rapports.",
+      "Scores par collège 2021 : ajoutés depuis l’extrait fourni (slides 35–39).",
+      "Métriques de comparaison quali/quanti : ajoutées depuis l’extrait fourni (slides 51–59).",
+      "Aucun email / téléphone n’est stocké dans ces fichiers (anti-scraping).",
+      "Ajout 2023 : scores par collège (dont décimaux), matrice globale 2023, comparaison 2021/2023. Aucun email/téléphone stocké."
+    ]
+  },
+  "axes": [
+    {
+      "key": "espaces",
+      "label_short": "Espaces",
+      "label_long": "Transformation et fonctionnalité des espaces",
+      "scale_max": 4
+    },
+    {
+      "key": "enseignements",
+      "label_short": "Enseignements",
+      "label_long": "Organisation des enseignements et vie scolaire",
+      "scale_max": 4
+    },
+    {
+      "key": "outils",
+      "label_short": "Outils",
+      "label_long": "Usage des nouveaux outils et espaces numériques",
+      "scale_max": 4
+    },
+    {
+      "key": "eleves",
+      "label_short": "Élèves",
+      "label_long": "Relation aux élèves",
+      "scale_max": 4
+    },
+    {
+      "key": "partenaires",
+      "label_short": "Partenaires",
+      "label_long": "Relation avec les autres parties prenantes",
+      "scale_max": 4
+    }
+  ],
+  "global": {
+    "2021": {
+      "espaces": 3.4,
+      "enseignements": 2.4,
+      "outils": 3.2,
+      "eleves": 3.0,
+      "partenaires": 2.2
+    },
+    "2023": {
+      "espaces": 3.2,
+      "enseignements": 2.4,
+      "outils": 2.7,
+      "eleves": 3.1,
+      "partenaires": 1.9
+    },
+    "2024": {
+      "espaces": 3.4,
+      "enseignements": 2.8,
+      "outils": 2.9,
+      "eleves": 2.9,
+      "partenaires": 1.9
+    }
+  },
+  "cohorts": {
+    "2023": {
+      "colleges": [
+        {
+          "id": "ariane",
+          "name": "Ariane",
+          "city": "Argenteuil"
+        },
+        {
+          "id": "pierre-et-marie-curie",
+          "name": "Pierre et Marie Curie",
+          "city": "L'Isle-Adam"
+        },
+        {
+          "id": "epine-guyon",
+          "name": "Epine Guyon",
+          "city": "Franconville"
+        },
+        {
+          "id": "georges-charpak",
+          "name": "Georges Charpak",
+          "city": "Goussainville"
+        },
+        {
+          "id": "ardilliere-de-nezant",
+          "name": "L'Ardillière-de-Nézant",
+          "city": "Saint-Brice-sous-Forêt"
+        }
+      ],
+      "programs": []
+    },
+    "2024": {
+      "groups": [
+        {
+          "key": "cloture_apei_2018",
+          "label": "Clôture APEI 2018"
+        },
+        {
+          "key": "mi_parcours_apei_2021",
+          "label": "Mi-parcours APEI 2021"
+        }
+      ],
+      "colleges": [
+        {
+          "id": "eugenie-cotton",
+          "name": "Eugénie Cotton",
+          "city": "Argenteuil",
+          "group": "cloture_apei_2018"
+        },
+        {
+          "id": "paul-vaillant-couturier",
+          "name": "Paul Vaillant Couturier",
+          "city": "Argenteuil",
+          "group": "cloture_apei_2018"
+        },
+        {
+          "id": "pablo-picasso",
+          "name": "Pablo Picasso",
+          "city": "Éragny",
+          "group": "cloture_apei_2018"
+        },
+        {
+          "id": "les-hautiers",
+          "name": "Les Hautiers",
+          "city": "Marines",
+          "group": "cloture_apei_2018"
+        },
+        {
+          "id": "jean-claude-chabanne",
+          "name": "Jean-Claude Chabanne",
+          "city": "Pontoise",
+          "group": "mi_parcours_apei_2021"
+        },
+        {
+          "id": "nicolas-flamel",
+          "name": "Nicolas Flamel",
+          "city": "Pontoise",
+          "group": "mi_parcours_apei_2021"
+        },
+        {
+          "id": "montesquieu",
+          "name": "Montesquieu",
+          "city": "Beauchamp",
+          "group": "mi_parcours_apei_2021"
+        },
+        {
+          "id": "pierre-et-marie-curie-2024",
+          "name": "Pierre et Marie Curie",
+          "city": "L'Isle-Adam",
+          "group": "mi_parcours_apei_2021"
+        }
+      ]
+    },
+    "2021": {
+      "colleges": [
+        {
+          "id": "ardilliere-de-nezant",
+          "name": "L'Ardillière-de-Nézant",
+          "city": "Saint-Brice-sous-Forêt"
+        },
+        {
+          "id": "eugenie-cotton",
+          "name": "Eugénie Cotton",
+          "city": "Argenteuil"
+        },
+        {
+          "id": "epine-guyon",
+          "name": "Epine Guyon",
+          "city": "Franconville"
+        },
+        {
+          "id": "pierre-et-marie-curie",
+          "name": "Pierre et Marie Curie",
+          "city": "L'Isle-Adam"
+        },
+        {
+          "id": "louise-weiss",
+          "name": "Louise Weiss",
+          "city": "Cormeilles-en-Parisis"
+        }
+      ],
+      "programs": [
+        {
+          "id": "ulis",
+          "name": "Dispositif ULIS",
+          "note": "Cas à part (lauréat 2021) — analyse d’impact par établissement non comparable (d’après le rapport 2021)."
+        }
+      ]
+    }
+  },
+  "college_scores": [
+    {
+      "college_id": "ardilliere-de-nezant",
+      "year": 2021,
+      "scores": {
+        "espaces": 4,
+        "enseignements": 3,
+        "outils": 3,
+        "eleves": 3,
+        "partenaires": 2
+      },
+      "source_ref": "Rapport 2021 — tableau d’impact établissement (extrait fourni) — slide 35"
+    },
+    {
+      "college_id": "louise-weiss",
+      "year": 2021,
+      "scores": {
+        "espaces": 4,
+        "enseignements": 3,
+        "outils": 4,
+        "eleves": 3,
+        "partenaires": 3
+      },
+      "source_ref": "Rapport 2021 — tableau d’impact établissement (extrait fourni) — slide 36"
+    },
+    {
+      "college_id": "eugenie-cotton",
+      "year": 2021,
+      "scores": {
+        "espaces": 4,
+        "enseignements": 2,
+        "outils": 4,
+        "eleves": 3,
+        "partenaires": 2
+      },
+      "source_ref": "Rapport 2021 — tableau d’impact établissement (extrait fourni) — slide 37"
+    },
+    {
+      "college_id": "epine-guyon",
+      "year": 2021,
+      "scores": {
+        "espaces": 2,
+        "enseignements": 2,
+        "outils": 2,
+        "eleves": 2,
+        "partenaires": 2
+      },
+      "source_ref": "Rapport 2021 — tableau d’impact établissement (extrait fourni) — slide 38"
+    },
+    {
+      "college_id": "pierre-et-marie-curie",
+      "year": 2021,
+      "scores": {
+        "espaces": 3,
+        "enseignements": 2,
+        "outils": 3,
+        "eleves": 3,
+        "partenaires": 2
+      },
+      "source_ref": "Rapport 2021 — tableau d’impact établissement (extrait fourni) — slide 39"
+    },
+    {
+      "college_id": "ariane",
+      "year": 2023,
+      "scores": {
+        "espaces": 3,
+        "enseignements": 1,
+        "outils": 3,
+        "eleves": 3,
+        "partenaires": 2
+      },
+      "source_ref": "Rapport 2023 (document de travail) — tableaux d’impact par établissement (extrait fourni)"
+    },
+    {
+      "college_id": "pierre-et-marie-curie",
+      "year": 2023,
+      "scores": {
+        "espaces": 3,
+        "enseignements": 2.5,
+        "outils": 2,
+        "eleves": 3,
+        "partenaires": 1.5
+      },
+      "source_ref": "Rapport 2023 (document de travail) — tableaux d’impact par établissement (extrait fourni)"
+    },
+    {
+      "college_id": "epine-guyon",
+      "year": 2023,
+      "scores": {
+        "espaces": 3,
+        "enseignements": 2,
+        "outils": 2.5,
+        "eleves": 3,
+        "partenaires": 1.5
+      },
+      "source_ref": "Rapport 2023 (document de travail) — tableaux d’impact par établissement (extrait fourni)"
+    },
+    {
+      "college_id": "georges-charpak",
+      "year": 2023,
+      "scores": {
+        "espaces": 3,
+        "enseignements": 3,
+        "outils": 3,
+        "eleves": 3,
+        "partenaires": 1.5
+      },
+      "source_ref": "Rapport 2023 (document de travail) — tableaux d’impact par établissement (extrait fourni)"
+    },
+    {
+      "college_id": "ardilliere-de-nezant",
+      "year": 2023,
+      "scores": {
+        "espaces": 4,
+        "enseignements": 3.5,
+        "outils": 3,
+        "eleves": 3.5,
+        "partenaires": 3
+      },
+      "source_ref": "Rapport 2023 (document de travail) — tableaux d’impact par établissement (extrait fourni)"
+    }
+  ],
+  "metrics": [
+    {
+      "college_id": "eugenie-cotton",
+      "metric": "teachers_trained_pct",
+      "year": 2020,
+      "value": 31,
+      "target": 50,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 51"
+    },
+    {
+      "college_id": "eugenie-cotton",
+      "metric": "teachers_practices_changed_pct",
+      "year": 2020,
+      "value": 15,
+      "target": 25,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 52"
+    },
+    {
+      "college_id": "eugenie-cotton",
+      "metric": "students_satisfied_pct",
+      "year": 2020,
+      "value": 80,
+      "target": 70,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 53"
+    },
+    {
+      "college_id": "epine-guyon",
+      "metric": "teachers_trained_pct",
+      "year": 2019,
+      "value": 63,
+      "target": 50,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 54"
+    },
+    {
+      "college_id": "epine-guyon",
+      "metric": "teachers_trained_pct",
+      "year": 2020,
+      "value": 0,
+      "target": 50,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 54"
+    },
+    {
+      "college_id": "epine-guyon",
+      "metric": "teachers_practices_changed_pct",
+      "year": 2020,
+      "value": 8,
+      "target": 25,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 55"
+    },
+    {
+      "college_id": "epine-guyon",
+      "metric": "students_satisfied_pct",
+      "year": 2019,
+      "value": 80,
+      "target": 70,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 56"
+    },
+    {
+      "college_id": "epine-guyon",
+      "metric": "students_satisfied_pct",
+      "year": 2020,
+      "value": 80,
+      "target": 70,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 56"
+    },
+    {
+      "college_id": "pierre-et-marie-curie",
+      "metric": "teachers_trained_pct",
+      "year": 2020,
+      "value": 48,
+      "target": 50,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 57"
+    },
+    {
+      "college_id": "pierre-et-marie-curie",
+      "metric": "teachers_practices_changed_pct",
+      "year": 2020,
+      "value": 25,
+      "target": 25,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 58"
+    },
+    {
+      "college_id": "pierre-et-marie-curie",
+      "metric": "students_satisfied_pct",
+      "year": 2019,
+      "value": 80,
+      "target": 70,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 59"
+    },
+    {
+      "college_id": "pierre-et-marie-curie",
+      "metric": "students_satisfied_pct",
+      "year": 2020,
+      "value": 80,
+      "target": 70,
+      "source_ref": "Rapport 2021 — comparaison quali/quanti (extrait fourni) — slide 59"
+    }
+  ],
+  "global_matrices": [
+    {
+      "year": 2023,
+      "scores": {
+        "espaces": 3.2,
+        "enseignements": 2.4,
+        "outils": 2.7,
+        "eleves": 3.1,
+        "partenaires": 1.9
+      },
+      "source_ref": "Rapport 2023 — matrice globale 2023 (extrait fourni)"
+    },
+    {
+      "year": 2021,
+      "scores": {
+        "espaces": 3.4,
+        "enseignements": 2.4,
+        "outils": 3.2,
+        "eleves": 3.0,
+        "partenaires": 2.2
+      },
+      "source_ref": "Rapport 2021 — matrice globale (extrait fourni) — slides 47–49"
+    }
+  ]
+}
