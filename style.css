@@ -18,10 +18,15 @@ html {
 
 img,
 svg,
-video,
-canvas {
+video {
   max-width: 100%;
   height: auto;
+}
+
+/* IMPORTANT: ne pas forcer height:auto sur canvas (Chart.js) */
+canvas {
+  max-width: 100%;
+  display: block;
 }
 
 button,
@@ -628,11 +633,39 @@ body {
 
 /* ===== CHARTS ===== */
 canvas {
-  max-height: 360px;
+  width: 100% !important;
+  max-height: 340px;
 }
 
+/* Small charts (line + mini charts) */
 .chart-sm {
   max-height: 300px;
+}
+
+/* Bar chart comparatif — meilleure lisibilité */
+#barChart {
+  min-height: 360px;
+  max-height: 380px;
+}
+
+@media (max-width: 900px) {
+  #barChart {
+    min-height: 320px;
+    max-height: 360px;
+  }
+}
+
+/* Radar — lisibilité (labels + grille) */
+#radarChart {
+  min-height: 360px;
+  max-height: 400px;
+}
+
+@media (max-width: 900px) {
+  #radarChart {
+    min-height: 320px;
+    max-height: 360px;
+  }
 }
 
 /* ===== FOOTER ===== */

@@ -5,7 +5,7 @@
 
 // Chart.js defaults
 Chart.defaults.font.family = "'DM Sans', sans-serif";
-Chart.defaults.font.size = 12;
+Chart.defaults.font.size = 13;
 Chart.defaults.plugins.legend.labels.usePointStyle = true;
 Chart.defaults.plugins.legend.labels.pointStyleWidth = 10;
 
@@ -36,10 +36,11 @@ loadData().then(DATA => {
   createColleges2024Charts(DATA);
   buildCollegeCards(DATA);
   buildTimelines(DATA);
-  initNavScroll();
+  initNavActiveOnClick();
+
 });
 
-// ===== 1. RADAR CHART =====
+// ===== 1. RADAR CHART — VERSION AMÉLIORÉE =====
 function createRadarChart(DATA) {
   new Chart(document.getElementById('radarChart'), {
     type: 'radar',
@@ -50,55 +51,159 @@ function createRadarChart(DATA) {
           label: '2021',
           data: DATA.axes.map(a => a.values['2021']),
           borderColor: C.b2021,
-          backgroundColor: 'rgba(31,119,180,.12)',
+          backgroundColor: 'rgba(31,119,180,.16)',
           pointBackgroundColor: C.b2021,
+          pointRadius: 4,
+          pointHoverRadius: 5,
           borderWidth: 2
         },
         {
           label: '2023',
           data: DATA.axes.map(a => a.values['2023']),
           borderColor: C.b2023,
-          backgroundColor: 'rgba(242,201,76,.12)',
+          backgroundColor: 'rgba(242,201,76,.16)',
           pointBackgroundColor: C.b2023,
+          pointRadius: 4,
+          pointHoverRadius: 5,
           borderWidth: 2
         },
         {
           label: '2024',
           data: DATA.axes.map(a => a.values['2024']),
           borderColor: C.b2024,
-          backgroundColor: 'rgba(232,99,74,.12)',
+          backgroundColor: 'rgba(232,99,74,.16)',
           pointBackgroundColor: C.b2024,
+          pointRadius: 4,
+          pointHoverRadius: 5,
           borderWidth: 2
         }
       ]
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
+      layout: { padding: 8 },
       scales: {
-        r: { min: 0, max: 4, ticks: { stepSize: 1 } }
+        r: {
+          min: 0,
+          max: 4,
+          ticks: {
+            stepSize: 1,
+            backdropColor: 'transparent',
+            color: 'rgba(26,39,68,.55)',
+            font: { size: 11 }
+          },
+          grid: {
+            color: 'rgba(26,39,68,.10)'
+          },
+          angleLines: {
+            color: 'rgba(26,39,68,.10)'
+          },
+          pointLabels: {
+            color: C.navy,
+            font: { size: 12, weight: 700 },
+            padding: 6
+          }
+
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            padding: 16,
+            font: { size: 12 }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
+          }
+        }
       }
     }
   });
 }
 
-// ===== 2. BAR CHART =====
+
+// ===== 2. BAR CHART — VERSION AMÉLIORÉE =====
 function createBarChart(DATA) {
   new Chart(document.getElementById('barChart'), {
     type: 'bar',
     data: {
       labels: DATA.axes.map(a => a.label),
       datasets: [
-        { label: '2021', data: DATA.axes.map(a => a.values['2021']), backgroundColor: C.b2021, borderRadius: 4 },
-        { label: '2023', data: DATA.axes.map(a => a.values['2023']), backgroundColor: C.b2023, borderRadius: 4 },
-        { label: '2024', data: DATA.axes.map(a => a.values['2024']), backgroundColor: C.b2024, borderRadius: 4 }
+        {
+          label: '2021',
+          data: DATA.axes.map(a => a.values['2021']),
+          backgroundColor: C.b2021,
+          borderRadius: 6,
+          barPercentage: 0.7,
+          categoryPercentage: 0.6
+        },
+        {
+          label: '2023',
+          data: DATA.axes.map(a => a.values['2023']),
+          backgroundColor: C.b2023,
+          borderRadius: 6,
+          barPercentage: 0.7,
+          categoryPercentage: 0.6
+        },
+        {
+          label: '2024',
+          data: DATA.axes.map(a => a.values['2024']),
+          backgroundColor: C.b2024,
+          borderRadius: 6,
+          barPercentage: 0.7,
+          categoryPercentage: 0.6
+        }
       ]
     },
     options: {
+      indexAxis: 'y',
       responsive: true,
-      scales: { y: { min: 0, max: 4, ticks: { stepSize: 1 } } }
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          min: 0,
+          max: 4,
+          ticks: {
+            stepSize: 1,
+            callback: value => Number(value).toFixed(0)
+
+          },
+          grid: {
+            color: 'rgba(0,0,0,.06)'
+          }
+        },
+        y: {
+          ticks: {
+            font: { size: 12 }
+          },
+          grid: {
+            display: false
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'bottom',
+          labels: {
+            padding: 16,
+            font: { size: 12 }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
+
+          }
+        }
+      }
     }
   });
 }
+
 
 // ===== 3. LINE AVERAGE =====
 function createLineChart(DATA) {
@@ -344,7 +449,7 @@ function switchTab(btn, paneId) {
 }
 
 // ===== NAV SCROLL HIGHLIGHT =====
-function initNavScroll() {
+function initNavActiveOnClick() {
   document.querySelectorAll('.nav a').forEach(a => {
     a.addEventListener('click', function () {
       document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
