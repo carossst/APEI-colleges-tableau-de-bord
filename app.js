@@ -3,9 +3,9 @@
 // app.js — Charts, tables, and interactivity
 // ===================================================
 
-// Chart.js defaults
-Chart.defaults.font.family = "'DM Sans', sans-serif";
-Chart.defaults.font.size = 13;
+// Chart.js defaults (use system font from CSS)
+Chart.defaults.font.family = (getComputedStyle(document.body).fontFamily || 'system-ui');
+Chart.defaults.font.size = 14;
 Chart.defaults.plugins.legend.labels.usePointStyle = true;
 Chart.defaults.plugins.legend.labels.pointStyleWidth = 10;
 
@@ -37,7 +37,6 @@ loadData().then(DATA => {
   buildCollegeCards(DATA);
   buildTimelines(DATA);
   initNavActiveOnClick();
-
 });
 
 // ===== 1. RADAR CHART — VERSION AMÉLIORÉE =====
@@ -91,7 +90,7 @@ function createRadarChart(DATA) {
             stepSize: 1,
             backdropColor: 'transparent',
             color: 'rgba(26,39,68,.55)',
-            font: { size: 11 }
+            font: { size: 12 }
           },
           grid: {
             color: 'rgba(26,39,68,.10)'
@@ -101,10 +100,9 @@ function createRadarChart(DATA) {
           },
           pointLabels: {
             color: C.navy,
-            font: { size: 12, weight: 700 },
+            font: { size: 13, weight: 700 },
             padding: 6
           }
-
         }
       },
       plugins: {
@@ -170,7 +168,6 @@ function createBarChart(DATA) {
           ticks: {
             stepSize: 1,
             callback: value => Number(value).toFixed(0)
-
           },
           grid: {
             color: 'rgba(0,0,0,.06)'
@@ -196,7 +193,6 @@ function createBarChart(DATA) {
         tooltip: {
           callbacks: {
             label: ctx => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
-
           }
         }
       }
@@ -261,7 +257,7 @@ function createLineAxesChart(DATA) {
       plugins: {
         legend: {
           position: 'bottom',
-          labels: { boxWidth: 12, font: { size: 10 } }
+          labels: { boxWidth: 12, font: { size: 11 } }
         }
       }
     }
@@ -346,7 +342,7 @@ function createQuantiCharts(DATA) {
         ctx.lineTo(chart.chartArea.right, y);
         ctx.stroke();
         ctx.fillStyle = '#e8634a';
-        ctx.font = '11px DM Sans';
+        ctx.font = `11px ${Chart.defaults.font.family}`;
         ctx.fillText('Objectif 50%', chart.chartArea.right - 75, y - 6);
         ctx.restore();
       }
@@ -442,10 +438,21 @@ function buildTimelines(DATA) {
 // ===== TAB SYSTEM =====
 function switchTab(btn, paneId) {
   const card = btn.closest('.card');
-  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  card.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+
+  card.querySelectorAll('[role="tab"]').forEach(t => {
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+    t.setAttribute('tabindex', '-1');
+  });
+
+  card.querySelectorAll('[role="tabpanel"]').forEach(p => p.classList.remove('active'));
+
   btn.classList.add('active');
-  document.getElementById(paneId).classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
+  btn.setAttribute('tabindex', '0');
+
+  const pane = document.getElementById(paneId);
+  pane.classList.add('active');
 }
 
 // ===== NAV SCROLL HIGHLIGHT =====

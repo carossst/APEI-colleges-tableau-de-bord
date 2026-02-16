@@ -55,8 +55,8 @@ a {
   /* near-black */
   --text-2: #334155;
   /* slate */
-  --muted: #475569;
-  /* readable muted */
+  --muted: #334155;
+  /* safer contrast muted */
   --border: rgba(15, 23, 42, 0.14);
   --border-strong: rgba(15, 23, 42, 0.22);
 
@@ -74,8 +74,8 @@ a {
   --shadow: 0 6px 24px rgba(15, 23, 42, 0.10);
   --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.08);
 
-  /* Typography (60+ friendly) */
-  --font: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Typography (fast: system fonts only) */
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   /* Base sizing: aim for 18px+ body */
   --fs-xxl: clamp(2.0rem, 4.2vw, 3.0rem);
@@ -141,7 +141,7 @@ body {
   }
 }
 
-/* Skip link (if you add it in HTML later, this will work) */
+/* Skip link */
 .skip-link {
   position: absolute;
   top: -80px;
@@ -233,7 +233,7 @@ body {
   display: flex;
   gap: 6px;
   justify-content: center;
-  padding: 14px 12px;
+  padding: 12px 10px;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   position: sticky;
@@ -243,7 +243,7 @@ body {
 }
 
 .nav a {
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: 12px;
   font-size: var(--fs-xs);
   font-weight: 800;
@@ -365,7 +365,7 @@ body {
   padding: 18px 18px;
   text-align: center;
   box-shadow: var(--shadow-sm);
-  min-width: 190px;
+  min-width: 170px;
   flex: 1;
 }
 
@@ -685,13 +685,18 @@ footer strong {
 }
 
 /* ===== LINK STYLES (readable + accessible) ===== */
-a {
+/* Underlines only in content, not in nav */
+.container a,
+.hero a,
+footer a {
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 2px;
 }
 
-a:hover {
+.container a:hover,
+.hero a:hover,
+footer a:hover {
   text-decoration-thickness: 3px;
 }
 
