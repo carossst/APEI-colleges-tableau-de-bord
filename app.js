@@ -69,11 +69,12 @@ function createRadarChart(DATA) {
     data: {
       labels: DATA.axes.map(a => a.label),
       datasets: [
+
         {
           label: '2021',
           data: DATA.axes.map(a => a.values['2021']),
           borderColor: C.b2021,
-          backgroundColor: 'rgba(31,119,180,.16)',
+          backgroundColor: 'rgba(31,119,180,0.16)',
           pointBackgroundColor: C.b2021,
           pointRadius: 4,
           pointHoverRadius: 5,
@@ -83,7 +84,7 @@ function createRadarChart(DATA) {
           label: '2023',
           data: DATA.axes.map(a => a.values['2023']),
           borderColor: C.b2023,
-          backgroundColor: 'rgba(242,201,76,.16)',
+          backgroundColor: 'rgba(242,201,76,0.16)',
           pointBackgroundColor: C.b2023,
           pointRadius: 4,
           pointHoverRadius: 5,
@@ -93,12 +94,13 @@ function createRadarChart(DATA) {
           label: '2024',
           data: DATA.axes.map(a => a.values['2024']),
           borderColor: C.b2024,
-          backgroundColor: 'rgba(232,99,74,.16)',
+          backgroundColor: 'rgba(232,99,74,0.16)',
           pointBackgroundColor: C.b2024,
           pointRadius: 4,
           pointHoverRadius: 5,
           borderWidth: 2
         }
+
       ]
     },
     options: {
@@ -115,11 +117,12 @@ function createRadarChart(DATA) {
           ticks: {
             stepSize: 1,
             backdropColor: 'transparent',
-            color: 'rgba(26,39,68,.55)',
+            color: 'rgba(26,39,68,0.55)',
             font: { size: 12 }
           },
-          grid: { color: 'rgba(26,39,68,.10)' },
-          angleLines: { color: 'rgba(26,39,68,.10)' },
+          grid: { color: 'rgba(26,39,68,0.10)' },
+          angleLines: { color: 'rgba(26,39,68,0.10)' },
+
           pointLabels: {
             color: C.navy,
             font: { size: 14, weight: 800 },
@@ -303,6 +306,8 @@ function buildHeatmapTables(DATA) {
 
 function buildTable(id, list) {
   const tb = document.getElementById(id);
+  if (!tb) return; // sécurité DOM
+
   list.forEach(e => {
     const avg = (e.scores.reduce((a, b) => a + b, 0) / 5).toFixed(1);
     tb.innerHTML += `<tr>
@@ -312,6 +317,7 @@ function buildTable(id, list) {
     </tr>`;
   });
 }
+
 
 // ===== 6. QUANTITATIVE CHARTS =====
 function miniBar(id, labels, values, color, label) {
