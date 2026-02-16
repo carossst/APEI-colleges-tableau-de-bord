@@ -206,7 +206,7 @@ function createLineChart(DATA) {
   const years = ['2021', '2023', '2024'];
   const avgs = years.map(y => {
     const s = DATA.axes.reduce((a, x) => a + x.values[y], 0);
-    return +(s / DATA.axes.length).toFixed(2);
+    return +(s / DATA.axes.length).toFixed(1);
   });
 
   new Chart(document.getElementById('lineChart'), {
@@ -230,6 +230,7 @@ function createLineChart(DATA) {
     }
   });
 }
+
 
 // ===== 4. LINE PER AXE =====
 function createLineAxesChart(DATA) {
