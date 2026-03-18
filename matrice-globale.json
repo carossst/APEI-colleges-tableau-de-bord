@@ -297,141 +297,6 @@
       ]
     }
   ],
-  "kpi2024": {
-    "objectifsAtteints": 6,
-    "totalEtablissements": 8
-  },
-  "quanti": {
-    "sanctions_pmc": {
-      "labels": [
-        "2018/19",
-        "2020/21",
-        "2021/22",
-        "2022/23"
-      ],
-      "values": [
-        105,
-        70,
-        0,
-        0
-      ]
-    },
-    "sanctions_picasso": {
-      "labels": [
-        "2020/21",
-        "2021/22+"
-      ],
-      "values": [
-        1628,
-        3
-      ]
-    },
-    "heures_flamel": {
-      "labels": [
-        "2022",
-        "2023",
-        "2024"
-      ],
-      "values": [
-        88,
-        169,
-        200
-      ]
-    },
-    "heures_hautiers": {
-      "labels": [
-        "2021/22",
-        "2023/24"
-      ],
-      "values": [
-        362,
-        450
-      ]
-    },
-    "eleves_hautiers": {
-      "labels": [
-        "2022/23",
-        "2023/24"
-      ],
-      "values": [
-        500,
-        700
-      ]
-    },
-    "eleves_montesquieu": {
-      "labels": [
-        "2022",
-        "2023",
-        "2024"
-      ],
-      "values": [
-        150,
-        450,
-        570
-      ]
-    },
-    "enseignants_montesquieu": {
-      "labels": [
-        "2023",
-        "2024"
-      ],
-      "values": [
-        12,
-        30
-      ]
-    },
-    "enseignants_picasso": {
-      "labels": [
-        "2018/19",
-        "Phase 1-3"
-      ],
-      "values": [
-        4,
-        15
-      ]
-    },
-    "formes2021": {
-      "labels": [
-        "Eugénie Cotton",
-        "Epine Guyon (2019)",
-        "Epine Guyon (2020)",
-        "Pierre et Marie Curie"
-      ],
-      "values": [
-        31,
-        63,
-        0,
-        48
-      ],
-      "objectif": 50
-    },
-    "pratiques2021": {
-      "labels": [
-        "Eugénie Cotton",
-        "Epine Guyon",
-        "Pierre et MC"
-      ],
-      "values": [
-        15,
-        8,
-        25
-      ],
-      "objectif": 25
-    },
-    "satisfaits2021": {
-      "labels": [
-        "Eugénie Cotton",
-        "Epine Guyon",
-        "Pierre et MC"
-      ],
-      "values": [
-        80,
-        80,
-        80
-      ],
-      "objectif": 70
-    }
-  },
   "pointsPositifs": [
     {
       "annee": "2021",
@@ -534,5 +399,19 @@
       "titre": "Communication interne",
       "detail": "Formations nouveaux arrivants, formaliser à chaque rentrée"
     }
-  ]
+  ],
+  "pageIntro": {
+    "context": {
+      "title": "Ce que présente cette page",
+      "text": "Cette page propose une lecture synthétique de plusieurs analyses d'impact qualitatives menées entre 2021 et 2024 sur des espaces innovants dans des collèges du Val-d'Oise. Elle ne présente pas un seul établissement : elle met en regard plusieurs analyses pour faire ressortir les tendances communes."
+    },
+    "method": {
+      "title": "Comment lire la matrice",
+      "text": "L'analyse repose sur cinq axes : transformation des espaces, organisation des enseignements, usage des outils numériques, relation aux élèves et relation avec les autres parties prenantes. Pour chaque axe, le niveau d'impact est positionné sur une échelle de 1 à 4 : de changement faible à changement très fort."
+    },
+    "usage": {
+      "title": "Comment utiliser cette page",
+      "text": "Commencer par la vue d'ensemble pour comprendre les tendances globales, puis consulter les scores par établissement et enfin le détail des points forts et difficultés par année. L'objectif est de faciliter une lecture rapide avant d'entrer dans les rapports complets."
+    }
+  }
 }

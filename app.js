@@ -1,78 +1,84 @@
 // ===================================================
-// Val-d'Oise Lab2034 — Dashboard Impact Qualitative
-// app.js — Charts, tables, and interactivity
+// Val-d'Oise Lab2034 - Dashboard Impact Qualitative
+// app.js - Charts, tables, timelines, and interactions
 // ===================================================
 
-// Chart.js defaults (use system font from CSS)
 Chart.defaults.font.family = (getComputedStyle(document.body).fontFamily || 'system-ui');
 Chart.defaults.font.size = 14;
 Chart.defaults.plugins.legend.labels.usePointStyle = true;
 Chart.defaults.plugins.legend.labels.pointStyleWidth = 10;
 
-// Color palette
 const C = {
   b2021: '#1f77b4',
   b2023: '#f2c94c',
   b2024: '#e8634a',
   navy: '#1a2744',
   teal: '#27ae60',
-  coral: '#e8634a',
   gold: '#f2994a'
 };
 
-// ===== LOAD DATA & INIT =====
 async function loadData() {
   const response = await fetch('./matrice-globale.json');
-  return await response.json();
+  if (!response.ok) throw new Error('Impossible de charger matrice-globale.json');
+  return response.json();
 }
 
-loadData().then(DATA => {
-  createRadarChart(DATA);
-  createBarChart(DATA);
-  createLineChart(DATA);
-  createLineAxesChart(DATA);
-  buildHeatmapTables(DATA);
-  createQuantiCharts(DATA);
+loadData()
+  .then((DATA) => {
+    injectIntro(DATA);
+    createRadarChart(DATA);
+    createBarChart(DATA);
+    buildHeatmapTables(DATA);
+    buildTimelines(DATA);
+    createLineChart(DATA);
+    createLineAxesChart(DATA);
+    initTabKeyboard();
+    initNavActiveState();
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
-  // Section "Collèges 2024" supprimée dans index.html
-  // createColleges2024Charts(DATA);
-  // buildCollegeCards(DATA);
+function injectIntro(DATA) {
+  const intro = DATA.pageIntro || {};
+  const context = intro.context || {};
+  const method = intro.method || {};
+  const usage = intro.usage || {};
 
-  buildTimelines(DATA);
-  initNavActiveOnClick();
-});
+  setText('intro-context-title', context.title);
+  setText('intro-context-text', context.text);
+  setText('intro-method-title', method.title);
+  setText('intro-method-text', method.text);
+  setText('intro-usage-title', usage.title);
+  setText('intro-usage-text', usage.text);
+}
 
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el && typeof value === 'string') el.textContent = value;
+}
 
-// ===== 1. RADAR CHART — VERSION AMÉLIORÉE =====
+function wrapRadarLabel(label) {
+  const s = String(label || '').trim();
+  if (!s || s.length <= 18) return s;
+  const parts = s.split(/\s+/).filter(Boolean);
+  if (parts.length <= 2) return parts;
+  const mid = Math.ceil(parts.length / 2);
+  return [parts.slice(0, mid).join(' '), parts.slice(mid).join(' ')];
+}
+
 function createRadarChart(DATA) {
-  const wrapRadarLabel = (label) => {
-    const s = String(label || '').trim();
-    if (!s) return s;
+  const canvas = document.getElementById('radarChart');
+  if (!canvas) return;
 
-    // Si c’est court, on garde tel quel
-    if (s.length <= 18) return s;
-
-    // Split simple en 2 lignes, au meilleur endroit
-    const parts = s.split(/\s+/).filter(Boolean);
-    if (parts.length <= 2) return parts;
-
-    const mid = Math.ceil(parts.length / 2);
-    const line1 = parts.slice(0, mid).join(' ');
-    const line2 = parts.slice(mid).join(' ');
-
-    // Chart.js accepte un array => multi-lignes
-    return [line1, line2];
-  };
-
-  new Chart(document.getElementById('radarChart'), {
+  new Chart(canvas, {
     type: 'radar',
     data: {
-      labels: DATA.axes.map(a => a.label),
+      labels: DATA.axes.map((a) => a.label),
       datasets: [
-
         {
           label: '2021',
-          data: DATA.axes.map(a => a.values['2021']),
+          data: DATA.axes.map((a) => a.values['2021']),
           borderColor: C.b2021,
           backgroundColor: 'rgba(31,119,180,0.16)',
           pointBackgroundColor: C.b2021,
@@ -82,7 +88,7 @@ function createRadarChart(DATA) {
         },
         {
           label: '2023',
-          data: DATA.axes.map(a => a.values['2023']),
+          data: DATA.axes.map((a) => a.values['2023']),
           borderColor: C.b2023,
           backgroundColor: 'rgba(242,201,76,0.16)',
           pointBackgroundColor: C.b2023,
@@ -92,7 +98,7 @@ function createRadarChart(DATA) {
         },
         {
           label: '2024',
-          data: DATA.axes.map(a => a.values['2024']),
+          data: DATA.axes.map((a) => a.values['2024']),
           borderColor: C.b2024,
           backgroundColor: 'rgba(232,99,74,0.16)',
           pointBackgroundColor: C.b2024,
@@ -100,16 +106,12 @@ function createRadarChart(DATA) {
           pointHoverRadius: 5,
           borderWidth: 2
         }
-
       ]
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
-
-      // Plus de marge => labels non coupés
       layout: { padding: 18 },
-
       scales: {
         r: {
           min: 0,
@@ -122,7 +124,6 @@ function createRadarChart(DATA) {
           },
           grid: { color: 'rgba(26,39,68,0.10)' },
           angleLines: { color: 'rgba(26,39,68,0.10)' },
-
           pointLabels: {
             color: C.navy,
             font: { size: 14, weight: 800 },
@@ -134,14 +135,11 @@ function createRadarChart(DATA) {
       plugins: {
         legend: {
           position: 'bottom',
-          labels: {
-            padding: 16,
-            font: { size: 12 }
-          }
+          labels: { padding: 16, font: { size: 12 } }
         },
         tooltip: {
           callbacks: {
-            label: ctx => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
+            label: (ctx) => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
           }
         }
       }
@@ -149,17 +147,18 @@ function createRadarChart(DATA) {
   });
 }
 
-
-// ===== 2. BAR CHART — VERSION AMÉLIORÉE =====
 function createBarChart(DATA) {
-  new Chart(document.getElementById('barChart'), {
+  const canvas = document.getElementById('barChart');
+  if (!canvas) return;
+
+  new Chart(canvas, {
     type: 'bar',
     data: {
-      labels: DATA.axes.map(a => a.label),
+      labels: DATA.axes.map((a) => a.label),
       datasets: [
         {
           label: '2021',
-          data: DATA.axes.map(a => a.values['2021']),
+          data: DATA.axes.map((a) => a.values['2021']),
           backgroundColor: C.b2021,
           borderRadius: 6,
           barPercentage: 0.7,
@@ -167,7 +166,7 @@ function createBarChart(DATA) {
         },
         {
           label: '2023',
-          data: DATA.axes.map(a => a.values['2023']),
+          data: DATA.axes.map((a) => a.values['2023']),
           backgroundColor: C.b2023,
           borderRadius: 6,
           barPercentage: 0.7,
@@ -175,7 +174,7 @@ function createBarChart(DATA) {
         },
         {
           label: '2024',
-          data: DATA.axes.map(a => a.values['2024']),
+          data: DATA.axes.map((a) => a.values['2024']),
           backgroundColor: C.b2024,
           borderRadius: 6,
           barPercentage: 0.7,
@@ -193,32 +192,23 @@ function createBarChart(DATA) {
           max: 4,
           ticks: {
             stepSize: 1,
-            callback: value => Number(value).toFixed(0)
+            callback: (value) => Number(value).toFixed(0)
           },
-          grid: {
-            color: 'rgba(0,0,0,.06)'
-          }
+          grid: { color: 'rgba(0,0,0,.06)' }
         },
         y: {
-          ticks: {
-            font: { size: 12 }
-          },
-          grid: {
-            display: false
-          }
+          ticks: { font: { size: 12 } },
+          grid: { display: false }
         }
       },
       plugins: {
         legend: {
           position: 'bottom',
-          labels: {
-            padding: 16,
-            font: { size: 12 }
-          }
+          labels: { padding: 16, font: { size: 12 } }
         },
         tooltip: {
           callbacks: {
-            label: ctx => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
+            label: (ctx) => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
           }
         }
       }
@@ -226,16 +216,17 @@ function createBarChart(DATA) {
   });
 }
 
-
-// ===== 3. LINE AVERAGE =====
 function createLineChart(DATA) {
+  const canvas = document.getElementById('lineChart');
+  if (!canvas) return;
+
   const years = ['2021', '2023', '2024'];
-  const avgs = years.map(y => {
-    const s = DATA.axes.reduce((a, x) => a + x.values[y], 0);
-    return +(s / DATA.axes.length).toFixed(1);
+  const avgs = years.map((year) => {
+    const total = DATA.axes.reduce((sum, axis) => sum + axis.values[year], 0);
+    return +(total / DATA.axes.length).toFixed(1);
   });
 
-  new Chart(document.getElementById('lineChart'), {
+  new Chart(canvas, {
     type: 'line',
     data: {
       labels: years,
@@ -244,7 +235,7 @@ function createLineChart(DATA) {
         data: avgs,
         borderColor: C.navy,
         backgroundColor: 'rgba(26,39,68,.08)',
-        tension: .3,
+        tension: 0.3,
         fill: true,
         pointRadius: 6,
         pointBackgroundColor: C.navy
@@ -252,27 +243,36 @@ function createLineChart(DATA) {
     },
     options: {
       responsive: true,
-      scales: { y: { min: 1.5, max: 3.5 } }
+      scales: { y: { min: 1.5, max: 3.5 } },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${Number(ctx.raw).toFixed(1)} /4`
+          }
+        }
+      }
     }
   });
 }
 
-
-// ===== 4. LINE PER AXE =====
 function createLineAxesChart(DATA) {
+  const canvas = document.getElementById('lineAxesChart');
+  if (!canvas) return;
+
   const years = ['2021', '2023', '2024'];
   const axColors = [C.b2021, C.b2023, C.b2024, C.teal, C.gold];
 
-  new Chart(document.getElementById('lineAxesChart'), {
+  new Chart(canvas, {
     type: 'line',
     data: {
       labels: years,
-      datasets: DATA.axes.map((a, i) => ({
-        label: a.label,
-        data: years.map(y => a.values[y]),
+      datasets: DATA.axes.map((axis, i) => ({
+        label: axis.label,
+        data: years.map((year) => axis.values[year]),
         borderColor: axColors[i],
         backgroundColor: 'transparent',
-        tension: .3,
+        tension: 0.3,
         borderWidth: 2,
         pointRadius: 4,
         pointBackgroundColor: axColors[i]
@@ -291,7 +291,6 @@ function createLineAxesChart(DATA) {
   });
 }
 
-// ===== 5. HEATMAP TABLES =====
 function heatClass(v) {
   if (v >= 3.5) return 'h4';
   if (v >= 2.5) return 'h3';
@@ -307,191 +306,158 @@ function buildHeatmapTables(DATA) {
 
 function buildTable(id, list) {
   const tb = document.getElementById(id);
-  if (!tb) return; // sécurité DOM
+  if (!tb) return;
 
-  list.forEach(e => {
-    const avg = (e.scores.reduce((a, b) => a + b, 0) / 5).toFixed(1);
-    tb.innerHTML += `<tr>
-      <td class="name">${e.nom}<br><small style="color:var(--muted)">${e.ville}</small></td>
-      ${e.scores.map(s => `<td class="${heatClass(s)}">${s}</td>`).join('')}
+  const rows = list.map((etablissement) => {
+    const avg = (etablissement.scores.reduce((a, b) => a + b, 0) / 5).toFixed(1);
+    const cells = etablissement.scores
+      .map((score) => `<td class="${heatClass(score)}">${score}</td>`)
+      .join('');
+
+    return `<tr>
+      <td class="name">${etablissement.nom}<br><small style="color:var(--muted)">${etablissement.ville}</small></td>
+      ${cells}
       <td class="${heatClass(+avg)}"><strong>${avg}</strong></td>
     </tr>`;
   });
+
+  tb.innerHTML = rows.join('');
 }
 
-
-// ===== 6. QUANTITATIVE CHARTS =====
-function miniBar(id, labels, values, color, label) {
-  new Chart(document.getElementById(id), {
-    type: 'bar',
-    data: {
-      labels,
-      datasets: [{ label, data: values, backgroundColor: color, borderRadius: 6 }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true } }
-    }
-  });
-}
-
-function createQuantiCharts(DATA) {
-  miniBar('chartSanctionsPMC', DATA.quanti.sanctions_pmc.labels, DATA.quanti.sanctions_pmc.values, C.b2021, 'Sanctions');
-  miniBar('chartSanctionsPicasso', DATA.quanti.sanctions_picasso.labels, DATA.quanti.sanctions_picasso.values, C.coral, 'Sanctions');
-  miniBar('chartHeuresFlamel', DATA.quanti.heures_flamel.labels, DATA.quanti.heures_flamel.values, C.teal, 'Heures');
-  miniBar('chartElevesMontesquieu', DATA.quanti.eleves_montesquieu.labels, DATA.quanti.eleves_montesquieu.values, C.gold, 'Élèves');
-
-  // Enseignants formés 2021 avec ligne objectif
-  new Chart(document.getElementById('chartFormes2021'), {
-    type: 'bar',
-    data: {
-      labels: DATA.quanti.formes2021.labels,
-      datasets: [{
-        label: '% formés',
-        data: DATA.quanti.formes2021.values,
-        backgroundColor: [C.b2021, C.teal, C.coral, C.gold],
-        borderRadius: 6
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true, max: 100 } }
-    },
-    plugins: [{
-      id: 'objectifLine',
-      afterDraw(chart) {
-        const y = chart.scales.y.getPixelForValue(50);
-        const ctx = chart.ctx;
-        ctx.save();
-        ctx.strokeStyle = '#e8634a';
-        ctx.lineWidth = 2;
-        ctx.setLineDash([6, 4]);
-        ctx.beginPath();
-        ctx.moveTo(chart.chartArea.left, y);
-        ctx.lineTo(chart.chartArea.right, y);
-        ctx.stroke();
-        ctx.fillStyle = '#e8634a';
-        ctx.font = `11px ${Chart.defaults.font.family}`;
-        ctx.fillText('Objectif 50%', chart.chartArea.right - 75, y - 6);
-        ctx.restore();
-      }
-    }]
-  });
-}
-
-// ===== 7. COLLEGES 2024 CHARTS =====
-function createColleges2024Charts(DATA) {
-  const sorted = [...DATA.etablissements2024].sort((a, b) => b.taux - a.taux);
-
-  // Taux de réussite
-  new Chart(document.getElementById('chartTaux2024'), {
-    type: 'bar',
-    data: {
-      labels: sorted.map(e => e.nom),
-      datasets: [{
-        label: 'Taux de réussite %',
-        data: sorted.map(e => e.taux),
-        backgroundColor: sorted.map(e => e.taux >= 75 ? C.teal : e.taux >= 50 ? C.gold : C.coral),
-        borderRadius: 6
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      plugins: { legend: { display: false } },
-      scales: { x: { min: 0, max: 100 } }
-    }
-  });
-
-  // Effectifs
-  new Chart(document.getElementById('chartEffectifs2024'), {
-    type: 'bar',
-    data: {
-      labels: DATA.etablissements2024.map(e => e.nom),
-      datasets: [
-        { label: 'Élèves', data: DATA.etablissements2024.map(e => e.eleves), backgroundColor: C.b2021, borderRadius: 4 },
-        { label: 'Enseignants (×10)', data: DATA.etablissements2024.map(e => e.enseignants * 10), backgroundColor: C.gold, borderRadius: 4 }
-      ]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      scales: { x: { beginAtZero: true } },
-      plugins: { legend: { position: 'bottom' } }
-    }
-  });
-}
-
-// ===== 8. COLLEGE CARDS =====
-function buildCollegeCards(DATA) {
-  const container = document.getElementById('college-cards-container');
-  DATA.etablissements2024.forEach(e => {
-    const bg = e.taux >= 75 ? '#d1fae5' : e.taux >= 50 ? '#fef3c7' : '#fee2e2';
-    const fg = e.taux >= 75 ? '#065f46' : e.taux >= 50 ? '#92400e' : '#991b1b';
-    const cls = e.taux >= 75 ? 'high' : e.taux >= 50 ? 'mid' : 'low';
-
-    container.innerHTML += `<div class="college-card">
-      <div class="top">
-        <h3>${e.nom}</h3>
-        <span class="taux-badge" style="background:${bg};color:${fg}">${e.taux}%</span>
-      </div>
-      <div class="meta">${e.ville} · ${e.type} · ${e.eleves} élèves · ${e.enseignants} enseignants</div>
-      <div class="taux-bar"><div class="taux-fill ${cls}" style="width:${e.taux}%"></div></div>
-    </div>`;
-  });
-}
-
-// ===== 9. TIMELINES =====
 function renderTimeline(items, containerId, type) {
   const el = document.getElementById(containerId);
   if (!el) return;
-  items.forEach(i => {
-    el.innerHTML += `<div class="tl-item">
+
+  const html = items.map((item) => `
+    <div class="tl-item">
       <div class="tl-dot ${type}"></div>
       <div class="tl-content">
-        <strong>${i.titre}</strong>
-        <p>${i.detail}</p>
-        ${i.source ? `<div class="src">— ${i.source}</div>` : ''}
+        <strong>${item.titre}</strong>
+        <p>${item.detail}</p>
+        ${item.source ? `<div class="src">- ${item.source}</div>` : ''}
       </div>
-    </div>`;
+    </div>`).join('');
+
+  el.innerHTML = html;
+}
+
+function uniqueByTitle(items) {
+  const seen = new Set();
+  return items.filter((item) => {
+    const key = `${item.titre}||${item.detail}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
   });
+}
+
+function buildGlobalItems(items) {
+  const byTitle = new Map();
+
+  items.forEach((item) => {
+    const key = `${item.titre}||${item.detail}`;
+    if (!byTitle.has(key)) {
+      byTitle.set(key, { ...item, years: [item.annee] });
+      return;
+    }
+    byTitle.get(key).years.push(item.annee);
+  });
+
+  return Array.from(byTitle.values()).map((item) => ({
+    titre: item.titre,
+    detail: item.detail,
+    source: `Analyses ${item.years.sort().join(' / ')}`
+  }));
 }
 
 function buildTimelines(DATA) {
-  ['2021', '2023', '2024'].forEach(y => {
-    renderTimeline(DATA.pointsPositifs.filter(p => p.annee === y), `tl-pos-${y}`, 'pos');
-    renderTimeline(DATA.difficultes.filter(p => p.annee === y), `tl-neg-${y}`, 'neg');
+  const pos = uniqueByTitle(DATA.pointsPositifs || []);
+  const neg = uniqueByTitle(DATA.difficultes || []);
+
+  renderTimeline(buildGlobalItems(pos), 'tl-global-pos', 'pos');
+  renderTimeline(buildGlobalItems(neg), 'tl-global-neg', 'neg');
+
+  ['2021', '2023', '2024'].forEach((year) => {
+    renderTimeline(pos.filter((item) => item.annee === year), `tl-pos-${year}`, 'pos');
+    renderTimeline(neg.filter((item) => item.annee === year), `tl-neg-${year}`, 'neg');
   });
 }
 
-// ===== TAB SYSTEM =====
 function switchTab(btn, paneId) {
   const card = btn.closest('.card');
+  if (!card) return;
 
-  card.querySelectorAll('[role="tab"]').forEach(t => {
-    t.classList.remove('active');
-    t.setAttribute('aria-selected', 'false');
-    t.setAttribute('tabindex', '-1');
+  card.querySelectorAll('[role="tab"]').forEach((tab) => {
+    tab.classList.remove('active');
+    tab.setAttribute('aria-selected', 'false');
+    tab.setAttribute('tabindex', '-1');
   });
 
-  card.querySelectorAll('[role="tabpanel"]').forEach(p => p.classList.remove('active'));
+  card.querySelectorAll('[role="tabpanel"]').forEach((pane) => {
+    pane.classList.remove('active');
+  });
 
   btn.classList.add('active');
   btn.setAttribute('aria-selected', 'true');
   btn.setAttribute('tabindex', '0');
+  btn.focus();
 
   const pane = document.getElementById(paneId);
-  pane.classList.add('active');
+  if (pane) pane.classList.add('active');
 }
 
-// ===== NAV SCROLL HIGHLIGHT =====
-function initNavActiveOnClick() {
-  document.querySelectorAll('.nav a').forEach(a => {
-    a.addEventListener('click', function () {
-      document.querySelectorAll('.nav a').forEach(x => x.classList.remove('active'));
-      this.classList.add('active');
+function initTabKeyboard() {
+  document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
+    const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+    if (!tabs.length) return;
+
+    tablist.addEventListener('keydown', (event) => {
+      const currentIndex = tabs.indexOf(document.activeElement);
+      if (currentIndex === -1) return;
+
+      let nextIndex = null;
+
+      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % tabs.length;
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = tabs.length - 1;
+      if (nextIndex === null) return;
+
+      event.preventDefault();
+      const nextTab = tabs[nextIndex];
+      switchTab(nextTab, nextTab.getAttribute('aria-controls'));
     });
   });
+}
+
+function initNavActiveState() {
+  const links = Array.from(document.querySelectorAll('.nav a'));
+  const sections = links
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  function setActive(id) {
+    links.forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+    });
+  }
+
+  links.forEach((link) => {
+    link.addEventListener('click', () => {
+      const targetId = link.getAttribute('href').replace('#', '');
+      setActive(targetId);
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible?.target?.id) setActive(visible.target.id);
+  }, {
+    rootMargin: '-25% 0px -55% 0px',
+    threshold: [0.2, 0.4, 0.6]
+  });
+
+  sections.forEach((section) => observer.observe(section));
 }
