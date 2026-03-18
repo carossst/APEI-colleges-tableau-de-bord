@@ -101,7 +101,7 @@
     <!-- ===== SECTION 2: ÉTABLISSEMENTS HEATMAP ===== -->
     <section class="section" id="etablissements">
       <h2>Scores par établissement</h2>
-      <p>Matrices individuelles extraites des rapports 2021 et 2023</p>
+      <p>Matrices individuelles extraites des rapports 2021, 2023 et 2024</p>
       <div class="section-line"></div>
     </section>
 
@@ -111,6 +111,8 @@
           tabindex="0" onclick="switchTab(this,'tab2021')">2021 — 5 collèges</button>
         <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2023" id="tabbtn2023" tabindex="-1"
           onclick="switchTab(this,'tab2023')">2023 — 5 collèges</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2024" id="tabbtn2024" tabindex="-1"
+          onclick="switchTab(this,'tab2024')">2024 — 8 collèges</button>
       </div>
 
       <div id="tab2021" class="tab-pane active" role="tabpanel" aria-labelledby="tabbtn2021">
@@ -144,6 +146,23 @@
             </tr>
           </thead>
           <tbody id="tbody2023"></tbody>
+        </table>
+      </div>
+
+      <div id="tab2024" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2024">
+        <table class="heat-table">
+          <thead>
+            <tr>
+              <th>Collège</th>
+              <th>Espaces</th>
+              <th>Enseignements</th>
+              <th>Outils num.</th>
+              <th>Élèves</th>
+              <th>Parties pr.</th>
+              <th>Moy.</th>
+            </tr>
+          </thead>
+          <tbody id="tbody2024"></tbody>
         </table>
       </div>
     </section>

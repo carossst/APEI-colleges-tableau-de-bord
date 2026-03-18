@@ -82,7 +82,7 @@
       ],
       "eleves": 710,
       "budget": 69290,
-      "note": 32.50
+      "note": 32.5
     },
     {
       "nom": "Epine Guyon",
@@ -182,7 +182,14 @@
       "type": "Clôture 2018",
       "taux": 80,
       "eleves": 694,
-      "enseignants": 51
+      "enseignants": 51,
+      "scores": [
+        4,
+        2.5,
+        3,
+        3.5,
+        2.5
+      ]
     },
     {
       "nom": "Paul Vaillant Couturier",
@@ -190,7 +197,14 @@
       "type": "Clôture 2018",
       "taux": 10,
       "eleves": 734,
-      "enseignants": 54
+      "enseignants": 54,
+      "scores": [
+        2,
+        1.5,
+        2,
+        1.5,
+        1.5
+      ]
     },
     {
       "nom": "Pablo Picasso",
@@ -198,7 +212,14 @@
       "type": "Clôture 2018",
       "taux": 60,
       "eleves": 597,
-      "enseignants": 39
+      "enseignants": 39,
+      "scores": [
+        3.5,
+        3,
+        3,
+        3.5,
+        2
+      ]
     },
     {
       "nom": "Les Hautiers",
@@ -206,7 +227,14 @@
       "type": "Clôture 2018",
       "taux": 90,
       "eleves": 712,
-      "enseignants": 45
+      "enseignants": 45,
+      "scores": [
+        4,
+        3.5,
+        3.5,
+        3.5,
+        2.5
+      ]
     },
     {
       "nom": "Pierre et Marie Curie",
@@ -214,7 +242,14 @@
       "type": "Mi-parcours 2021",
       "taux": 85,
       "eleves": 809,
-      "enseignants": 56
+      "enseignants": 56,
+      "scores": [
+        4,
+        3,
+        2.5,
+        4,
+        2
+      ]
     },
     {
       "nom": "Montesquieu",
@@ -222,7 +257,14 @@
       "type": "Mi-parcours 2021",
       "taux": 75,
       "eleves": 559,
-      "enseignants": 35
+      "enseignants": 35,
+      "scores": [
+        3.5,
+        3,
+        3,
+        3,
+        2
+      ]
     },
     {
       "nom": "Jean-Claude Chabanne",
@@ -230,7 +272,14 @@
       "type": "Mi-parcours 2021",
       "taux": 25,
       "eleves": 651,
-      "enseignants": 41
+      "enseignants": 41,
+      "scores": [
+        3,
+        2.5,
+        2.5,
+        2.5,
+        1.5
+      ]
     },
     {
       "nom": "Nicolas Flamel",
@@ -238,7 +287,14 @@
       "type": "Mi-parcours 2021",
       "taux": 45,
       "eleves": 633,
-      "enseignants": 45
+      "enseignants": 45,
+      "scores": [
+        3,
+        3,
+        2.5,
+        3,
+        2
+      ]
     }
   ],
   "kpi2024": {

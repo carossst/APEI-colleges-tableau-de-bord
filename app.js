@@ -302,6 +302,7 @@ function heatClass(v) {
 function buildHeatmapTables(DATA) {
   buildTable('tbody2021', DATA.etablissements2021);
   buildTable('tbody2023', DATA.etablissements2023);
+  buildTable('tbody2024', DATA.etablissements2024);
 }
 
 function buildTable(id, list) {
