@@ -528,13 +528,6 @@ function activateTab(tabs, activeTab) {
   }
 }
 
-function switchTab(button, paneId) {
-  const card = button.closest('.card');
-  if (!card) return;
-  const tabs = [...card.querySelectorAll('[role="tab"]')];
-  const target = tabs.find((tab) => tab.getAttribute('aria-controls') === paneId) || button;
-  activateTab(tabs, target);
-}
 
 function initNavScrollSpy() {
   const links = [...document.querySelectorAll('.nav a')];

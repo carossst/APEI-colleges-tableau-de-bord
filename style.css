@@ -48,7 +48,7 @@ a {
 }
 
 :root {
-  --vo-red: #E94F35;
+  --vo-red: #D03E2B;
   --vo-white: #ffffff;
   --bg: #f7f8fa;
   --surface: #ffffff;
@@ -201,8 +201,7 @@ a {
 .grid-2,
 .intro-grid,
 .overview-grid,
-.method-grid,
-.kpi-grid {
+.method-grid {
   display: grid;
   gap: 18px;
 }
@@ -222,17 +221,42 @@ a {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.kpi-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 18px;
+.executive-summary-grid,
+.maturity-grid {
+  display: grid;
+  gap: 18px;
 }
+
+.executive-summary-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.maturity-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.executive-summary,
+.maturity-card {
+  margin-bottom: 24px;
+}
+
+.maturity-grid h3,
+.executive-summary-grid h3 {
+  margin-bottom: 10px;
+}
+
+.maturity-grid p {
+  color: var(--muted);
+}
+
 
 @media (max-width: 900px) {
   .grid-2,
   .intro-grid,
   .overview-grid,
   .method-grid,
-  .kpi-grid {
+  .executive-summary-grid,
+  .maturity-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -260,6 +284,15 @@ a {
   font-size: 1.15rem;
   line-height: 1.35;
   margin-bottom: 10px;
+}
+
+.intro-card,
+.overview-card {
+  min-height: 100%;
+}
+
+.overview-card-scale .scale-list {
+  margin-top: 10px;
 }
 
 .subtitle {
@@ -327,6 +360,10 @@ a {
   margin: 0;
 }
 
+.callout p + p {
+  margin-top: 10px;
+}
+
 .section-title-pos {
   color: var(--success);
 }
@@ -335,25 +372,8 @@ a {
   color: var(--danger);
 }
 
-.kpi-card {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--surface-2);
-  padding: 20px;
-}
 
-.kpi-value {
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 1.1;
-  color: var(--text);
-}
 
-.kpi-label {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 1rem;
-}
 
 .table-scroll {
   overflow-x: auto;
@@ -609,8 +629,7 @@ footer strong {
   }
 
   .card,
-  .tl-item,
-  .kpi-card {
+  .tl-item {
     box-shadow: none;
   }
 }
@@ -625,8 +644,7 @@ footer strong {
   }
 
   .card,
-  .tl-item,
-  .kpi-card {
+  .tl-item {
     box-shadow: none !important;
   }
 
@@ -671,6 +689,14 @@ footer strong {
   }
 }
 
-.year-callout {
+.year-callout,
+.table-callout {
   margin-bottom: 18px;
+}
+
+
+.year-summary {
+  margin: 8px 0 16px;
+  color: var(--muted, #4b5563);
+  line-height: 1.55;
 }
