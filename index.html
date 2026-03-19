@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Val-d'Oise - Analyse d'impact qualitative des espaces innovants dans les collèges</title>
+  <title>Val-d'Oise College APEI - Analyse d'impact qualitative</title>
 
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   <link rel="stylesheet" href="style.css" />
@@ -25,7 +25,6 @@
     <a href="#matrice" class="active">Matrice globale</a>
     <a href="#etablissements">Établissements</a>
     <a href="#points-cles">Points clés</a>
-    <a href="#evolutions">Évolutions</a>
   </nav>
 
   <main id="main" class="container">
@@ -71,7 +70,7 @@
     </section>
 
     <section class="callout callout-neutral callout-exec" aria-label="Synthèse exécutive">
-      <p><strong>Synthèse exécutive :</strong> en 2024, 6 établissements sur 8 estiment avoir atteint les objectifs visés. Cette information est présentée comme un repère de lecture du millésime 2024, sans remplacer l'analyse qualitative transversale de l'ensemble de la période.</p>
+      <p><strong>Synthèse exécutive :</strong> sur l'ensemble de la période 2021, 2023 et 2024, les analyses mettent surtout en évidence une transformation concrète des espaces, des effets positifs sur le climat scolaire et des usages pédagogiques qui évoluent, avec des écarts d'appropriation selon les établissements. Les principaux points de vigilance portent davantage sur les conditions de mise en oeuvre dans la durée - formation, disponibilité des équipes, communication interne et continuité du portage - que sur l'intention des projets elle-même.</p>
     </section>
 
     <section class="section" id="matrice">
@@ -90,14 +89,27 @@
         <div class="subtitle">Position moyenne de chaque axe sur une échelle de 1 à 4</div>
         <canvas id="radarChart" role="img"
           aria-label="Graphique radar comparant les scores moyens par axe en 2021, 2023 et 2024."></canvas>
-        <p class="chart-note"><strong>Lecture :</strong> le radar donne une vue d'ensemble rapide de la forme générale des résultats. Il doit être lu avec le graphique par axe, plus précis pour comparer les écarts.</p>
       </div>
       <div class="card">
         <h2>Comparaison par axe</h2>
         <div class="subtitle">Lecture plus précise des écarts entre 2021, 2023 et 2024</div>
         <canvas id="barChart" role="img"
           aria-label="Histogramme horizontal comparant les scores par axe en 2021, 2023 et 2024."></canvas>
-        <p class="chart-note"><strong>Lecture :</strong> ce graphique permet de vérifier plus finement les différences entre années, axe par axe, sans remplacer la vue macro.</p>
+      </div>
+    </section>
+
+    <section class="grid-2" style="margin-top:24px" aria-label="Évolutions temporelles">
+      <div class="card">
+        <h2>Évolution moyenne globale</h2>
+        <div class="subtitle">Moyenne des cinq axes pour chaque année d'analyse</div>
+        <canvas id="lineChart" class="chart-sm" role="img"
+          aria-label="Courbe de la moyenne globale des scores sur 2021, 2023 et 2024."></canvas>
+      </div>
+      <div class="card">
+        <h2>Détail par axe</h2>
+        <div class="subtitle">Évolution individuelle de chacun des cinq axes</div>
+        <canvas id="lineAxesChart" class="chart-sm" role="img"
+          aria-label="Courbes d’évolution des scores pour chaque axe sur 2021, 2023 et 2024."></canvas>
       </div>
     </section>
 
@@ -197,7 +209,7 @@
       <div class="subtitle">Ce niveau de lecture permet de retrouver les constats propres à chaque campagne d'analyse.</div>
 
       <div class="accordion-years">
-        <details class="year-detail">
+        <details class="year-detail" open>
           <summary>2021</summary>
           <div class="grid-2 detail-grid detail-panel">
             <div>
@@ -227,47 +239,24 @@
 
         <details class="year-detail">
           <summary>2024</summary>
-          <div class="grid-2 detail-grid detail-panel">
-            <div>
-              <h3 class="detail-col-title section-title-pos">Points positifs</h3>
-              <div class="timeline" id="tl-pos-2024"></div>
+          <div class="detail-panel">
+            <div class="callout callout-neutral" aria-label="Repère de lecture 2024">
+              <p><strong>Repère 2024 :</strong> 6 établissements sur 8 estiment avoir atteint les objectifs visés. Cette information éclaire le millésime 2024, sans remplacer la synthèse transversale sur l'ensemble de la période.</p>
             </div>
-            <div>
-              <h3 class="detail-col-title section-title-neg">Difficultés rencontrées</h3>
-              <div class="timeline" id="tl-neg-2024"></div>
+            <div class="grid-2 detail-grid">
+              <div>
+                <h3 class="detail-col-title section-title-pos">Points positifs</h3>
+                <div class="timeline" id="tl-pos-2024"></div>
+              </div>
+              <div>
+                <h3 class="detail-col-title section-title-neg">Difficultés rencontrées</h3>
+                <div class="timeline" id="tl-neg-2024"></div>
+              </div>
             </div>
           </div>
         </details>
       </div>
     </section>
-
-    <section class="section" id="evolutions">
-      <h2>Évolutions par année</h2>
-      <p>Lecture chronologique à consulter après la synthèse transversale et le détail par établissement.</p>
-      <div class="section-line"></div>
-    </section>
-
-    <section class="callout callout-neutral" aria-label="Clé de lecture des évolutions par année">
-      <p><strong>À lire en dernier :</strong> ces graphiques montrent la dynamique entre 2021, 2023 et 2024. Ils complètent la vue macro, mais ne doivent pas être lus avant les constats transversaux.</p>
-    </section>
-
-    <section class="grid-2" style="margin-top:24px" aria-label="Évolutions temporelles">
-      <div class="card">
-        <h2>Évolution moyenne globale</h2>
-        <div class="subtitle">Moyenne des cinq axes pour chaque année d'analyse</div>
-        <canvas id="lineChart" class="chart-sm" role="img"
-          aria-label="Courbe de la moyenne globale des scores sur 2021, 2023 et 2024."></canvas>
-        <p class="chart-note"><strong>Lecture :</strong> cette courbe résume le niveau moyen global de chaque campagne d'analyse. Elle aide à voir la tendance générale sans entrer dans le détail des axes.</p>
-      </div>
-      <div class="card">
-        <h2>Détail par axe</h2>
-        <div class="subtitle">Évolution individuelle de chacun des cinq axes</div>
-        <canvas id="lineAxesChart" class="chart-sm" role="img"
-          aria-label="Courbes d’évolution des scores pour chaque axe sur 2021, 2023 et 2024."></canvas>
-        <p class="chart-note"><strong>Lecture :</strong> ce graphique montre quelles dimensions progressent, stagnent ou reculent d'une campagne à l'autre.</p>
-      </div>
-    </section>
-
   </main>
 
   <footer>
