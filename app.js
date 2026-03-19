@@ -414,8 +414,8 @@ function renderTimeline(items, containerId, type) {
 }
 
 function buildTimelines(data) {
-  const globalPos = data.pointsGlobaux || [];
-  const globalNeg = data.difficultesGlobales || [];
+  const globalPos = aggregateTitles(data.pointsPositifs || []);
+  const globalNeg = aggregateTitles(data.difficultes || []);
 
   renderTimeline(globalPos, 'tl-global-pos', 'pos');
   renderTimeline(globalNeg, 'tl-global-neg', 'neg');
@@ -424,6 +424,27 @@ function buildTimelines(data) {
     renderTimeline((data.pointsPositifs || []).filter((item) => item.annee === year), `tl-pos-${year}`, 'pos');
     renderTimeline((data.difficultes || []).filter((item) => item.annee === year), `tl-neg-${year}`, 'neg');
   });
+}
+
+function aggregateTitles(items) {
+  const counts = new Map();
+
+  items.forEach((item) => {
+    const existing = counts.get(item.titre) || { ...item, count: 0 };
+    existing.count += 1;
+    counts.set(item.titre, existing);
+  });
+
+  return [...counts.values()]
+    .sort((a, b) => b.count - a.count || a.titre.localeCompare(b.titre, 'fr'))
+    .slice(0, 5)
+    .map((item) => ({
+      titre: item.titre,
+      detail: item.count > 1 ? `${item.detail} - thème retrouvé dans ${item.count} analyses.` : item.detail,
+      role: item.role || '',
+      citation: item.citation || '',
+      source: item.source || ''
+    }));
 }
 
 function writeChartSummaries(data) {
@@ -444,9 +465,9 @@ function writeChartSummaries(data) {
   const avg2023 = averageAxisValue(data.axes, '2023').toFixed(1);
   const avg2024 = averageAxisValue(data.axes, '2024').toFixed(1);
 
-  setText('summary-radar', `Lecture rapide : sur les trois campagnes, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
+  setText('summary-radar', `Lecture rapide : sur les trois analyses, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
   setText('summary-bar', `La comparaison par axe confirme une structure globalement stable : des acquis durables sur les espaces, des évolutions plus contrastées sur les autres axes et une fragilité persistante sur la relation avec les autres parties prenantes.`);
-  setText('summary-line', `La moyenne globale reste proche d'une campagne à l'autre : ${avg2021} /4 en 2021, ${avg2023} /4 en 2023 et ${avg2024} /4 en 2024. L'ensemble traduit davantage une continuité qu'une rupture.`);
+  setText('summary-line', `La moyenne globale reste proche d'une analyse à l'autre : ${avg2021} /4 en 2021, ${avg2023} /4 en 2023 et ${avg2024} /4 en 2024. L'ensemble traduit davantage une continuité qu'une rupture.`);
   setText('summary-line-axes', `Sur l'ensemble de la période, la progression la plus nette concerne "${bestDelta.label}" (${bestDelta.diff >= 0 ? '+' : ''}${bestDelta.diff}), tandis que "${worstDelta.label}" apparaît comme l'axe le moins dynamique (${worstDelta.diff >= 0 ? '+' : ''}${worstDelta.diff}).`);
 }
 
