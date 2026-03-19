@@ -300,29 +300,24 @@
   "pointsPositifs": [
     {
       "annee": "2021",
-      "titre": "Bien-être élèves",
-      "detail": "Élèves plus épanouis dans les nouveaux environnements",
-      "role": "Professeure",
-      "citation": "Les élèves ont l’air plus heureux dans la salle connectée que dans les anciennes salles de permanence.",
-      "source": "Analyse APEI 2021 - 27 juillet 2021"
+      "titre": "Transformation des pratiques",
+      "detail": "Enseignants commencent à transformer leurs pratiques pédagogiques"
     },
     {
       "annee": "2021",
       "titre": "Nouvelles compétences élèves",
-      "detail": "Élèves développent des compétences en vidéo et en montage",
-      "source": "Analyse APEI 2021 - 27 juillet 2021"
+      "detail": "Élèves développent compétences vidéo, montage, travail autonome"
     },
     {
       "annee": "2021",
-      "titre": "Transformation des pratiques",
-      "detail": "Enseignants commencent à transformer leurs pratiques pédagogiques",
-      "source": "Analyse APEI 2021 - 27 juillet 2021"
-    },
-    {
-      "annee": "2021",
-      "titre": "Élèves plus investis",
-      "detail": "Les élèves sont davantage force de proposition et plus soucieux de réussir",
+      "titre": "Bien-être élèves",
+      "detail": "Élèves plus épanouis dans les nouveaux environnements",
       "source": "Professeure - analyse qualitative 2021"
+    },
+    {
+      "annee": "2023",
+      "titre": "Nouvelles compétences",
+      "detail": "Web TV développe compétences et valorise les élèves"
     },
     {
       "annee": "2023",
@@ -334,29 +329,16 @@
     },
     {
       "annee": "2023",
-      "titre": "Nouvelle posture enseignante",
-      "detail": "Plus abordables, circulent, dialogue facilité",
-      "role": "Professeur",
-      "citation": "Vu que le cours est sur la tablette, je ne suis plus au tableau à faire le cours et je me déplace. Ça facilite l’échange entre nous, c’est beaucoup plus facile de prendre des nouvelles ou de repérer quelqu’un qui ne va pas bien par exemple.",
-      "source": "Analyse APEI 2023 - 6 décembre 2023"
-    },
-    {
-      "annee": "2023",
-      "titre": "Nouvelles compétences",
-      "detail": "La Web TV développe des compétences et valorise les élèves",
-      "source": "Analyse APEI 2023 - 6 décembre 2023"
-    },
-    {
-      "annee": "2023",
-      "titre": "Proximité avec les élèves",
-      "detail": "Les enseignants circulent davantage et repèrent plus facilement les élèves en difficulté",
-      "source": "Professeur - analyse qualitative 2023"
-    },
-    {
-      "annee": "2023",
       "titre": "Évolution pratiques",
       "detail": "Certains professeurs revoient entièrement leurs séquences",
+      "role": "Professeure",
+      "citation": "À partir du moment où j’ai été à plein temps dans cette salle, j’ai repris toutes mes séquences pour pouvoir justement intégrer beaucoup plus de choses qui étaient réalisables dans cet espace et avec le matériel.",
       "source": "Analyse APEI 2023 - 6 décembre 2023"
+    },
+    {
+      "annee": "2024",
+      "titre": "Travail de groupe et autonomie",
+      "detail": "Pédagogie active, coopérative, raccrochage des élèves en difficulté"
     },
     {
       "annee": "2024",
@@ -365,92 +347,92 @@
       "role": "CPE",
       "citation": "Ça a impacté le climat scolaire et de fait, le bien-être des élèves. On a quasiment plus de conflits en salle de permanence et je pense que c’est grâce aux espaces.",
       "source": "CR APEI Eugénie Cotton - 23 septembre 2024 ; repris dans l'Analyse APEI 2024"
-    },
-    {
-      "annee": "2024",
-      "titre": "Travail de groupe et autonomie",
-      "detail": "Pédagogie active, coopérative, raccrochage des élèves en difficulté",
-      "source": "Analyse APEI 2024"
-    },
-    {
-      "annee": "2024",
-      "titre": "Valorisation des élèves",
-      "detail": "Les espaces permettent de mobiliser les talents de chacun et de valoriser le travail produit",
-      "source": "Professeure - analyse qualitative 2024"
     }
   ],
   "difficultes": [
     {
       "annee": "2021",
-      "titre": "Classes de 30 élèves",
-      "detail": "Organisation difficile avec des effectifs importants",
-      "source": "Analyse APEI 2021 - 27 juillet 2021"
-    },
-    {
-      "annee": "2021",
       "titre": "Manque accompagnement",
-      "detail": "Besoin d'appui humain et de formation entre pairs",
-      "source": "Analyse APEI 2021 - 27 juillet 2021"
+      "detail": "Besoin d'appui humain et de formation entre pairs"
     },
     {
       "annee": "2021",
       "titre": "Réticence enseignants",
-      "detail": "Enseignants encore ancrés dans des pratiques traditionnelles",
-      "source": "Analyse APEI 2021 - 27 juillet 2021"
+      "detail": "Enseignants encore ancrés dans des pratiques traditionnelles"
     },
     {
       "annee": "2021",
-      "titre": "Échanges entre établissements",
-      "detail": "Les collèges ont peu échangé entre eux lors de la mise en place des projets",
-      "source": "Professeure - analyse qualitative 2021"
-    },
-    {
-      "annee": "2023",
-      "titre": "Accès aux espaces",
-      "detail": "L'usage des salles reste freiné par des contraintes d'inscription, de réservation et d'organisation",
-      "source": "Cheffe d'établissement - analyse qualitative 2023"
+      "titre": "Classes de 30 élèves",
+      "detail": "Organisation difficile avec des effectifs importants"
     },
     {
       "annee": "2023",
       "titre": "Appréhension numérique",
-      "detail": "Enseignants n'osent pas se lancer par peur ou méconnaissance",
-      "source": "Analyse APEI 2023 - 6 décembre 2023"
+      "detail": "Enseignants n'osent pas se lancer par peur ou méconnaissance"
+    },
+    {
+      "annee": "2023",
+      "titre": "Manque de temps",
+      "detail": "Temps de cours trop court pour certains usages des espaces"
     },
     {
       "annee": "2023",
       "titre": "Communication interne",
       "detail": "Les équipes ne savent pas toujours ce qu'il est possible de faire dans les espaces",
+      "role": "Professeur",
+      "citation": "C’est connu de tous, le matériel est connu, on fait des réunions dans ces salles, donc je pense que personne n’ignore leur existence. En revanche, tout le monde ne sait pas ce qui est possible de faire avec les élèves au sein de ces salles.",
       "source": "Analyse APEI 2023 - 6 décembre 2023"
-    },
-    {
-      "annee": "2023",
-      "titre": "Manque de temps",
-      "detail": "Temps de cours trop court pour certains usages des espaces",
-      "source": "Analyse APEI 2023 - 6 décembre 2023"
-    },
-    {
-      "annee": "2024",
-      "titre": "Espaces petits groupes",
-      "detail": "Web TV et Web Radio limitées à de petits groupes, usage chronophage",
-      "source": "Analyse APEI 2024"
-    },
-    {
-      "annee": "2024",
-      "titre": "Formation des AED",
-      "detail": "Les personnels de vie scolaire doivent être formés pour accompagner correctement les usages",
-      "source": "Cheffe d'établissement - analyse qualitative 2024"
-    },
-    {
-      "annee": "2024",
-      "titre": "Formation des nouveaux arrivants",
-      "detail": "Former les nouveaux arrivants et formaliser les usages à chaque rentrée",
-      "source": "Cheffe d'établissement - analyse qualitative 2024"
     },
     {
       "annee": "2024",
       "titre": "Moyens humains",
-      "detail": "Espaces innovants gourmands en personnel, besoin de co-animation",
-      "source": "Analyse APEI 2024"
+      "detail": "Espaces innovants gourmands en personnel, besoin de co-animation"
+    },
+    {
+      "annee": "2024",
+      "titre": "Espaces petits groupes",
+      "detail": "Web TV et Web Radio limitées à de petits groupes, usage chronophage"
+    },
+    {
+      "annee": "2024",
+      "titre": "Communication interne",
+      "detail": "Former les nouveaux arrivants et formaliser les usages à chaque rentrée"
+    }
+  ],
+  "pointsGlobaux": [
+    {
+      "titre": "Transformation concrète des usages",
+      "detail": "Les analyses montrent d'abord une transformation concrète des usages à travers les espaces aménagés."
+    },
+    {
+      "titre": "Autonomie et engagement des élèves",
+      "detail": "Les effets les plus visibles concernent l'autonomie, l'engagement et l'implication des élèves."
+    },
+    {
+      "titre": "Évolution de certaines pratiques pédagogiques",
+      "detail": "Certains projets conduisent à une évolution réelle des pratiques pédagogiques, mais de manière inégale selon les équipes."
+    },
+    {
+      "titre": "Effets sur le climat scolaire",
+      "detail": "Plusieurs projets produisent des effets perceptibles sur le climat scolaire et les conditions de travail au sein du collège."
+    }
+  ],
+  "difficultesGlobales": [
+    {
+      "titre": "Appropriation inégale selon les équipes",
+      "detail": "Les écarts entre projets tiennent d'abord à une appropriation inégale selon les équipes et les contextes locaux."
+    },
+    {
+      "titre": "Formation, transmission et relais adultes",
+      "detail": "La formation, la transmission des usages et l'existence de relais adultes restent décisives dans la durée."
+    },
+    {
+      "titre": "Contraintes d'organisation des espaces",
+      "detail": "Des contraintes d'organisation, de réservation et de disponibilité continuent de freiner certains usages."
+    },
+    {
+      "titre": "Mutualisation encore fragile",
+      "detail": "La mutualisation reste fragile, à la fois à l'intérieur des collèges et entre établissements."
     }
   ],
   "pageIntro": {
