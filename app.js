@@ -407,7 +407,7 @@ function renderTimeline(items, containerId, type) {
         <div class="tl-content">
           <strong>${escapeHtml(item.titre)}</strong>
           <p>${escapeHtml(item.detail)}</p>
-          ${item.source ? `<div class="src">- ${escapeHtml(item.source)}</div>` : ''}
+          ${item.role && item.citation && item.source ? `<div class="src"><strong>${escapeHtml(item.role)} :</strong> "${escapeHtml(item.citation)}" - ${escapeHtml(item.source)}</div>` : ''}
         </div>
       </div>`;
   });
@@ -441,6 +441,8 @@ function aggregateTitles(items) {
     .map((item) => ({
       titre: item.titre,
       detail: item.count > 1 ? `${item.detail} - thème retrouvé dans ${item.count} campagnes.` : item.detail,
+      role: item.role || '',
+      citation: item.citation || '',
       source: item.source || ''
     }));
 }

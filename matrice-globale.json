@@ -301,56 +301,59 @@
     {
       "annee": "2021",
       "titre": "Transformation des pratiques",
-      "detail": "Enseignants commencent à transformer leurs pratiques pédagogiques",
-      "source": "Cheffe d'établissement"
+      "detail": "Enseignants commencent à transformer leurs pratiques pédagogiques"
     },
     {
       "annee": "2021",
       "titre": "Nouvelles compétences élèves",
-      "detail": "Élèves développent compétences vidéo, montage, travail autonome",
-      "source": "Professeure"
+      "detail": "Élèves développent compétences vidéo, montage, travail autonome"
     },
     {
       "annee": "2021",
       "titre": "Bien-être élèves",
       "detail": "Élèves plus épanouis dans les nouveaux environnements",
-      "source": "Principal"
+      "role": "Enseignant",
+      "citation": "Les élèves ont l’air plus heureux dans la salle connectée que dans les anciennes salles de permanence.",
+      "source": "Analyse APEI 2021 - 27 juillet 2021"
     },
     {
       "annee": "2023",
       "titre": "Nouvelles compétences",
-      "detail": "Web TV développe compétences et valorise les élèves",
-      "source": "Principal"
+      "detail": "Web TV développe compétences et valorise les élèves"
     },
     {
       "annee": "2023",
       "titre": "Autonomie renforcée",
       "detail": "Élèves travaillent en autonomie avec tableaux et espaces dédiés",
-      "source": "Élève de 3e"
+      "role": "Élève de 3e",
+      "citation": "C’est bien, parce qu’on peut se mettre dans un coin de la salle et travailler en autonomie sur notre tableau puis poser des questions, alors que dans certains cours il y en a qui n’osent pas lever la main pour poser des questions.",
+      "source": "Analyse APEI 2023 - 6 décembre 2023"
     },
     {
       "annee": "2023",
       "titre": "Évolution pratiques",
-      "detail": "Certains professeurs revoient entièrement leurs séquences",
-      "source": "Professeure"
+      "detail": "Certains professeurs revoient entièrement leurs séquences"
     },
     {
       "annee": "2024",
       "titre": "Travail de groupe et autonomie",
-      "detail": "Pédagogie active, coopérative, raccrochage des élèves en difficulté",
-      "source": "Professeure d'anglais"
+      "detail": "Pédagogie active, coopérative, raccrochage des élèves en difficulté"
     },
     {
       "annee": "2024",
       "titre": "Nouvelle posture enseignante",
       "detail": "Plus abordables, circulent, dialogue facilité",
-      "source": "Professeur de physique-chimie"
+      "role": "Professeur de technologie",
+      "citation": "Vu que le cours est sur la tablette, je ne suis plus au tableau à faire le cours et je me déplace. Ça facilite l’échange entre nous, c’est beaucoup plus facile de prendre des nouvelles ou de repérer quelqu’un qui ne va pas bien par exemple.",
+      "source": "Analyse APEI 2023 - 6 décembre 2023"
     },
     {
       "annee": "2024",
       "titre": "Apaisement du climat scolaire",
       "detail": "Quasi-absence de conflits en permanence, bien-être des élèves",
-      "source": "CPE"
+      "role": "CPE",
+      "citation": "Ça a impacté le climat scolaire et de fait, le bien-être des élèves. On a quasiment plus de conflits en salle de permanence et je pense que c’est grâce aux espaces.",
+      "source": "CR APEI Eugénie Cotton - 23 septembre 2024 ; repris dans l'Analyse APEI 2024"
     }
   ],
   "difficultes": [
