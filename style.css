@@ -218,6 +218,10 @@ a {
   margin-bottom: 24px;
 }
 
+.intro-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .kpi-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: 18px;
@@ -665,4 +669,8 @@ footer strong {
   .score-cell {
     min-width: 72px;
   }
+}
+
+.year-callout {
+  margin-bottom: 18px;
 }

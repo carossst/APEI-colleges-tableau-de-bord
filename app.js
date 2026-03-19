@@ -67,8 +67,6 @@ function hydrateIntro(data) {
   setText('intro-context-text', intro.context?.text || "Lecture synthétique des analyses d'impact qualitatives.");
   setText('intro-method-title', intro.method?.title || 'Comment lire la matrice');
   setText('intro-method-text', intro.method?.text || 'Cinq axes, notés sur une échelle de 1 à 4.');
-  setText('intro-usage-title', intro.usage?.title || 'Comment utiliser cette page');
-  setText('intro-usage-text', intro.usage?.text || "Commencer par la vue d'ensemble, puis descendre vers le détail.");
 }
 
 function setText(id, text) {
@@ -448,9 +446,9 @@ function aggregateTitles(items) {
 }
 
 function writeChartSummaries(data) {
-  const axisSorted2024 = [...data.axes].sort((a, b) => b.values['2024'] - a.values['2024']);
-  const top2024 = axisSorted2024[0];
-  const low2024 = axisSorted2024[axisSorted2024.length - 1];
+  const axisSorted = [...data.axes].sort((a, b) => averageAcrossYears(b.values) - averageAcrossYears(a.values));
+  const topAxis = axisSorted[0];
+  const lowAxis = axisSorted[axisSorted.length - 1];
 
   const deltas = data.axes
     .map((axis) => ({
@@ -461,11 +459,18 @@ function writeChartSummaries(data) {
 
   const bestDelta = deltas[0];
   const worstDelta = deltas[deltas.length - 1];
+  const avg2021 = averageAxisValue(data.axes, '2021').toFixed(1);
+  const avg2023 = averageAxisValue(data.axes, '2023').toFixed(1);
+  const avg2024 = averageAxisValue(data.axes, '2024').toFixed(1);
 
-  setText('summary-radar', "Lecture rapide : la forme générale reste dominée par la transformation des espaces, tandis que la relation parties prenantes demeure l'axe le plus faible d'une campagne à l'autre.");
-  setText('summary-bar', `En 2024, l'axe le plus élevé est "${top2024.label}" (${top2024.values['2024'].toFixed(1)} /4) et le plus faible reste "${low2024.label}" (${low2024.values['2024'].toFixed(1)} /4).`);
-  setText('summary-line', `La moyenne globale passe de ${averageAxisValue(data.axes, '2021').toFixed(1)} /4 en 2021 à ${averageAxisValue(data.axes, '2023').toFixed(1)} /4 en 2023 puis ${averageAxisValue(data.axes, '2024').toFixed(1)} /4 en 2024, soit un niveau globalement stable avec un léger redressement en 2024.`);
-  setText('summary-line-axes', `L'évolution la plus favorable entre 2021 et 2024 concerne "${bestDelta.label}" (${bestDelta.diff >= 0 ? '+' : ''}${bestDelta.diff}). L'axe le plus en retrait reste "${worstDelta.label}" (${worstDelta.diff >= 0 ? '+' : ''}${worstDelta.diff}).`);
+  setText('summary-radar', `Lecture rapide : sur les trois campagnes, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
+  setText('summary-bar', `La comparaison par axe confirme une structure globalement stable : des acquis durables sur les espaces, des évolutions plus contrastées sur les autres axes et une fragilité persistante sur la relation avec les autres parties prenantes.`);
+  setText('summary-line', `La moyenne globale reste proche d'une campagne à l'autre : ${avg2021} /4 en 2021, ${avg2023} /4 en 2023 et ${avg2024} /4 en 2024. L'ensemble traduit davantage une continuité qu'une rupture.`);
+  setText('summary-line-axes', `Sur l'ensemble de la période, la progression la plus nette concerne "${bestDelta.label}" (${bestDelta.diff >= 0 ? '+' : ''}${bestDelta.diff}), tandis que "${worstDelta.label}" apparaît comme l'axe le moins dynamique (${worstDelta.diff >= 0 ? '+' : ''}${worstDelta.diff}).`);
+}
+
+function averageAcrossYears(values) {
+  return (values['2021'] + values['2023'] + values['2024']) / 3;
 }
 
 function initTabs() {

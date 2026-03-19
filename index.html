@@ -28,12 +28,12 @@
   <main id="main" class="container">
     <div id="data-load-error" class="callout callout-error" role="alert" hidden></div>
     <section class="section section-intro" id="vue-ensemble">
-      <h2>Lire cette page</h2>
-      <p>Une lecture de synthèse pour comprendre les tendances communes, puis aller progressivement vers le détail.</p>
+      <h2>Vue d'ensemble</h2>
+      <p>Une synthèse transversale des analyses 2021, 2023 et 2024, avant le détail par établissement et par campagne.</p>
       <div class="section-line"></div>
     </section>
 
-    <section class="intro-grid" aria-label="Introduction à la lecture de la page">
+    <section class="intro-grid intro-grid-2" aria-label="Introduction à la lecture de la page">
       <article class="card intro-card">
         <h3 id="intro-context-title">Ce que présente cette page</h3>
         <p id="intro-context-text"></p>
@@ -42,20 +42,16 @@
         <h3 id="intro-method-title">Comment lire la matrice</h3>
         <p id="intro-method-text"></p>
       </article>
-      <article class="card intro-card">
-        <h3 id="intro-usage-title">Comment utiliser cette page</h3>
-        <p id="intro-usage-text"></p>
-      </article>
     </section>
 
     <section class="overview-grid" aria-label="Repères de lecture">
       <article class="card overview-card">
-        <h3>Ce qui ressort le plus</h3>
-        <p>Les analyses montrent avant tout une transformation concrète des espaces, un effet positif sur le climat scolaire et des usages pédagogiques qui évoluent, mais encore de manière inégale selon les établissements.</p>
+        <h3>Tendance la plus stable</h3>
+        <p>Sur les trois temps d'analyse, la transformation des espaces apparaît comme l'axe le plus solide et le plus constant.</p>
       </article>
       <article class="card overview-card">
-        <h3>Le principal point de vigilance</h3>
-        <p>Les limites observées tiennent surtout aux conditions de mise en oeuvre : disponibilité des équipes, moyens humains, formation, communication interne et capacité à faire vivre les espaces dans la durée.</p>
+        <h3>Point de fragilité durable</h3>
+        <p>La relation avec les autres parties prenantes reste l'axe le plus fragile dans le temps, malgré des contextes d'établissement différents.</p>
       </article>
       <article class="card overview-card overview-card-scale">
         <h3>Échelle de lecture</h3>
@@ -66,10 +62,6 @@
           <li><strong>4</strong> - Très fort impact</li>
         </ul>
       </article>
-    </section>
-
-    <section class="callout callout-neutral" aria-label="Périmètre de l'analyse 2024">
-      <p><strong>Périmètre :</strong> l'analyse 2024 porte sur 8 collèges, avec deux situations différentes : 4 établissements en mesure de clôture des projets 2018 et 4 établissements en mesure de mi-parcours des projets 2021. Cette distinction compte pour interpréter les résultats.</p>
     </section>
 
     <section class="section" id="matrice">
@@ -101,7 +93,7 @@
 
     <section class="card card-full" aria-label="Méthodologie et axes d'analyse" style="margin-top:24px;">
       <h2>Méthode d'analyse</h2>
-      <div class="subtitle">La logique suivie dans les rapports 2021, 2023 et 2024</div>
+      <div class="subtitle">Une base commune pour comparer les tendances dans le temps</div>
       <div class="method-grid">
         <div>
           <h3>5 axes communs</h3>
@@ -119,14 +111,14 @@
         </div>
         <div>
           <h3>Logique de lecture</h3>
-          <p>On commence par comprendre les tendances globales, puis on descend d'un niveau vers les constats transversaux, les écarts entre établissements et enfin le détail par campagne d'analyse.</p>
+          <p>La page donne d'abord une lecture transversale des tendances, puis descend vers les écarts entre établissements et enfin vers le détail de chaque campagne.</p>
         </div>
       </div>
     </section>
 
     <section class="section" id="points-cles">
       <h2>Points clés transversaux</h2>
-      <p>D'abord les constats transversaux les plus récurrents, puis les évolutions par année.</p>
+      <p>Les constats récurrents à l'échelle des trois campagnes, avant le détail par année.</p>
       <div class="section-line"></div>
     </section>
 
@@ -165,8 +157,8 @@
     </section>
 
     <section class="callout callout-neutral" aria-label="Clé de lecture des tableaux établissements">
-      <p><strong>Mode d'emploi :</strong> ces tableaux permettent de repérer rapidement quels axes sont les plus avancés ou les plus fragiles dans chaque collège. Ils complètent la vue d'ensemble, sans la remplacer.</p>
       <p><strong>Important :</strong> les scores affichés restent des repères qualitatifs de lecture. Ils ne mesurent ni la performance scolaire ni la réussite globale d'un établissement.</p>
+      <p><strong>Lecture :</strong> les écarts entre collèges doivent être lus comme des différences d'appropriation, de contexte et de mise en oeuvre, pas comme un classement de performance.</p>
     </section>
 
     <section class="card" aria-label="Tables des scores par établissement">
@@ -218,7 +210,7 @@
       </div>
 
       <div id="tab2024" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2024" hidden>
-        <p class="table-meta">2024 - 8 collèges, avec une combinaison de mesures de clôture sur des projets 2018 et de mesures de mi-parcours sur des projets 2021.</p>
+        <p class="table-meta">2024 - 8 collèges. Cette campagne combine 4 mesures de clôture sur des projets 2018 et 4 mesures de mi-parcours sur des projets 2021, ce qui invite à interpréter cette année avec prudence.</p>
         <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour 2024, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
@@ -278,6 +270,9 @@
 
         <details class="year-detail">
           <summary>2024</summary>
+          <div class="callout callout-neutral year-callout">
+            <p><strong>Point de méthode :</strong> la campagne 2024 porte sur 8 collèges, avec deux situations différentes : 4 établissements en mesure de clôture des projets 2018 et 4 établissements en mesure de mi-parcours des projets 2021.</p>
+          </div>
           <div class="grid-2 detail-grid detail-panel">
             <div>
               <h3 class="detail-col-title section-title-pos">Points positifs</h3>

@@ -10,20 +10,23 @@ Page statique prête pour GitHub Pages.
 - favicon-32.png
 
 ## Ce qui a été corrigé
-- Nettoyage du JavaScript mort lie aux anciennes sections supprimees.
-- Rehierarchisation de la page : synthese editoriale en haut, exploration analytique plus bas.
-- Conservation du radar avec une explication explicite de son role.
-- Ajout de resumes textuels sous les graphiques pour une meilleure accessibilite.
-- Remontee des points cles transversaux avant la lecture detaillee par etablissement.
-- Ajout d'un rappel de perimetre sur la distinction 2024 entre cloture 2018 et mi-parcours 2021.
-- Scroll spy de navigation reel, au lieu d'un simple etat actif au clic.
+- Nettoyage du JavaScript mort lié aux anciennes sections supprimées.
+- Réhiérarchisation de la page : synthèse éditoriale en haut, exploration analytique plus bas.
+- Suppression du bloc "Comment utiliser cette page" et de la logique de guidage trop démonstrative en haut de page.
+- Recentrage du cadrage sur une lecture transversale 2021, 2023 et 2024, sans mise en avant de 2024 en ouverture.
+- Conservation du radar avec une explication explicite de son rôle.
+- Ajout de résumés textuels sous les graphiques pour une meilleure accessibilité.
+- Remontée des points clés transversaux avant la lecture détaillée par établissement.
+- Conservation du contexte 2024 uniquement dans les zones de détail où il est utile à l'interprétation.
+- Anonymisation des citations : rôle conservé, noms de personnes et noms d'établissements retirés.
+- Scroll spy de navigation réel, au lieu d'un simple état actif au clic.
 
-## Deploiement GitHub Pages
-1. Mettre les fichiers a la racine du repo (ou dans /docs).
+## Déploiement GitHub Pages
+1. Mettre les fichiers à la racine du repo (ou dans /docs).
 2. GitHub > Settings > Pages > Build and deployment.
 3. Source : Deploy from a branch.
 4. Branch : main.
 5. Folder : /(root) ou /docs.
 
-## Mise a jour des donnees
+## Mise à jour des données
 Modifier `matrice-globale.json`, puis commit/push.
