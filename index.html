@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Val-d'Oise College APEI - Analyse d'impact qualitative</title>
-
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   <link rel="stylesheet" href="style.css" />
-
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <script defer src="app.js"></script>
 </head>
-
 <body>
   <a class="skip-link" href="#main">Aller au contenu principal</a>
 
   <header class="hero">
     <h1>Analyse d'impact qualitative</h1>
-    <p>Espaces innovants dans les collèges</p>
+    <p>Espaces innovants dans les collèges du Val-d'Oise - lecture transversale 2021, 2023 et 2024</p>
   </header>
 
   <nav class="nav" aria-label="Navigation des sections">
-    <a href="#matrice" class="active">Matrice globale</a>
-    <a href="#etablissements">Établissements</a>
+    <a href="#vue-ensemble" class="active">Vue d'ensemble</a>
+    <a href="#matrice">Matrice globale</a>
     <a href="#points-cles">Points clés</a>
+    <a href="#etablissements">Établissements</a>
+    <a href="#details">Détail par année</a>
   </nav>
 
   <main id="main" class="container">
+    <div id="data-load-error" class="callout callout-error" role="alert" hidden></div>
     <section class="section section-intro" id="vue-ensemble">
       <h2>Lire cette page</h2>
-      <p>Une lecture guidée pour comprendre rapidement ce que montrent les analyses, avant d'entrer dans le détail.</p>
+      <p>Une lecture de synthèse pour comprendre les tendances communes, puis aller progressivement vers le détail.</p>
       <div class="section-line"></div>
     </section>
 
-<section class="intro-grid" aria-label="Introduction à la lecture de la page">
+    <section class="intro-grid" aria-label="Introduction à la lecture de la page">
       <article class="card intro-card">
         <h3 id="intro-context-title">Ce que présente cette page</h3>
         <p id="intro-context-text"></p>
@@ -52,11 +51,11 @@
     <section class="overview-grid" aria-label="Repères de lecture">
       <article class="card overview-card">
         <h3>Ce qui ressort le plus</h3>
-        <p>Les analyses montrent surtout une transformation concrète des espaces, un effet positif sur le climat scolaire et des usages pédagogiques qui évoluent, mais encore de manière inégale selon les établissements.</p>
+        <p>Les analyses montrent avant tout une transformation concrète des espaces, un effet positif sur le climat scolaire et des usages pédagogiques qui évoluent, mais encore de manière inégale selon les établissements.</p>
       </article>
       <article class="card overview-card">
         <h3>Le principal point de vigilance</h3>
-        <p>Les limites observées sont moins liées aux intentions du projet qu'aux conditions de mise en oeuvre : disponibilité des équipes, formation, communication interne et capacité à faire vivre les espaces dans la durée.</p>
+        <p>Les limites observées tiennent surtout aux conditions de mise en oeuvre : disponibilité des équipes, moyens humains, formation, communication interne et capacité à faire vivre les espaces dans la durée.</p>
       </article>
       <article class="card overview-card overview-card-scale">
         <h3>Échelle de lecture</h3>
@@ -69,13 +68,13 @@
       </article>
     </section>
 
-    <section class="callout callout-neutral callout-exec" aria-label="Synthèse exécutive">
-      <p><strong>Synthèse exécutive :</strong> sur l'ensemble de la période 2021, 2023 et 2024, les analyses mettent surtout en évidence une transformation concrète des espaces, des effets positifs sur le climat scolaire et des usages pédagogiques qui évoluent, avec des écarts d'appropriation selon les établissements. Les principaux points de vigilance portent davantage sur les conditions de mise en oeuvre dans la durée - formation, disponibilité des équipes, communication interne et continuité du portage - que sur l'intention des projets elle-même.</p>
+    <section class="callout callout-neutral" aria-label="Périmètre de l'analyse 2024">
+      <p><strong>Périmètre :</strong> l'analyse 2024 porte sur 8 collèges, avec deux situations différentes : 4 établissements en mesure de clôture des projets 2018 et 4 établissements en mesure de mi-parcours des projets 2021. Cette distinction compte pour interpréter les résultats.</p>
     </section>
 
     <section class="section" id="matrice">
       <h2>Matrice globale</h2>
-      <p>Vue synthétique des cinq axes d'impact sur les analyses 2021, 2023 et 2024.</p>
+      <p>Vue synthétique des cinq axes d'impact communs aux analyses 2021, 2023 et 2024.</p>
       <div class="section-line"></div>
     </section>
 
@@ -84,56 +83,103 @@
     </section>
 
     <section class="grid-2" aria-label="Graphiques de synthèse">
-      <div class="card">
+      <article class="card">
         <h2>Radar comparatif</h2>
-        <div class="subtitle">Position moyenne de chaque axe sur une échelle de 1 à 4</div>
-        <canvas id="radarChart" role="img"
-          aria-label="Graphique radar comparant les scores moyens par axe en 2021, 2023 et 2024."></canvas>
-      </div>
-      <div class="card">
+        <div class="subtitle">Vue d'ensemble des profils 2021, 2023 et 2024 sur les cinq axes</div>
+        <canvas id="radarChart" role="img" aria-label="Graphique radar comparant les scores moyens par axe en 2021, 2023 et 2024."></canvas>
+        <p class="chart-note"><strong>Pourquoi garder le radar :</strong> il aide à voir d'un seul coup d'oeil la forme générale du profil d'impact. Il ne remplace pas la lecture précise axe par axe, qui est donnée juste à côté.</p>
+        <p class="chart-summary" id="summary-radar"></p>
+      </article>
+      <article class="card">
         <h2>Comparaison par axe</h2>
         <div class="subtitle">Lecture plus précise des écarts entre 2021, 2023 et 2024</div>
-        <canvas id="barChart" role="img"
-          aria-label="Histogramme horizontal comparant les scores par axe en 2021, 2023 et 2024."></canvas>
+        <canvas id="barChart" role="img" aria-label="Histogramme horizontal comparant les scores par axe en 2021, 2023 et 2024."></canvas>
+        <p class="chart-note">Ce graphique est le complément analytique du radar. Il permet de comparer plus finement les écarts entre années sur chacun des cinq axes.</p>
+        <p class="chart-summary" id="summary-bar"></p>
+      </article>
+    </section>
+
+    <section class="card card-full" aria-label="Méthodologie et axes d'analyse" style="margin-top:24px;">
+      <h2>Méthode d'analyse</h2>
+      <div class="subtitle">La logique suivie dans les rapports 2021, 2023 et 2024</div>
+      <div class="method-grid">
+        <div>
+          <h3>5 axes communs</h3>
+          <ul class="bullet-clean">
+            <li>Transformation des espaces</li>
+            <li>Organisation des enseignements</li>
+            <li>Usage des outils numériques</li>
+            <li>Relation aux élèves</li>
+            <li>Relation parties prenantes</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Principe de notation</h3>
+          <p>Les rapports décrivent quatre niveaux d'impact par axe. Les notes attribuées à chaque établissement sont ensuite agrégées pour construire une lecture d'ensemble.</p>
+        </div>
+        <div>
+          <h3>Logique de lecture</h3>
+          <p>On commence par comprendre les tendances globales, puis on descend d'un niveau vers les constats transversaux, les écarts entre établissements et enfin le détail par campagne d'analyse.</p>
+        </div>
       </div>
     </section>
 
+    <section class="section" id="points-cles">
+      <h2>Points clés transversaux</h2>
+      <p>D'abord les constats transversaux les plus récurrents, puis les évolutions par année.</p>
+      <div class="section-line"></div>
+    </section>
+
+    <section class="grid-2" aria-label="Synthèse transversale globale">
+      <article class="card">
+        <h2 class="section-title-pos">Points forts globaux</h2>
+        <div class="subtitle">Les tendances positives les plus récurrentes d'une analyse à l'autre</div>
+        <div class="timeline" id="tl-global-pos"></div>
+      </article>
+      <article class="card">
+        <h2 class="section-title-neg">Difficultés globales</h2>
+        <div class="subtitle">Les principaux freins observés de manière répétée</div>
+        <div class="timeline" id="tl-global-neg"></div>
+      </article>
+    </section>
+
     <section class="grid-2" style="margin-top:24px" aria-label="Évolutions temporelles">
-      <div class="card">
+      <article class="card">
         <h2>Évolution moyenne globale</h2>
         <div class="subtitle">Moyenne des cinq axes pour chaque année d'analyse</div>
-        <canvas id="lineChart" class="chart-sm" role="img"
-          aria-label="Courbe de la moyenne globale des scores sur 2021, 2023 et 2024."></canvas>
-      </div>
-      <div class="card">
+        <canvas id="lineChart" class="chart-sm" role="img" aria-label="Courbe de la moyenne globale des scores sur 2021, 2023 et 2024."></canvas>
+        <p class="chart-summary" id="summary-line"></p>
+      </article>
+      <article class="card">
         <h2>Détail par axe</h2>
         <div class="subtitle">Évolution individuelle de chacun des cinq axes</div>
-        <canvas id="lineAxesChart" class="chart-sm" role="img"
-          aria-label="Courbes d’évolution des scores pour chaque axe sur 2021, 2023 et 2024."></canvas>
-      </div>
+        <canvas id="lineAxesChart" class="chart-sm" role="img" aria-label="Courbes d'évolution des scores pour chaque axe sur 2021, 2023 et 2024."></canvas>
+        <p class="chart-summary" id="summary-line-axes"></p>
+      </article>
     </section>
 
     <section class="section" id="etablissements">
       <h2>Scores par établissement</h2>
-      <p>Lecture détaillée des matrices individuelles figurant dans les rapports de chaque année.</p>
+      <p>Lecture détaillée des scores par établissement, à interpréter comme des repères qualitatifs et non comme des résultats de performance.</p>
       <div class="section-line"></div>
     </section>
 
     <section class="callout callout-neutral" aria-label="Clé de lecture des tableaux établissements">
       <p><strong>Mode d'emploi :</strong> ces tableaux permettent de repérer rapidement quels axes sont les plus avancés ou les plus fragiles dans chaque collège. Ils complètent la vue d'ensemble, sans la remplacer.</p>
+      <p><strong>Important :</strong> les scores affichés restent des repères qualitatifs de lecture. Ils ne mesurent ni la performance scolaire ni la réussite globale d'un établissement.</p>
     </section>
 
     <section class="card" aria-label="Tables des scores par établissement">
-      <div class="tabs" role="tablist" aria-label="Choix de l’année">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab2021" id="tabbtn2021"
-          tabindex="0" onclick="switchTab(this,'tab2021')">2021 - 5 collèges</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2023" id="tabbtn2023" tabindex="-1"
-          onclick="switchTab(this,'tab2023')">2023 - 5 collèges</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2024" id="tabbtn2024" tabindex="-1"
-          onclick="switchTab(this,'tab2024')">2024 - 8 collèges</button>
+      <p class="table-intro">Les écarts entre établissements restent surtout visibles sur l'appropriation des espaces, l'organisation des enseignements et la capacité des équipes à faire vivre les usages dans la durée.</p>
+      <div class="tabs" role="tablist" aria-label="Choix de l'année">
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab2021" id="tabbtn2021" tabindex="0" onclick="switchTab(this,'tab2021')">2021 - 5 collèges</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2023" id="tabbtn2023" tabindex="-1" onclick="switchTab(this,'tab2023')">2023 - 5 collèges</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2024" id="tabbtn2024" tabindex="-1" onclick="switchTab(this,'tab2024')">2024 - 8 collèges</button>
       </div>
 
       <div id="tab2021" class="tab-pane active" role="tabpanel" aria-labelledby="tabbtn2021">
+        <p class="table-meta">2021 - 5 collèges, dans un contexte encore marqué par la phase de mise en place et par les contraintes sanitaires présentes dans plusieurs établissements.</p>
+        <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour 2021, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
             <tr>
@@ -148,9 +194,12 @@
           </thead>
           <tbody id="tbody2021"></tbody>
         </table>
+        </div>
       </div>
 
-      <div id="tab2023" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2023">
+      <div id="tab2023" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2023" hidden>
+        <p class="table-meta">2023 - 5 collèges, centrés sur les premiers établissements engagés en 2017, avec un recul plus important sur les usages réels des espaces.</p>
+        <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour 2023, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
             <tr>
@@ -165,9 +214,12 @@
           </thead>
           <tbody id="tbody2023"></tbody>
         </table>
+        </div>
       </div>
 
-      <div id="tab2024" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2024">
+      <div id="tab2024" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2024" hidden>
+        <p class="table-meta">2024 - 8 collèges, avec une combinaison de mesures de clôture sur des projets 2018 et de mesures de mi-parcours sur des projets 2021.</p>
+        <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour 2024, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
             <tr>
@@ -182,32 +234,19 @@
           </thead>
           <tbody id="tbody2024"></tbody>
         </table>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="points-cles">
-      <h2>Points clés transversaux</h2>
-      <p>D'abord les constats globaux, puis le détail par année pour approfondir.</p>
+    <section class="section" id="details">
+      <h2>Détail par année</h2>
+      <p>Ce niveau de lecture permet de retrouver les constats propres à chaque campagne d'analyse.</p>
       <div class="section-line"></div>
     </section>
 
-    <section class="grid-2" aria-label="Synthèse transversale globale">
-      <div class="card">
-        <h2 class="section-title-pos">Points forts globaux</h2>
-        <div class="subtitle">Les tendances positives les plus récurrentes d'une analyse à l'autre</div>
-        <div class="timeline" id="tl-global-pos"></div>
-      </div>
-      <div class="card">
-        <h2 class="section-title-neg">Difficultés globales</h2>
-        <div class="subtitle">Les principaux freins observés de manière répétée</div>
-        <div class="timeline" id="tl-global-neg"></div>
-      </div>
-    </section>
-
-    <section class="card" style="margin-top:24px" aria-label="Détail par année des points clés">
+    <section class="card" aria-label="Détail par année des points clés">
       <h2>Voir le détail par année</h2>
-      <div class="subtitle">Ce niveau de lecture permet de retrouver les constats propres à chaque campagne d'analyse.</div>
-
+      <div class="subtitle">Le contenu ci-dessous reprend les principaux points positifs et difficultés par campagne.</div>
       <div class="accordion-years">
         <details class="year-detail" open>
           <summary>2021</summary>
@@ -239,19 +278,14 @@
 
         <details class="year-detail">
           <summary>2024</summary>
-          <div class="detail-panel">
-            <div class="callout callout-neutral" aria-label="Repère de lecture 2024">
-              <p><strong>Repère 2024 :</strong> 6 établissements sur 8 estiment avoir atteint les objectifs visés. Cette information éclaire le millésime 2024, sans remplacer la synthèse transversale sur l'ensemble de la période.</p>
+          <div class="grid-2 detail-grid detail-panel">
+            <div>
+              <h3 class="detail-col-title section-title-pos">Points positifs</h3>
+              <div class="timeline" id="tl-pos-2024"></div>
             </div>
-            <div class="grid-2 detail-grid">
-              <div>
-                <h3 class="detail-col-title section-title-pos">Points positifs</h3>
-                <div class="timeline" id="tl-pos-2024"></div>
-              </div>
-              <div>
-                <h3 class="detail-col-title section-title-neg">Difficultés rencontrées</h3>
-                <div class="timeline" id="tl-neg-2024"></div>
-              </div>
+            <div>
+              <h3 class="detail-col-title section-title-neg">Difficultés rencontrées</h3>
+              <div class="timeline" id="tl-neg-2024"></div>
             </div>
           </div>
         </details>
@@ -263,5 +297,4 @@
     <strong>Conseil départemental du Val-d'Oise</strong> - Carole Stromboni - Analyse d'impact qualitative 2021/2023/2024
   </footer>
 </body>
-
 </html>

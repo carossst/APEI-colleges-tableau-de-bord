@@ -1,12 +1,14 @@
 // ===================================================
-// Val-d'Oise Lab2034 - Dashboard Impact Qualitative
-// app.js - Charts, tables, timelines, and interactions
+// Val-d'Oise Lab2034 - Analyse d'impact qualitative
+// app.js - version renforcée (robustesse, cohérence, accessibilité)
 // ===================================================
 
-Chart.defaults.font.family = (getComputedStyle(document.body).fontFamily || 'system-ui');
-Chart.defaults.font.size = 14;
-Chart.defaults.plugins.legend.labels.usePointStyle = true;
-Chart.defaults.plugins.legend.labels.pointStyleWidth = 10;
+if (window.Chart) {
+  Chart.defaults.font.family = getComputedStyle(document.body).fontFamily || 'system-ui';
+  Chart.defaults.font.size = 14;
+  Chart.defaults.plugins.legend.labels.usePointStyle = true;
+  Chart.defaults.plugins.legend.labels.pointStyleWidth = 10;
+}
 
 const C = {
   b2021: '#1f77b4',
@@ -14,48 +16,76 @@ const C = {
   b2024: '#e8634a',
   navy: '#1a2744',
   teal: '#27ae60',
+  coral: '#e8634a',
   gold: '#f2994a'
 };
 
-async function loadData() {
-  const response = await fetch('./matrice-globale.json');
-  if (!response.ok) throw new Error('Impossible de charger matrice-globale.json');
-  return response.json();
-}
+const YEARS = ['2021', '2023', '2024'];
+
+initTabs();
+initNavScrollSpy();
 
 loadData()
-  .then((DATA) => {
-    injectIntro(DATA);
-    createRadarChart(DATA);
-    createBarChart(DATA);
-    buildHeatmapTables(DATA);
-    buildTimelines(DATA);
-    createLineChart(DATA);
-    createLineAxesChart(DATA);
-    initTabKeyboard();
-    initNavActiveState();
+  .then((data) => {
+    hydrateIntro(data);
+    buildHeatmapTables(data);
+    buildTimelines(data);
+    writeChartSummaries(data);
+    createCharts(data);
   })
   .catch((error) => {
     console.error(error);
+    showLoadError();
+    fillFallbackSummaries();
   });
 
-function injectIntro(DATA) {
-  const intro = DATA.pageIntro || {};
-  const context = intro.context || {};
-  const method = intro.method || {};
-  const usage = intro.usage || {};
-
-  setText('intro-context-title', context.title);
-  setText('intro-context-text', context.text);
-  setText('intro-method-title', method.title);
-  setText('intro-method-text', method.text);
-  setText('intro-usage-title', usage.title);
-  setText('intro-usage-text', usage.text);
+async function loadData() {
+  const response = await fetch('./matrice-globale.json');
+  if (!response.ok) {
+    throw new Error('Impossible de charger matrice-globale.json');
+  }
+  return response.json();
 }
 
-function setText(id, value) {
+function showLoadError() {
+  const el = document.getElementById('data-load-error');
+  if (!el) return;
+  el.hidden = false;
+  el.innerHTML = '<p><strong>Chargement impossible :</strong> les données n\'ont pas pu être chargées. Vérifier la présence du fichier <code>matrice-globale.json</code> et les chemins de déploiement.</p>';
+}
+
+function fillFallbackSummaries() {
+  setText('summary-radar', "Le résumé visuel n'est pas disponible tant que les données ne sont pas chargées.");
+  setText('summary-bar', "La comparaison par axe n'est pas disponible tant que les données ne sont pas chargées.");
+  setText('summary-line', "L'évolution moyenne ne peut pas être calculée sans les données.");
+  setText('summary-line-axes', "Le détail par axe ne peut pas être calculé sans les données.");
+}
+
+function hydrateIntro(data) {
+  const intro = data.pageIntro || {};
+  setText('intro-context-title', intro.context?.title || 'Ce que présente cette page');
+  setText('intro-context-text', intro.context?.text || "Lecture synthétique des analyses d'impact qualitatives.");
+  setText('intro-method-title', intro.method?.title || 'Comment lire la matrice');
+  setText('intro-method-text', intro.method?.text || 'Cinq axes, notés sur une échelle de 1 à 4.');
+  setText('intro-usage-title', intro.usage?.title || 'Comment utiliser cette page');
+  setText('intro-usage-text', intro.usage?.text || "Commencer par la vue d'ensemble, puis descendre vers le détail.");
+}
+
+function setText(id, text) {
   const el = document.getElementById(id);
-  if (el && typeof value === 'string') el.textContent = value;
+  if (el) el.textContent = text;
+}
+
+function createCharts(data) {
+  if (!window.Chart) {
+    console.warn("Chart.js indisponible.");
+    return;
+  }
+
+  createRadarChart(data);
+  createBarChart(data);
+  createLineChart(data);
+  createLineAxesChart(data);
 }
 
 function wrapRadarLabel(label) {
@@ -67,18 +97,18 @@ function wrapRadarLabel(label) {
   return [parts.slice(0, mid).join(' '), parts.slice(mid).join(' ')];
 }
 
-function createRadarChart(DATA) {
-  const canvas = document.getElementById('radarChart');
-  if (!canvas) return;
+function createRadarChart(data) {
+  const el = document.getElementById('radarChart');
+  if (!el) return;
 
-  new Chart(canvas, {
+  new Chart(el, {
     type: 'radar',
     data: {
-      labels: DATA.axes.map((a) => a.label),
+      labels: data.axes.map((a) => a.label),
       datasets: [
         {
           label: '2021',
-          data: DATA.axes.map((a) => a.values['2021']),
+          data: data.axes.map((a) => a.values['2021']),
           borderColor: C.b2021,
           backgroundColor: 'rgba(31,119,180,0.16)',
           pointBackgroundColor: C.b2021,
@@ -88,7 +118,7 @@ function createRadarChart(DATA) {
         },
         {
           label: '2023',
-          data: DATA.axes.map((a) => a.values['2023']),
+          data: data.axes.map((a) => a.values['2023']),
           borderColor: C.b2023,
           backgroundColor: 'rgba(242,201,76,0.16)',
           pointBackgroundColor: C.b2023,
@@ -98,7 +128,7 @@ function createRadarChart(DATA) {
         },
         {
           label: '2024',
-          data: DATA.axes.map((a) => a.values['2024']),
+          data: data.axes.map((a) => a.values['2024']),
           borderColor: C.b2024,
           backgroundColor: 'rgba(232,99,74,0.16)',
           pointBackgroundColor: C.b2024,
@@ -128,7 +158,7 @@ function createRadarChart(DATA) {
             color: C.navy,
             font: { size: 14, weight: 800 },
             padding: 10,
-            callback: (v) => wrapRadarLabel(v)
+            callback: (value) => wrapRadarLabel(value)
           }
         }
       },
@@ -147,18 +177,18 @@ function createRadarChart(DATA) {
   });
 }
 
-function createBarChart(DATA) {
-  const canvas = document.getElementById('barChart');
-  if (!canvas) return;
+function createBarChart(data) {
+  const el = document.getElementById('barChart');
+  if (!el) return;
 
-  new Chart(canvas, {
+  new Chart(el, {
     type: 'bar',
     data: {
-      labels: DATA.axes.map((a) => a.label),
+      labels: data.axes.map((a) => a.label),
       datasets: [
         {
           label: '2021',
-          data: DATA.axes.map((a) => a.values['2021']),
+          data: data.axes.map((a) => a.values['2021']),
           backgroundColor: C.b2021,
           borderRadius: 6,
           barPercentage: 0.7,
@@ -166,7 +196,7 @@ function createBarChart(DATA) {
         },
         {
           label: '2023',
-          data: DATA.axes.map((a) => a.values['2023']),
+          data: data.axes.map((a) => a.values['2023']),
           backgroundColor: C.b2023,
           borderRadius: 6,
           barPercentage: 0.7,
@@ -174,7 +204,7 @@ function createBarChart(DATA) {
         },
         {
           label: '2024',
-          data: DATA.axes.map((a) => a.values['2024']),
+          data: data.axes.map((a) => a.values['2024']),
           backgroundColor: C.b2024,
           borderRadius: 6,
           barPercentage: 0.7,
@@ -216,20 +246,16 @@ function createBarChart(DATA) {
   });
 }
 
-function createLineChart(DATA) {
-  const canvas = document.getElementById('lineChart');
-  if (!canvas) return;
+function createLineChart(data) {
+  const el = document.getElementById('lineChart');
+  if (!el) return;
 
-  const years = ['2021', '2023', '2024'];
-  const avgs = years.map((year) => {
-    const total = DATA.axes.reduce((sum, axis) => sum + axis.values[year], 0);
-    return +(total / DATA.axes.length).toFixed(1);
-  });
+  const avgs = YEARS.map((year) => averageAxisValue(data.axes, year));
 
-  new Chart(canvas, {
+  new Chart(el, {
     type: 'line',
     data: {
-      labels: years,
+      labels: YEARS,
       datasets: [{
         label: 'Moyenne globale /4',
         data: avgs,
@@ -243,7 +269,14 @@ function createLineChart(DATA) {
     },
     options: {
       responsive: true,
-      scales: { y: { min: 1.5, max: 3.5 } },
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 1.5,
+          max: 3.5,
+          ticks: { stepSize: 0.5 }
+        }
+      },
       plugins: {
         legend: { display: false },
         tooltip: {
@@ -256,31 +289,37 @@ function createLineChart(DATA) {
   });
 }
 
-function createLineAxesChart(DATA) {
-  const canvas = document.getElementById('lineAxesChart');
-  if (!canvas) return;
+function createLineAxesChart(data) {
+  const el = document.getElementById('lineAxesChart');
+  if (!el) return;
 
-  const years = ['2021', '2023', '2024'];
   const axColors = [C.b2021, C.b2023, C.b2024, C.teal, C.gold];
 
-  new Chart(canvas, {
+  new Chart(el, {
     type: 'line',
     data: {
-      labels: years,
-      datasets: DATA.axes.map((axis, i) => ({
+      labels: YEARS,
+      datasets: data.axes.map((axis, index) => ({
         label: axis.label,
-        data: years.map((year) => axis.values[year]),
-        borderColor: axColors[i],
+        data: YEARS.map((year) => axis.values[year]),
+        borderColor: axColors[index],
         backgroundColor: 'transparent',
         tension: 0.3,
         borderWidth: 2,
         pointRadius: 4,
-        pointBackgroundColor: axColors[i]
+        pointBackgroundColor: axColors[index]
       }))
     },
     options: {
       responsive: true,
-      scales: { y: { min: 1, max: 4 } },
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 1,
+          max: 4,
+          ticks: { stepSize: 0.5 }
+        }
+      },
       plugins: {
         legend: {
           position: 'bottom',
@@ -291,173 +330,240 @@ function createLineAxesChart(DATA) {
   });
 }
 
-function heatClass(v) {
-  if (v >= 3.5) return 'h4';
-  if (v >= 2.5) return 'h3';
-  if (v >= 1.5) return 'h2';
+function averageAxisValue(axes, year) {
+  const sum = axes.reduce((acc, axis) => acc + axis.values[year], 0);
+  return +(sum / axes.length).toFixed(1);
+}
+
+function impactLabel(value) {
+  if (value >= 3.5) return 'Très fort';
+  if (value >= 2.5) return 'Fort';
+  if (value >= 1.5) return 'Modéré';
+  return 'Faible';
+}
+
+function heatClass(value) {
+  if (value >= 3.5) return 'h4';
+  if (value >= 2.5) return 'h3';
+  if (value >= 1.5) return 'h2';
   return 'h1';
 }
 
-function buildHeatmapTables(DATA) {
-  buildTable('tbody2021', DATA.etablissements2021);
-  buildTable('tbody2023', DATA.etablissements2023);
-  buildTable('tbody2024', DATA.etablissements2024);
+function buildHeatmapTables(data) {
+  buildTable('tbody2021', data.etablissements2021);
+  buildTable('tbody2023', data.etablissements2023);
+  buildTable('tbody2024', data.etablissements2024);
 }
 
 function buildTable(id, list) {
-  const tb = document.getElementById(id);
-  if (!tb) return;
+  const tbody = document.getElementById(id);
+  if (!tbody || !Array.isArray(list)) return;
 
-  const rows = list.map((etablissement) => {
-    const avg = (etablissement.scores.reduce((a, b) => a + b, 0) / 5).toFixed(1);
-    const cells = etablissement.scores
-      .map((score) => `<td class="${heatClass(score)}">${score}</td>`)
-      .join('');
+  tbody.innerHTML = '';
 
-    return `<tr>
-      <td class="name">${etablissement.nom}<br><small style="color:var(--muted)">${etablissement.ville}</small></td>
-      ${cells}
-      <td class="${heatClass(+avg)}"><strong>${avg}</strong></td>
-    </tr>`;
+  list.forEach((item) => {
+    const row = document.createElement('tr');
+    const avg = +(item.scores.reduce((a, b) => a + b, 0) / 5).toFixed(1);
+
+    const nameCell = document.createElement('td');
+    nameCell.className = 'name';
+    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)}${item.type ? ` - ${escapeHtml(item.type)}` : ''}</small>`;
+    row.appendChild(nameCell);
+
+    item.scores.forEach((score) => {
+      row.appendChild(buildScoreCell(score));
+    });
+
+    const avgCell = buildScoreCell(avg, true);
+    row.appendChild(avgCell);
+    tbody.appendChild(row);
   });
+}
 
-  tb.innerHTML = rows.join('');
+function buildScoreCell(score, isAverage = false) {
+  const cell = document.createElement('td');
+  const label = impactLabel(score);
+  cell.className = `${heatClass(score)} score-cell`;
+  cell.setAttribute('aria-label', `score ${score} sur 4 - ${label.toLowerCase()} impact`);
+  cell.innerHTML = `<span class="score-value">${escapeHtml(String(score))}</span><span class="score-label">${escapeHtml(label)}</span>`;
+
+  if (isAverage) {
+    const strong = document.createElement('strong');
+    strong.innerHTML = cell.innerHTML;
+    cell.innerHTML = '';
+    cell.appendChild(strong);
+  }
+
+  return cell;
 }
 
 function renderTimeline(items, containerId, type) {
   const el = document.getElementById(containerId);
   if (!el) return;
-
-  const html = items.map((item) => `
-    <div class="tl-item">
-      <div class="tl-dot ${type}"></div>
-      <div class="tl-content">
-        <strong>${item.titre}</strong>
-        <p>${item.detail}</p>
-        ${item.source ? `<div class="src">- ${item.source}</div>` : ''}
-      </div>
-    </div>`).join('');
-
-  el.innerHTML = html;
-}
-
-function uniqueByTitle(items) {
-  const seen = new Set();
-  return items.filter((item) => {
-    const key = `${item.titre}||${item.detail}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
-}
-
-function buildGlobalItems(items) {
-  const byTitle = new Map();
+  el.innerHTML = '';
 
   items.forEach((item) => {
-    const key = `${item.titre}||${item.detail}`;
-    if (!byTitle.has(key)) {
-      byTitle.set(key, { ...item, years: [item.annee] });
-      return;
-    }
-    byTitle.get(key).years.push(item.annee);
-  });
-
-  return Array.from(byTitle.values()).map((item) => ({
-    titre: item.titre,
-    detail: item.detail,
-    source: `Analyses ${item.years.sort().join(' / ')}`
-  }));
-}
-
-function buildTimelines(DATA) {
-  const pos = uniqueByTitle(DATA.pointsPositifs || []);
-  const neg = uniqueByTitle(DATA.difficultes || []);
-
-  renderTimeline(buildGlobalItems(pos), 'tl-global-pos', 'pos');
-  renderTimeline(buildGlobalItems(neg), 'tl-global-neg', 'neg');
-
-  ['2021', '2023', '2024'].forEach((year) => {
-    renderTimeline(pos.filter((item) => item.annee === year), `tl-pos-${year}`, 'pos');
-    renderTimeline(neg.filter((item) => item.annee === year), `tl-neg-${year}`, 'neg');
+    el.innerHTML += `
+      <div class="tl-item">
+        <div class="tl-dot ${type}"></div>
+        <div class="tl-content">
+          <strong>${escapeHtml(item.titre)}</strong>
+          <p>${escapeHtml(item.detail)}</p>
+          ${item.source ? `<div class="src">- ${escapeHtml(item.source)}</div>` : ''}
+        </div>
+      </div>`;
   });
 }
 
-function switchTab(btn, paneId) {
-  const card = btn.closest('.card');
-  if (!card) return;
+function buildTimelines(data) {
+  const globalPos = aggregateTitles(data.pointsPositifs || []);
+  const globalNeg = aggregateTitles(data.difficultes || []);
 
-  card.querySelectorAll('[role="tab"]').forEach((tab) => {
-    tab.classList.remove('active');
-    tab.setAttribute('aria-selected', 'false');
-    tab.setAttribute('tabindex', '-1');
+  renderTimeline(globalPos, 'tl-global-pos', 'pos');
+  renderTimeline(globalNeg, 'tl-global-neg', 'neg');
+
+  YEARS.forEach((year) => {
+    renderTimeline((data.pointsPositifs || []).filter((item) => item.annee === year), `tl-pos-${year}`, 'pos');
+    renderTimeline((data.difficultes || []).filter((item) => item.annee === year), `tl-neg-${year}`, 'neg');
   });
-
-  card.querySelectorAll('[role="tabpanel"]').forEach((pane) => {
-    pane.classList.remove('active');
-  });
-
-  btn.classList.add('active');
-  btn.setAttribute('aria-selected', 'true');
-  btn.setAttribute('tabindex', '0');
-  btn.focus();
-
-  const pane = document.getElementById(paneId);
-  if (pane) pane.classList.add('active');
 }
 
-function initTabKeyboard() {
-  document.querySelectorAll('[role="tablist"]').forEach((tablist) => {
-    const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
-    if (!tabs.length) return;
+function aggregateTitles(items) {
+  const counts = new Map();
 
-    tablist.addEventListener('keydown', (event) => {
-      const currentIndex = tabs.indexOf(document.activeElement);
-      if (currentIndex === -1) return;
+  items.forEach((item) => {
+    const existing = counts.get(item.titre) || { ...item, count: 0 };
+    existing.count += 1;
+    counts.set(item.titre, existing);
+  });
 
-      let nextIndex = null;
+  return [...counts.values()]
+    .sort((a, b) => b.count - a.count || a.titre.localeCompare(b.titre, 'fr'))
+    .slice(0, 5)
+    .map((item) => ({
+      titre: item.titre,
+      detail: item.count > 1 ? `${item.detail} - thème retrouvé dans ${item.count} campagnes.` : item.detail,
+      source: item.source || ''
+    }));
+}
 
-      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % tabs.length;
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + tabs.length) % tabs.length;
-      if (event.key === 'Home') nextIndex = 0;
-      if (event.key === 'End') nextIndex = tabs.length - 1;
-      if (nextIndex === null) return;
+function writeChartSummaries(data) {
+  const axisSorted2024 = [...data.axes].sort((a, b) => b.values['2024'] - a.values['2024']);
+  const top2024 = axisSorted2024[0];
+  const low2024 = axisSorted2024[axisSorted2024.length - 1];
 
-      event.preventDefault();
-      const nextTab = tabs[nextIndex];
-      switchTab(nextTab, nextTab.getAttribute('aria-controls'));
+  const deltas = data.axes
+    .map((axis) => ({
+      label: axis.label,
+      diff: +(axis.values['2024'] - axis.values['2021']).toFixed(1)
+    }))
+    .sort((a, b) => b.diff - a.diff);
+
+  const bestDelta = deltas[0];
+  const worstDelta = deltas[deltas.length - 1];
+
+  setText('summary-radar', "Lecture rapide : la forme générale reste dominée par la transformation des espaces, tandis que la relation parties prenantes demeure l'axe le plus faible d'une campagne à l'autre.");
+  setText('summary-bar', `En 2024, l'axe le plus élevé est "${top2024.label}" (${top2024.values['2024'].toFixed(1)} /4) et le plus faible reste "${low2024.label}" (${low2024.values['2024'].toFixed(1)} /4).`);
+  setText('summary-line', `La moyenne globale passe de ${averageAxisValue(data.axes, '2021').toFixed(1)} /4 en 2021 à ${averageAxisValue(data.axes, '2023').toFixed(1)} /4 en 2023 puis ${averageAxisValue(data.axes, '2024').toFixed(1)} /4 en 2024, soit un niveau globalement stable avec un léger redressement en 2024.`);
+  setText('summary-line-axes', `L'évolution la plus favorable entre 2021 et 2024 concerne "${bestDelta.label}" (${bestDelta.diff >= 0 ? '+' : ''}${bestDelta.diff}). L'axe le plus en retrait reste "${worstDelta.label}" (${worstDelta.diff >= 0 ? '+' : ''}${worstDelta.diff}).`);
+}
+
+function initTabs() {
+  const tablists = document.querySelectorAll('[role="tablist"]');
+
+  tablists.forEach((tablist) => {
+    const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        activateTab(tabs, tab);
+      });
+
+      tab.addEventListener('keydown', (event) => {
+        let targetIndex = null;
+
+        if (event.key === 'ArrowRight') targetIndex = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') targetIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') targetIndex = 0;
+        if (event.key === 'End') targetIndex = tabs.length - 1;
+
+        if (targetIndex === null) return;
+
+        event.preventDefault();
+        const targetTab = tabs[targetIndex];
+        activateTab(tabs, targetTab);
+        targetTab.focus();
+      });
     });
   });
 }
 
-function initNavActiveState() {
-  const links = Array.from(document.querySelectorAll('.nav a'));
+function activateTab(tabs, activeTab) {
+  const card = activeTab.closest('.card');
+  if (!card) return;
+
+  tabs.forEach((tab) => {
+    const isActive = tab === activeTab;
+    tab.classList.toggle('active', isActive);
+    tab.setAttribute('aria-selected', String(isActive));
+    tab.setAttribute('tabindex', isActive ? '0' : '-1');
+  });
+
+  const panels = card.querySelectorAll('[role="tabpanel"]');
+  panels.forEach((panel) => {
+    panel.classList.remove('active');
+    panel.hidden = true;
+  });
+
+  const panelId = activeTab.getAttribute('aria-controls');
+  const panel = document.getElementById(panelId);
+  if (panel) {
+    panel.classList.add('active');
+    panel.hidden = false;
+  }
+}
+
+function switchTab(button, paneId) {
+  const card = button.closest('.card');
+  if (!card) return;
+  const tabs = [...card.querySelectorAll('[role="tab"]')];
+  const target = tabs.find((tab) => tab.getAttribute('aria-controls') === paneId) || button;
+  activateTab(tabs, target);
+}
+
+function initNavScrollSpy() {
+  const links = [...document.querySelectorAll('.nav a')];
   const sections = links
     .map((link) => document.querySelector(link.getAttribute('href')))
     .filter(Boolean);
 
-  function setActive(id) {
+  const activate = (id) => {
     links.forEach((link) => {
       link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
     });
-  }
+  };
 
-  links.forEach((link) => {
-    link.addEventListener('click', () => {
-      const targetId = link.getAttribute('href').replace('#', '');
-      setActive(targetId);
-    });
-  });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
 
-  const observer = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-    if (visible?.target?.id) setActive(visible.target.id);
-  }, {
-    rootMargin: '-25% 0px -55% 0px',
-    threshold: [0.2, 0.4, 0.6]
-  });
+      if (visible[0]?.target?.id) {
+        activate(visible[0].target.id);
+      }
+    },
+    { rootMargin: '-25% 0px -55% 0px', threshold: [0.1, 0.25, 0.5] }
+  );
 
   sections.forEach((section) => observer.observe(section));
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
