@@ -414,8 +414,8 @@ function renderTimeline(items, containerId, type) {
 }
 
 function buildTimelines(data) {
-  const globalPos = aggregateTitles(data.pointsPositifs || []);
-  const globalNeg = aggregateTitles(data.difficultes || []);
+  const globalPos = data.pointsGlobaux || [];
+  const globalNeg = data.difficultesGlobales || [];
 
   renderTimeline(globalPos, 'tl-global-pos', 'pos');
   renderTimeline(globalNeg, 'tl-global-neg', 'neg');
@@ -424,27 +424,6 @@ function buildTimelines(data) {
     renderTimeline((data.pointsPositifs || []).filter((item) => item.annee === year), `tl-pos-${year}`, 'pos');
     renderTimeline((data.difficultes || []).filter((item) => item.annee === year), `tl-neg-${year}`, 'neg');
   });
-}
-
-function aggregateTitles(items) {
-  const counts = new Map();
-
-  items.forEach((item) => {
-    const existing = counts.get(item.titre) || { ...item, count: 0 };
-    existing.count += 1;
-    counts.set(item.titre, existing);
-  });
-
-  return [...counts.values()]
-    .sort((a, b) => b.count - a.count || a.titre.localeCompare(b.titre, 'fr'))
-    .slice(0, 5)
-    .map((item) => ({
-      titre: item.titre,
-      detail: item.count > 1 ? `${item.detail} - thème retrouvé dans ${item.count} campagnes.` : item.detail,
-      role: item.role || '',
-      citation: item.citation || '',
-      source: item.source || ''
-    }));
 }
 
 function writeChartSummaries(data) {

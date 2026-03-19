@@ -370,7 +370,7 @@
       "annee": "2024",
       "titre": "Travail de groupe et autonomie",
       "detail": "Pédagogie active, coopérative, raccrochage des élèves en difficulté",
-      "source": "Analyse APEI 2024"
+      "source": "Analyse APEI 2024 - novembre 2024"
     },
     {
       "annee": "2024",
@@ -397,12 +397,6 @@
       "titre": "Réticence enseignants",
       "detail": "Enseignants encore ancrés dans des pratiques traditionnelles",
       "source": "Analyse APEI 2021 - 27 juillet 2021"
-    },
-    {
-      "annee": "2021",
-      "titre": "Échanges entre établissements",
-      "detail": "Les collèges ont peu échangé entre eux lors de la mise en place des projets",
-      "source": "Professeure - analyse qualitative 2021"
     },
     {
       "annee": "2023",
@@ -432,7 +426,7 @@
       "annee": "2024",
       "titre": "Espaces petits groupes",
       "detail": "Web TV et Web Radio limitées à de petits groupes, usage chronophage",
-      "source": "Analyse APEI 2024"
+      "source": "Analyse APEI 2024 - novembre 2024"
     },
     {
       "annee": "2024",
@@ -450,7 +444,7 @@
       "annee": "2024",
       "titre": "Moyens humains",
       "detail": "Espaces innovants gourmands en personnel, besoin de co-animation",
-      "source": "Analyse APEI 2024"
+      "source": "Analyse APEI 2024 - novembre 2024"
     }
   ],
   "pageIntro": {
@@ -462,5 +456,41 @@
       "title": "Comment lire la matrice",
       "text": "L'analyse repose sur cinq axes communs : transformation des espaces, organisation des enseignements, usage des outils numériques, relation aux élèves et relation avec les autres parties prenantes. Pour chaque axe, le niveau d'impact est positionné sur une échelle de 1 à 4, du changement faible au changement très fort."
     }
-  }
+  },
+  "pointsGlobaux": [
+    {
+      "titre": "Transformation concrète des usages",
+      "detail": "Les analyses montrent d'abord une transformation concrète des usages à travers les espaces aménagés."
+    },
+    {
+      "titre": "Autonomie et engagement des élèves",
+      "detail": "Les effets les plus visibles concernent l'autonomie, l'engagement et l'implication des élèves."
+    },
+    {
+      "titre": "Évolution de certaines pratiques pédagogiques",
+      "detail": "Certains projets conduisent à une évolution réelle des pratiques pédagogiques, mais de manière inégale selon les équipes."
+    },
+    {
+      "titre": "Effets sur le climat scolaire",
+      "detail": "Plusieurs projets produisent des effets perceptibles sur le climat scolaire et les conditions de travail au sein du collège."
+    }
+  ],
+  "difficultesGlobales": [
+    {
+      "titre": "Appropriation inégale selon les équipes",
+      "detail": "Les écarts entre projets tiennent d'abord à une appropriation inégale selon les équipes et les contextes locaux."
+    },
+    {
+      "titre": "Formation, transmission et relais adultes",
+      "detail": "La formation, la transmission des usages et l'existence de relais adultes restent décisives dans la durée."
+    },
+    {
+      "titre": "Contraintes d'organisation des espaces",
+      "detail": "Des contraintes d'organisation, de réservation et de disponibilité continuent de freiner certains usages."
+    },
+    {
+      "titre": "Mutualisation encore fragile",
+      "detail": "La mutualisation reste fragile, à la fois à l'intérieur des collèges et entre établissements."
+    }
+  ]
 }
