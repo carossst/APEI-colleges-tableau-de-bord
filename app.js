@@ -65,7 +65,7 @@ function showLoadError() {
 }
 
 function fillFallbackIntro() {
-  setText('frame-summary', "Le périmètre n'est pas disponible tant que les données ne sont pas chargées.");
+  setText('frame-summary', "Le périmètre des collèges analysés n'est pas disponible tant que les données ne sont pas chargées.");
   setText('scope-counts', "Périmètre affiché : les totaux ne sont pas disponibles tant que les données ne sont pas chargées.");
 }
 
