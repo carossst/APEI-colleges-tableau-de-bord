@@ -23,9 +23,9 @@ const C = {
 const COHORTS = ['2017', '2018', '2021'];
 
 const COHORT_LABELS = {
-  '2017': 'Jury 2017',
-  '2018': 'Jury 2018',
-  '2021': 'Jury 2021'
+  '2017': 'Projets du jury 2017',
+  '2018': 'Projets du jury 2018',
+  '2021': 'Projets du jury 2021'
 };
 
 initTabs();
@@ -65,7 +65,7 @@ function showLoadError() {
 }
 
 function fillFallbackIntro() {
-  setText('frame-summary', "Le cadre de lecture n'est pas disponible tant que les donnees ne sont pas chargees.");
+  setText('frame-summary', "Le cadre de lecture n'est pas disponible tant que les données ne sont pas chargées.");
   setText('scope-counts', "Périmètre affiché : les totaux ne sont pas disponibles tant que les données ne sont pas chargées.");
 }
 
@@ -81,7 +81,7 @@ function writeScopeCounts(data) {
   const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
   const collegeCount = uniqueColleges.size;
   const projectCount = items.length;
-  setText('scope-counts', `Périmètre affiché : ${collegeCount} collèges documentés pour ${projectCount} projets affichés sur les jurys 2017, 2018 et 2021.`);
+  setText('scope-counts', `Périmètre affiché : ${collegeCount} collèges et ${projectCount} projets affichés sur les jurys 2017, 2018 et 2021.`);
 }
 
 function writeFrameSummary(data) {
@@ -89,7 +89,7 @@ function writeFrameSummary(data) {
   const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
   const collegeCount = uniqueColleges.size;
   const projectCount = items.length;
-  setText('frame-summary', `Cette page présente les projets APEI par année de jury, avec ${collegeCount} collèges documentés et ${projectCount} projets affichés. Pour chaque jury, le cadrage indique les collèges concernés, le projet, son type et le stade observé.`);
+  setText('frame-summary', `Cette page présente les projets APEI par année de jury, avec ${collegeCount} collèges et ${projectCount} projets affichés. Pour chaque jury, le cadre indique les collèges concernés, le projet, son type et le stade observé.`);
 
   const container = document.getElementById('frame-cohorts');
   if (!container) return;
@@ -522,7 +522,7 @@ function renderTimeline(items, containerId, type) {
         <div class="tl-content">
           <strong>${escapeHtml(item.titre)}</strong>
           <p>${escapeHtml(item.detail)}</p>
-          ${item.role && item.citation && item.source ? `<div class="src"><strong>${escapeHtml(item.role)} :</strong> "${escapeHtml(item.citation)}" - ${escapeHtml(item.source)}</div>` : ''}
+          ${item.role && item.citation ? `<div class="src"><strong>${escapeHtml(item.role)} :</strong> "${escapeHtml(item.citation)}"</div>` : ''}
         </div>
       </div>`;
   });
@@ -552,8 +552,8 @@ function writeChartSummaries(data) {
 
   setText('summary-radar', `À l'échelle des trois jurys affichés, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
   setText('summary-bar', `La comparaison par axe confirme une structure globalement stable : des acquis durables sur les espaces, des évolutions plus contrastées sur les autres axes et une fragilité persistante sur la relation avec les autres parties prenantes.`);
-  setText('summary-line', `La moyenne globale reste proche d'un jury à l'autre : ${avg2017} /4 pour le jury 2017, ${avg2018} /4 pour le jury 2018 et ${avg2021} /4 pour le jury 2021. Cette lecture traduit surtout des contextes documentés à des stades différents.`);
-  setText('summary-line-axes', `La lecture par axe doit être interprétée avec prudence : les jurys 2017, 2018 et 2021 sont documentés à des moments différents. Le graphique aide à repérer des écarts de profil, sans les lire comme une trajectoire linéaire unique.`);
+  setText('summary-line', `La moyenne globale reste proche d'un groupe de projets à l'autre : ${avg2017} /4 pour les projets sélectionnés en 2017, ${avg2018} /4 pour les projets sélectionnés en 2018 et ${avg2021} /4 pour les projets sélectionnés en 2021.`);
+  setText('summary-line-axes', `La lecture par axe doit être interprétée avec prudence : les projets sélectionnés en 2017, 2018 et 2021 ne sont pas observés au même stade. Le graphique aide à repérer des écarts de profil, sans les lire comme une trajectoire linéaire unique.`);
 }
 
 function averageAcrossCohorts(values) {

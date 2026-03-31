@@ -17,7 +17,7 @@
   "cohortMeta": {
     "2017": {
       "label": "Jury 2017",
-      "description": "Cinq colleges documentes.",
+      "description": "5 collèges.",
       "startYear": "2017/2018",
       "analysisYear": "2023",
       "analysisType": "historique",
@@ -31,11 +31,11 @@
     },
     "2018": {
       "label": "Jury 2018",
-      "description": "Quatre colleges documentes.",
+      "description": "4 collèges.",
       "startYear": "2018",
       "analysisYear": "2024",
-      "analysisType": "cloture",
-      "observedEndYear": "cloture observee",
+      "analysisType": "clôture",
+      "observedEndYear": "clôture observée",
       "documentationBasis": "Documente par l'analyse 2024 - mesure de cloture",
       "publicationStatus": "published",
       "scopeNote": "Cohorte de cloture 2018 documentee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
@@ -46,11 +46,11 @@
     },
     "2021": {
       "label": "Jury 2021",
-      "description": "Quatre colleges documentes.",
+      "description": "4 collèges.",
       "startYear": "2021",
       "analysisYear": "2024",
       "analysisType": "mi-parcours",
-      "observedEndYear": "mi-parcours observe",
+      "observedEndYear": "mi-parcours observé",
       "documentationBasis": "Documente par l'analyse 2024 - mesure de mi-parcours",
       "publicationStatus": "published",
       "scopeNote": "Cohorte en mi-parcours documentee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
@@ -66,30 +66,30 @@
       "note": "Collèges associés à l'analyse 2021.",
       "colleges": [
         {
-          "name": "L'Ardilliere-de-Nezant",
+          "name": "L'Ardillière-de-Nézant",
           "project": "Apprendre autrement"
         },
         {
           "name": "Louise Weiss",
-          "project": "Repenser le rez-de-chaussee des espaces de vie de l'eleve ainsi que la salle ULIS"
+          "project": "Repenser le rez-de-chaussée des espaces de vie de l'élève ainsi que la salle ULIS"
         },
         {
-          "name": "Eugenie Cotton",
-          "project": "Innover pour un climat apaise"
+          "name": "Eugénie Cotton",
+          "project": "Innover pour un climat apaisé"
         },
         {
-          "name": "Epine Guyon",
+          "name": "Épine Guyon",
           "project": "Apprendre autrement"
         },
         {
           "name": "Pierre et Marie Curie",
-          "project": "Approche differente de la pedagogie"
+          "project": "Approche différente de la pédagogie"
         }
       ],
       "ulis": {
         "label": "Dispositif ULIS 2021",
         "project": "Apprendre autrement",
-        "note": "5 etablissements nommes et 6 coordonnateurs cites dans le document.",
+        "note": "5 établissements nommés et 6 coordonnateurs cités dans le document.",
         "establishments": [
           "Lucie Aubrac",
           "Daubigny",
@@ -105,22 +105,22 @@
       "colleges": [
         {
           "name": "Ariane",
-          "project": "Creer un fablab"
+          "project": "Créer un fablab"
         },
         {
           "name": "Pierre et Marie Curie",
-          "project": "Approche differente de la pedagogie"
+          "project": "Approche différente de la pédagogie"
         },
         {
-          "name": "Epine Guyon",
+          "name": "Épine Guyon",
           "project": "Apprendre autrement"
         },
         {
           "name": "Georges Charpak",
-          "project": "Creer un fablab et des projets innovants"
+          "project": "Créer un fablab et des projets innovants"
         },
         {
-          "name": "L'Ardilliere-de-Nezant",
+          "name": "L'Ardillière-de-Nézant",
           "project": "Apprendre autrement"
         }
       ]
@@ -130,8 +130,8 @@
       "note": "Collèges associés à l'analyse 2024.",
       "colleges": [
         {
-          "name": "Eugenie Cotton",
-          "project": "Innover pour un climat apaise"
+          "name": "Eugénie Cotton",
+          "project": "Innover pour un climat apaisé"
         },
         {
           "name": "Paul Vaillant Couturier",
@@ -139,27 +139,27 @@
         },
         {
           "name": "Pablo Picasso",
-          "project": "Innover pour un climat apaise"
+          "project": "Innover pour un climat apaisé"
         },
         {
           "name": "Les Hautiers",
-          "project": "Innover pour un climat apaise"
+          "project": "Innover pour un climat apaisé"
         },
         {
           "name": "Pierre et Marie Curie",
-          "project": "Innover pour un climat apaise"
+          "project": "Innover pour un climat apaisé"
         },
         {
           "name": "Montesquieu",
-          "project": "Innover pour un climat apaise"
+          "project": "Innover pour un climat apaisé"
         },
         {
           "name": "Jean-Claude Chabanne",
-          "project": "Innover pour un climat apaise"
+          "project": "Innover pour un climat apaisé"
         },
         {
           "name": "Nicolas Flamel",
-          "project": "Innover pour un climat apaise"
+          "project": "Innover pour un climat apaisé"
         }
       ]
     }
@@ -439,7 +439,10 @@
     {
       "jury": "2017",
       "titre": "Nouvelles compétences",
-      "detail": "Les espaces et la Web TV permettent de développer des compétences nouvelles et de valoriser les élèves."
+      "detail": "Les espaces et la Web TV permettent de développer des compétences nouvelles et de valoriser les élèves.",
+      "role": "Principale",
+      "citation": "Certains professeurs ont complètement modifié leur mode d’enseignement. Il n’y a plus de bureaux, les professeurs circulent dans la salle. Il y a donc un changement de posture pédagogique ; l’élève est au centre et des outils sont mis à sa disposition.",
+      "source": "Analyse APEI 2021"
     },
     {
       "jury": "2017",
@@ -447,12 +450,23 @@
       "detail": "Les élèves travaillent davantage en autonomie, en petits groupes et avec des supports variés.",
       "role": "Élève de 3e",
       "citation": "C’est bien, parce qu’on peut se mettre dans un coin de la salle et travailler en autonomie sur notre tableau puis poser des questions, alors que dans certains cours il y en a qui n’osent pas lever la main pour poser des questions.",
-      "source": "Analyse APEI 2023 - 6 décembre 2023"
+      "source": "Analyse APEI 2023"
     },
     {
       "jury": "2017",
       "titre": "Évolution des pratiques",
-      "detail": "Dans plusieurs collèges, certains enseignants ont revu leurs séquences et leur posture pédagogique."
+      "detail": "Dans plusieurs collèges, certains enseignants ont revu leurs séquences et leur posture pédagogique.",
+      "role": "Professeure",
+      "citation": "Je trouve que ces projets donnent du sens aux apprentissages. Leur demander de faire une émission télévisée par exemple, ce n’est pas pareil qu’un cours classique. Les élèves sont plus investis et plus soucieux de réussir.",
+      "source": "Analyse APEI 2021"
+    },
+    {
+      "jury": "2017",
+      "titre": "Proximité pédagogique",
+      "detail": "Dans certains espaces, la posture enseignante évolue vers plus de circulation, d’observation et d’échange avec les élèves.",
+      "role": "Professeur",
+      "citation": "Vu que le cours est sur la tablette, je ne suis plus au tableau à faire le cours et je me déplace. Ça facilite l’échange entre nous, c’est beaucoup plus facile de prendre des nouvelles ou de repérer quelqu’un qui ne va pas bien par exemple.",
+      "source": "Analyse APEI 2023"
     },
     {
       "jury": "2018",
@@ -460,115 +474,171 @@
       "detail": "Les espaces de vie scolaire ont réduit les tensions sur les temps de permanence et amélioré le bien-être des élèves.",
       "role": "Chef d’établissement",
       "citation": "Les espaces sont utilisés et remplissent leur fonction première, c’est à dire apaiser le climat scolaire et permettre aux élèves de choisir ce qu’ils ont envie de faire pendant les temps de permanence.",
-      "source": "Analyse APEI 2024 - Eugénie Cotton"
+      "source": "Analyse APEI 2024"
     },
     {
       "jury": "2018",
       "titre": "Usages stabilisés",
-      "detail": "Dans les projets arrivés à clôture, certains espaces font désormais partie du fonctionnement ordinaire du collège."
+      "detail": "Dans les projets arrivés à clôture, certains espaces font désormais partie du fonctionnement ordinaire du collège.",
+      "role": "Adjointe",
+      "citation": "La salle tout le monde l'utilise. On se bat pour la réserver.",
+      "source": "Analyse APEI 2024"
     },
     {
       "jury": "2018",
       "titre": "Polyvalence des lieux",
-      "detail": "Les salles innovantes servent à la fois aux apprentissages, aux projets et parfois à des événements culturels."
+      "detail": "Les salles innovantes servent à la fois aux apprentissages, aux projets et parfois à des événements culturels.",
+      "role": "Professeure",
+      "citation": "Ça a complètement changé ma façon de faire cours.",
+      "source": "Analyse APEI 2024"
     },
     {
       "jury": "2021",
       "titre": "Mi-parcours encourageant",
-      "detail": "Les projets 2021 montrent déjà des effets positifs sur l’autonomie, le travail en groupe et l’engagement des élèves."
-    },
-    {
-      "jury": "2021",
-      "titre": "Vie scolaire transformée",
-      "detail": "Quand les espaces de permanence sont investis, les élèves peuvent choisir leurs usages et le climat scolaire s’apaise."
+      "detail": "Les projets 2021 montrent déjà des effets positifs sur l’autonomie, le travail en groupe et l’engagement des élèves.",
+      "role": "Professeure",
+      "citation": "On ne doit vraiment pas être très nombreux à ne pas l'utiliser.",
+      "source": "Analyse APEI 2024"
     },
     {
       "jury": "2021",
       "titre": "Cadres de travail renouvelés",
-      "detail": "Les équipes commencent à exploiter des espaces plus modulables, mieux adaptés aux pédagogies actives."
+      "detail": "Les équipes commencent à exploiter des espaces plus modulables, mieux adaptés aux pédagogies actives.",
+      "role": "Élève",
+      "citation": "C'est plus ludique.",
+      "source": "Analyse APEI 2024"
     }
   ],
   "difficultes": [
     {
       "jury": "2017",
       "titre": "Appréhension numérique",
-      "detail": "Une partie des équipes n’ose pas se lancer par peur ou méconnaissance des outils."
+      "detail": "Une partie des équipes n’ose pas se lancer par peur ou méconnaissance des outils.",
+      "role": "Professeur",
+      "citation": "Nous avons reçu une formation sur l’utilisation du logiciel et de la Web TV, mais nous n’avons pas été assez briefés sur l’utilisation. Donc même le lendemain nous étions incapables de vraiment tout utiliser.",
+      "source": "Analyse APEI 2021"
     },
     {
       "jury": "2017",
       "titre": "Manque de temps",
-      "detail": "Les temps de cours sont parfois trop courts pour exploiter pleinement les espaces."
+      "detail": "Les temps de cours sont parfois trop courts pour exploiter pleinement les espaces.",
+      "role": "Principale",
+      "citation": "Je ne pense pas qu’on ait atteint nos objectifs sur la Web TV par manque de temps notamment.",
+      "source": "Analyse APEI 2021"
     },
     {
       "jury": "2017",
-      "titre": "Communication interne",
-      "detail": "Les usages possibles des espaces restent insuffisamment diffusés dans les établissements."
+      "titre": "Auto-censure des équipes",
+      "detail": "Le frein n’est pas seulement matériel : une partie des équipes s’interdit encore l’usage des outils ou des espaces.",
+      "role": "Principal adjoint",
+      "citation": "Les professeurs s’auto-censurent. Ils ont peur d’aller vers ce genre d’outils, parce qu’ils ont peur de les manier.",
+      "source": "Analyse APEI 2023"
+    },
+    {
+      "jury": "2017",
+      "titre": "Temps de formation insuffisant",
+      "detail": "Le temps disponible pour se former et préparer les séances reste un frein opérationnel majeur.",
+      "role": "Cheffe d’établissement",
+      "citation": "Le temps de formation : étant donné qu’elles doivent se passer sur des temps hors-scolaires ça rend les choses encore plus complexes. C’est ni l’envie, ni l’ambition c’est le temps ou la méconnaissance.",
+      "source": "Analyse APEI 2023"
     },
     {
       "jury": "2018",
       "titre": "Moyens humains",
-      "detail": "Les espaces innovants, la Web TV et la Web Radio restent gourmands en encadrement."
-    },
-    {
-      "jury": "2018",
-      "titre": "Petits groupes",
-      "detail": "Certains espaces ne peuvent être investis qu’avec un nombre réduit d’élèves, ce qui freine les usages."
+      "detail": "Les espaces innovants, la Web TV et la Web Radio restent gourmands en encadrement.",
+      "role": "Documentaliste",
+      "citation": "La Web TV et Web Radio sont chronophages, 5 élèves max.",
+      "source": "Analyse APEI 2024"
     },
     {
       "jury": "2018",
       "titre": "Fragilité des équipes projet",
-      "detail": "La dynamique dépend encore beaucoup de quelques adultes moteurs."
+      "detail": "La dynamique dépend encore beaucoup de quelques adultes moteurs.",
+      "role": "CPE",
+      "citation": "Il y a une réticence des professeurs à utiliser les outils numériques, ils n'osent pas.",
+      "source": "Analyse APEI 2024"
     },
     {
       "jury": "2021",
       "titre": "Stabilité des équipes",
-      "detail": "Le besoin de continuité dans les équipes de vie scolaire et d’encadrement reste fort."
+      "detail": "Le besoin de continuité dans les équipes de vie scolaire et d’encadrement reste fort.",
+      "role": "Cheffe d’établissement",
+      "citation": "Il faudrait un temps où ceux formés transmettent aux nouveaux.",
+      "source": "Analyse APEI 2024"
     },
     {
       "jury": "2021",
       "titre": "Surveillance et co-animation",
-      "detail": "Certains dispositifs fonctionnent mieux avec des adultes supplémentaires ou du co-enseignement."
+      "detail": "Certains dispositifs fonctionnent mieux avec des adultes supplémentaires ou du co-enseignement.",
+      "role": "Adjointe",
+      "citation": "Ils ne voient pas l'intérêt d'aller dans la salle connectée.",
+      "source": "Analyse APEI 2024"
     },
     {
       "jury": "2021",
       "titre": "Montée en compétence",
-      "detail": "Les nouveaux espaces demandent encore des temps de formation et d’appropriation."
+      "detail": "Les nouveaux espaces demandent encore des temps de formation et d’appropriation.",
+      "role": "Professeure",
+      "citation": "Leur usage est un peu décevant.",
+      "source": "Analyse APEI 2024"
     }
   ],
   "pointsGlobaux": [
     {
       "titre": "Les espaces seuls ne suffisent pas",
-      "detail": "L’impact dépend moins de la livraison d’un lieu que de sa mise en usage par les équipes."
+      "detail": "L’impact dépend moins de la livraison d’un lieu que de sa mise en usage par les équipes.",
+      "role": "Principale adjointe",
+      "citation": "Pour le moment, cela n’a pas eu beaucoup d’impact au niveau pédagogique, cela n’a pas infusé suffisamment chez certains enseignants. Plusieurs professeurs se posent des questions parce qu’ils aiment bien les différents espaces et se demandent comment les adapter."
     },
     {
       "titre": "Les effets élèves sont les plus visibles",
-      "detail": "Autonomie, engagement, climat scolaire et travail en groupe ressortent dans tous les jurys documentés."
-    },
-    {
-      "titre": "Les projets mûrissent à des rythmes différents",
-      "detail": "Les jurys ne se lisent pas de la même manière selon qu'ils sont documentés avec plus de recul, en clôture ou en mi-parcours."
+      "detail": "Autonomie, engagement, climat scolaire et travail en groupe ressortent dans tous les jurys documentés.",
+      "role": "Professeure",
+      "citation": "Nous voyons que les élèves sont heureux d’être ensemble lorsque nous réalisons ces projets, il y a une émulation positive. Le fait de travailler en petit groupe, ça permet à tout le monde de trouver sa place."
     },
     {
       "titre": "L’appropriation reste le vrai sujet",
-      "detail": "Les écarts entre établissements tiennent surtout à la capacité à faire vivre les espaces dans la durée."
+      "detail": "Les écarts entre établissements tiennent surtout à la capacité à faire vivre les espaces dans la durée.",
+      "role": "Chef d’établissement",
+      "citation": "Les espaces sont utilisés et remplissent leur fonction première, c’est à dire apaiser le climat scolaire et permettre aux élèves de choisir ce qu’ils ont envie de faire pendant les temps de permanence."
+    },
+    {
+      "titre": "Les projets changent la relation pédagogique",
+      "detail": "Quand les enseignants investissent réellement les espaces, ils décrivent un rapport plus proche, plus mobile et plus engageant avec les élèves.",
+      "role": "Professeure",
+      "citation": "Aujourd’hui ça a du sens d’être en classe parce qu’il y a ce projet. Pour moi, ça a changé complètement la façon d’enseigner et c’est la raison qui fait que je suis encore devant des élèves aujourd’hui."
     }
   ],
   "difficultesGlobales": [
     {
       "titre": "Diffusion inégale des usages",
-      "detail": "Les innovations restent souvent portées par un noyau réduit d’adultes moteurs."
+      "detail": "Les innovations restent souvent portées par un noyau réduit d’adultes moteurs.",
+      "role": "Principal",
+      "citation": "Certains collègues étaient un peu réticents à l’idée d’utiliser cet espace, pour eux il s'agit d'une salle de classe traditionnelle, ils sont encore ancrés dans ces pratiques. Il faut leur montrer que c’est possible, qu'il faut évoluer vers d’autres pratiques pédagogiques."
     },
     {
       "titre": "Temps et formation",
-      "detail": "Former, transmettre et documenter les usages reste indispensable pour consolider les projets."
+      "detail": "Former, transmettre et documenter les usages reste indispensable pour consolider les projets.",
+      "role": "Principale",
+      "citation": "Il faut pouvoir bénéficier d’une formation entre pairs, où les professeurs se stimulent entre eux."
     },
     {
       "titre": "Contraintes d’organisation",
-      "detail": "Réservation, petits groupes, disponibilité des salles et encadrement freinent certains usages."
+      "detail": "Réservation, petits groupes, disponibilité des salles et encadrement freinent certains usages.",
+      "role": "Professeure",
+      "citation": "Au niveau de l’organisation, avec trente élèves ça peut parfois être difficile. Il faut que les conditions de travail soient vraiment adaptées, en ayant peut être des groupes moins importants."
     },
     {
       "titre": "Mutualisation encore limitée",
-      "detail": "Les échanges de pratiques entre établissements restent moins structurés qu’ils pourraient l’être."
+      "detail": "Les échanges de pratiques entre établissements restent moins structurés qu’ils pourraient l’être.",
+      "role": "Professeure",
+      "citation": "Nous avons peu échangé avec les autres établissements qui ont mis des projets innovants en place et je trouve cela dommage. Nous aurions aimé avoir plus de retours et d’échanges."
+    },
+    {
+      "titre": "Usage concurrencé par les iPads mobiles",
+      "detail": "Dans certains collèges, la diffusion des mallettes d’iPads réduit l’intérêt pratique des salles connectées quand elles ne sont pas reconfigurées.",
+      "role": "Principale adjointe",
+      "citation": "Aujourd’hui l’espace n’est plus intéressant pour certains collègues car ils ont les valises mobiles d’iPads. Ils se disent que maintenant qu’ils peuvent connecter les tablettes directement dans leur classe, ils n’ont pas besoin d’aller en salle connectée."
     }
   ],
   "pageIntro": {
