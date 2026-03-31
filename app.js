@@ -34,7 +34,8 @@ initNavScrollSpy();
 loadData()
   .then((data) => {
     const publishedData = sanitizePublishedData(data);
-    hydrateIntro(data);
+    writeFrameSummary(publishedData);
+    writeScopeCounts(publishedData);
     syncCohortLabels(publishedData);
     buildHeatmapTables(publishedData);
     buildTimelines(publishedData);
@@ -64,8 +65,8 @@ function showLoadError() {
 }
 
 function fillFallbackIntro() {
-  setText('intro-context-text', "Cette page propose une lecture transversale des projets APEI regroupés par année de jury, avant le détail par établissement, en ne retenant que les collèges suffisamment documentés.");
-  setText('intro-method-text', "La matrice présente cinq axes communs, notés sur une échelle de 1 à 4. Les années 2023 et 2024 citées dans certaines sources renvoient aux documents d'analyse, pas aux cohortes comparées.");
+  setText('frame-summary', "Le cadre d'analyse n'est pas disponible tant que les donnees ne sont pas chargees.");
+  setText('scope-counts', "Périmètre affiché : les totaux ne sont pas disponibles tant que les données ne sont pas chargées.");
 }
 
 function fillFallbackSummaries() {
@@ -75,12 +76,51 @@ function fillFallbackSummaries() {
   setText('summary-line-axes', "Le détail par axe ne peut pas être calculé sans les données.");
 }
 
-function hydrateIntro(data) {
-  const intro = data.pageIntro || {};
-  setText('intro-context-title', intro.context?.title || 'Ce que présente cette page');
-  setText('intro-context-text', intro.context?.text || "Cette page propose une lecture transversale des projets APEI regroupés par année de jury, avant le détail par établissement, en ne retenant que les collèges suffisamment documentés.");
-  setText('intro-method-title', intro.method?.title || 'Comment lire la matrice');
-  setText('intro-method-text', intro.method?.text || "La matrice présente cinq axes communs, notés sur une échelle de 1 à 4. Les années 2023 et 2024 citées dans certaines sources renvoient aux documents d'analyse, pas aux cohortes comparées.");
+function writeScopeCounts(data) {
+  const items = COHORTS.flatMap((cohort) => Array.isArray(data.cohorts?.[cohort]) ? data.cohorts[cohort] : []);
+  const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
+  const collegeCount = uniqueColleges.size;
+  const projectCount = items.length;
+  setText('scope-counts', `Périmètre affiché : ${collegeCount} collèges documentés pour ${projectCount} projets affichés sur les jurys 2017, 2018 et 2021.`);
+}
+
+function writeFrameSummary(data) {
+  const items = COHORTS.flatMap((cohort) => Array.isArray(data.cohorts?.[cohort]) ? data.cohorts[cohort] : []);
+  const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
+  const collegeCount = uniqueColleges.size;
+  const projectCount = items.length;
+  setText('frame-summary', `${collegeCount} collèges documentés, ${projectCount} projets affichés. Chaque jury est présenté avec son année, le stade observé et le document d'analyse mobilisé.`);
+
+  const container = document.getElementById('frame-cohorts');
+  if (!container) return;
+  container.innerHTML = '';
+
+  COHORTS.forEach((cohort) => {
+    const meta = data.cohortMeta?.[cohort] || {};
+    const list = Array.isArray(data.cohorts?.[cohort]) ? data.cohorts[cohort] : [];
+    const unique = new Set(list.map((item) => `${item.nom}||${item.ville}`));
+    const juryYear = String(cohort);
+    const description = meta.description || '';
+    const analysisYear = meta.analysisYear || 'n.d.';
+    const analysisType = meta.analysisType || 'n.d.';
+    const observedEndYear = meta.observedEndYear || 'n.d.';
+
+    const article = document.createElement('article');
+    article.className = 'frame-item';
+    article.innerHTML = `
+      <h3>${escapeHtml(meta.label || `Jury ${juryYear}`)}</h3>
+      <p class="frame-desc">${escapeHtml(description)}</p>
+      <div class="frame-meta">
+        <div><span>Collèges</span><strong>${escapeHtml(String(unique.size))}</strong></div>
+        <div><span>Projets</span><strong>${escapeHtml(String(list.length))}</strong></div>
+        <div><span>Année de jury</span><strong>${escapeHtml(juryYear)}</strong></div>
+        <div><span>Stade observé</span><strong>${escapeHtml(observedEndYear)}</strong></div>
+        <div><span>Année d'analyse</span><strong>${escapeHtml(analysisYear)}</strong></div>
+        <div><span>Type d'analyse</span><strong>${escapeHtml(analysisType)}</strong></div>
+      </div>
+    `;
+    container.appendChild(article);
+  });
 }
 
 function sanitizePublishedData(data) {
@@ -500,7 +540,7 @@ function writeChartSummaries(data) {
   const avg2018 = averageAxisValue(data.axes, '2018').toFixed(1);
   const avg2021 = averageAxisValue(data.axes, '2021').toFixed(1);
 
-  setText('summary-radar', `Lecture rapide : à l'échelle des trois jurys affichés, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
+  setText('summary-radar', `À l'échelle des trois jurys affichés, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
   setText('summary-bar', `La comparaison par axe confirme une structure globalement stable : des acquis durables sur les espaces, des évolutions plus contrastées sur les autres axes et une fragilité persistante sur la relation avec les autres parties prenantes.`);
   setText('summary-line', `La moyenne globale reste proche d'un jury à l'autre : ${avg2017} /4 pour le jury 2017, ${avg2018} /4 pour le jury 2018 et ${avg2021} /4 pour le jury 2021. Cette lecture traduit surtout des contextes documentés à des stades différents.`);
   setText('summary-line-axes', `La lecture par axe doit être interprétée avec prudence : les jurys 2017, 2018 et 2021 sont documentés à des moments différents. Le graphique aide à repérer des écarts de profil, sans les lire comme une trajectoire linéaire unique.`);

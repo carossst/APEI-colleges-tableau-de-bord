@@ -30,48 +30,24 @@
     <div id="data-load-error" class="callout callout-error" role="alert" hidden></div>
     <section class="section section-intro" id="vue-ensemble">
       <h2>Vue d'ensemble</h2>
-      <p>Une synthèse transversale organisée par jury, avant le détail par établissement.</p>
+      <p>Une lecture rapide du périmètre, puis des constats majeurs.</p>
       <div class="section-line"></div>
     </section>
 
-    <section class="intro-grid intro-grid-2" aria-label="Introduction à la lecture de la page">
-      <article class="card intro-card">
-        <h3 id="intro-context-title">Ce que présente cette page</h3>
-        <p id="intro-context-text"></p>
-      </article>
-      <article class="card intro-card">
-        <h3 id="intro-method-title">Comment lire la matrice</h3>
-        <p id="intro-method-text"></p>
-      </article>
-    </section>
-
-    <section class="callout callout-neutral" aria-label="Repère sur les années de jury et d'analyse">
-      <p><strong>Repère de lecture :</strong> les libellés <strong>Jury 2017</strong>, <strong>Jury 2018</strong> et <strong>Jury 2021</strong> renvoient aux années de jury comparées dans la matrice.</p>
-      <p><strong>Sources citées :</strong> les mentions <strong>Analyse APEI 2023</strong> ou <strong>Analyse APEI 2024</strong> désignent les documents d'analyse mobilisés pour documenter ces jurys, pas de nouvelles années de jury.</p>
-      <p><strong>Périmètre affiché :</strong> la page ne retient que les collèges pour lesquels une analyse qualitative exploitable permet de renseigner les cinq axes. Les autres lauréats ne sont pas affichés tant que la source n'est pas disponible.</p>
+    <section class="card card-full frame-card" aria-label="Cadre de lecture des jurys et projets">
+      <h2>Cadre de lecture</h2>
+      <p id="frame-summary">Chargement du cadre d'analyse.</p>
+      <div id="frame-cohorts" class="intro-grid intro-grid-2"></div>
     </section>
 
     <section class="card card-full executive-summary" aria-label="Synthèse exécutive de la page">
       <h2>Synthèse exécutive</h2>
-      <div class="subtitle">Les messages les plus utiles pour une lecture rapide du programme</div>
-      <div class="executive-summary-grid">
-        <div>
-          <h3>3 enseignements majeurs</h3>
-          <ul class="bullet-clean">
-            <li>Les effets les plus visibles concernent les élèves, l'autonomie et certains cadres de vie scolaire.</li>
-            <li>Les usages ne se diffusent pas au même rythme d'un établissement à l'autre.</li>
-            <li>Les écarts tiennent surtout à l'appropriation par les équipes et aux conditions de mise en oeuvre.</li>
-          </ul>
-        </div>
-        <div>
-          <h3>3 conditions de réussite</h3>
-          <ul class="bullet-clean">
-            <li>Un espace livré doit devenir un espace compris, habité et utilisé dans le quotidien.</li>
-            <li>La formation, la transmission et les relais adultes comptent davantage que le seul équipement.</li>
-            <li>La mutualisation doit être pensée à deux niveaux : à l'intérieur du collège et entre établissements.</li>
-          </ul>
-        </div>
-      </div>
+      <h3>3 messages à retenir</h3>
+      <ul class="bullet-clean">
+        <li>Les effets les plus visibles concernent les élèves : autonomie, engagement, climat scolaire et qualité d'usage des espaces.</li>
+        <li>L'écart principal se joue dans l'appropriation par les équipes, pas dans l'équipement seul.</li>
+        <li>Les différences entre établissements tiennent surtout à la capacité à faire circuler les usages au-delà de quelques porteurs.</li>
+      </ul>
     </section>
 
     <section class="section" id="matrice">
@@ -81,50 +57,23 @@
     </section>
 
     <section class="callout callout-neutral" aria-label="Clé de lecture de la matrice">
-      <p><strong>À retenir :</strong> cette matrice ne compare pas des résultats scolaires. Elle regroupe des observations qualitatives sur cinq axes communs.</p>
-      <p><strong>Fil rouge :</strong> l'écart principal ne se joue pas entre un espace livré et un espace non livré, mais entre un espace simplement aménagé et un espace réellement mis en vie par les usages.</p>
+      <p>Cette matrice ne compare pas des résultats scolaires. Elle regroupe des observations qualitatives sur cinq axes communs.</p>
+      <p>L'écart principal ne se joue pas entre un espace livré et un espace non livré, mais entre un espace simplement aménagé et un espace réellement mis en vie par les usages.</p>
     </section>
 
     <section class="grid-2" aria-label="Graphiques de synthèse">
       <article class="card">
         <h2>Radar comparatif</h2>
-        <div class="subtitle">Vue d'ensemble des jurys 2017, 2018 et 2021 sur les cinq axes</div>
         <canvas id="radarChart" role="img" aria-label="Graphique radar comparant les scores moyens par axe pour les jurys 2017, 2018 et 2021."></canvas>
-        <p class="chart-note"><strong>Pourquoi garder le radar :</strong> il aide à voir d'un seul coup d'oeil la forme générale du profil d'impact. Il ne remplace pas la lecture précise axe par axe, donnée juste à côté.</p>
+        <p class="chart-note">Le radar donne une vue d'ensemble du profil d'impact de chaque jury.</p>
         <p class="chart-summary" id="summary-radar"></p>
       </article>
       <article class="card">
         <h2>Comparaison par axe</h2>
-        <div class="subtitle">Lecture plus précise des écarts entre jurys</div>
         <canvas id="barChart" role="img" aria-label="Histogramme horizontal comparant les scores par axe pour les jurys 2017, 2018 et 2021."></canvas>
         <p class="chart-note">Ce graphique complète le radar et permet de comparer plus finement les écarts entre jurys sur chacun des cinq axes.</p>
         <p class="chart-summary" id="summary-bar"></p>
       </article>
-    </section>
-
-    <section class="card card-full" aria-label="Méthodologie et axes d'analyse" style="margin-top:24px;">
-      <h2>Méthode d'analyse</h2>
-      <div class="subtitle">Une base commune pour lire les jurys de manière cohérente</div>
-      <div class="method-grid">
-        <div>
-          <h3>5 axes communs</h3>
-          <ul class="bullet-clean">
-            <li>Transformation des espaces</li>
-            <li>Organisation des enseignements</li>
-            <li>Usage des outils numériques</li>
-            <li>Relation aux élèves</li>
-            <li>Relation parties prenantes</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Principe de notation</h3>
-          <p>Les notes par établissement sont agrégées à l'échelle de chaque jury pour construire une lecture comparative cohérente.</p>
-        </div>
-        <div>
-          <h3>Logique de lecture</h3>
-          <p>La page donne d'abord une lecture transversale par année de jury, puis descend vers les écarts entre établissements et enfin vers le détail propre à chaque jury.</p>
-        </div>
-      </div>
     </section>
 
     <section class="section" id="points-cles">
@@ -135,7 +84,6 @@
 
     <section class="card maturity-card" aria-label="Lecture par jury des projets">
       <h2>Lecture par jury</h2>
-      <div class="subtitle">Repères de lecture propres à chaque jury</div>
       <div class="maturity-grid">
         <div>
           <h3>Jury 2017</h3>
@@ -155,12 +103,10 @@
     <section class="grid-2" aria-label="Synthèse transversale globale">
       <article class="card">
         <h2 class="section-title-pos">Points forts globaux</h2>
-        <div class="subtitle">Les tendances positives les plus récurrentes d'un jury à l'autre</div>
         <div class="timeline" id="tl-global-pos"></div>
       </article>
       <article class="card">
         <h2 class="section-title-neg">Difficultés globales</h2>
-        <div class="subtitle">Les principaux freins observés de manière récurrente</div>
         <div class="timeline" id="tl-global-neg"></div>
       </article>
     </section>
@@ -168,13 +114,11 @@
     <section class="grid-2" style="margin-top:24px" aria-label="Évolutions entre jurys">
       <article class="card">
         <h2>Évolution moyenne globale</h2>
-        <div class="subtitle">Moyenne des cinq axes pour chaque jury</div>
         <canvas id="lineChart" class="chart-sm" role="img" aria-label="Courbe de la moyenne globale des scores pour les jurys 2017, 2018 et 2021."></canvas>
         <p class="chart-summary" id="summary-line"></p>
       </article>
       <article class="card">
         <h2>Détail par axe</h2>
-        <div class="subtitle">Variation de chacun des cinq axes selon les jurys</div>
         <canvas id="lineAxesChart" class="chart-sm" role="img" aria-label="Courbes d'évolution des scores pour chaque axe sur les jurys 2017, 2018 et 2021."></canvas>
         <p class="chart-summary" id="summary-line-axes"></p>
       </article>
@@ -186,11 +130,8 @@
       <div class="section-line"></div>
     </section>
 
-    <section class="callout callout-neutral" aria-label="Clé de lecture des tableaux établissements">
-      <p><strong>Important :</strong> les scores affichés restent des repères qualitatifs de lecture. Ils ne mesurent ni la performance scolaire ni la réussite globale d'un établissement.</p>
-      <p><strong>Lecture :</strong> les écarts entre collèges doivent être lus comme des différences d'appropriation, de contexte et de mise en oeuvre, pas comme un classement de performance.</p>
-      <p><strong>Point de vigilance :</strong> un même collège peut apparaître dans plusieurs jurys quand il porte plusieurs projets distincts, comme Pierre et Marie Curie.</p>
-      <p><strong>Règle d'affichage :</strong> les tableaux ci-dessous montrent uniquement les établissements pour lesquels une base qualitative suffisamment précise est disponible.</p>
+    <section class="callout callout-neutral" aria-label="Périmètre chiffré des établissements affichés">
+      <p id="scope-counts">Périmètre affiché : chargement des totaux en cours.</p>
     </section>
 
     <section class="card" aria-label="Tables des scores par établissement">
@@ -202,7 +143,6 @@
       </div>
 
       <div id="tab2017" class="tab-pane active" role="tabpanel" aria-labelledby="tabbtn2017">
-        <p class="table-meta">Jury 2017 - projets plus anciens, documentés dans l'analyse 2023. La lecture porte sur des usages observés avec davantage de recul.</p>
         <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour le jury 2017, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
@@ -222,7 +162,6 @@
       </div>
 
       <div id="tab2018" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2018" hidden>
-        <p class="table-meta">Jury 2018 - projets documentés dans l'analyse 2024 en mesure de clôture. Cette lecture met en évidence les acquis stabilisés et les limites qui persistent en fin de projet.</p>
         <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour le jury 2018, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
@@ -242,7 +181,6 @@
       </div>
 
       <div id="tab2021" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2021" hidden>
-        <p class="table-meta">Jury 2021 - projets documentés dans l'analyse 2024 en mesure de mi-parcours. La lecture met davantage l'accent sur la dynamique d'appropriation et les besoins de consolidation.</p>
         <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour le jury 2021, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
@@ -269,11 +207,9 @@
     </section>
 
     <section class="card" aria-label="Détail par jury des points clés">
-      <p class="subtitle">Le contenu ci-dessous reprend les principaux points positifs et difficultés par jury.</p>
       <div class="accordion-years">
         <details class="year-detail">
           <summary>Jury 2017</summary>
-          <p class="year-summary">Le jury 2017 donne une lecture de projets historiques, documentés plus tard dans l'analyse 2023, avec plus de recul sur les usages, les transformations réelles et les limites persistantes.</p>
           <div class="grid-2 detail-grid detail-panel">
             <div>
               <h3 class="detail-col-title section-title-pos">Points positifs</h3>
@@ -288,7 +224,6 @@
 
         <details class="year-detail">
           <summary>Jury 2018</summary>
-          <p class="year-summary">Le jury 2018 est documenté dans l'analyse 2024 en mesure de clôture. Il met bien en évidence les acquis durables, mais aussi les limites d'usage qui subsistent.</p>
           <div class="grid-2 detail-grid detail-panel">
             <div>
               <h3 class="detail-col-title section-title-pos">Points positifs</h3>
@@ -303,7 +238,6 @@
 
         <details class="year-detail">
           <summary>Jury 2021</summary>
-          <p class="year-summary">Le jury 2021 est documenté dans l'analyse 2024 en mesure de mi-parcours. Il montre surtout les dynamiques d'appropriation en cours et les besoins d'accompagnement encore présents.</p>
           <div class="grid-2 detail-grid detail-panel">
             <div>
               <h3 class="detail-col-title section-title-pos">Points positifs</h3>

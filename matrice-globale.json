@@ -17,6 +17,10 @@
   "cohortMeta": {
     "2017": {
       "label": "Jury 2017",
+      "description": "Cohorte historique avec cinq colleges documentes dans l'analyse 2023.",
+      "analysisYear": "2023",
+      "analysisType": "historique",
+      "observedEndYear": "anterieure a 2023",
       "documentationBasis": "Documente par l'analyse 2023",
       "publicationStatus": "published",
       "scopeNote": "Cohorte historique documentee dans l'analyse 2023 sur cinq etablissements exploitables.",
@@ -26,9 +30,13 @@
     },
     "2018": {
       "label": "Jury 2018",
+      "description": "Quatre colleges documentes dans l'analyse 2024 sur une mesure de cloture.",
+      "analysisYear": "2024",
+      "analysisType": "cloture",
+      "observedEndYear": "2024",
       "documentationBasis": "Documente par l'analyse 2024 - mesure de cloture",
       "publicationStatus": "published",
-      "scopeNote": "Cohorte de cloture 2018 documentee dans l'analyse 2024 sur quatre etablissements exploitables.",
+      "scopeNote": "Cohorte de cloture 2018 documentee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
       "sources": [
         "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
         "analyse_scores_2024.md"
@@ -36,9 +44,13 @@
     },
     "2021": {
       "label": "Jury 2021",
+      "description": "Quatre colleges documentes dans l'analyse 2024 sur une mesure de mi-parcours.",
+      "analysisYear": "2024",
+      "analysisType": "mi-parcours",
+      "observedEndYear": "projet en cours au moment de l'analyse",
       "documentationBasis": "Documente par l'analyse 2024 - mesure de mi-parcours",
       "publicationStatus": "published",
-      "scopeNote": "Cohorte en mi-parcours documentee dans l'analyse 2024 sur quatre etablissements exploitables.",
+      "scopeNote": "Cohorte en mi-parcours documentee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
       "sources": [
         "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
         "analyse_scores_2024.md"
