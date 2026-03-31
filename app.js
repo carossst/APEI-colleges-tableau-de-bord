@@ -33,22 +33,25 @@ initNavScrollSpy();
 
 loadData()
   .then((data) => {
+    const publishedData = sanitizePublishedData(data);
     hydrateIntro(data);
-    buildHeatmapTables(data);
-    buildTimelines(data);
-    writeChartSummaries(data);
-    createCharts(data);
+    syncCohortLabels(publishedData);
+    buildHeatmapTables(publishedData);
+    buildTimelines(publishedData);
+    writeChartSummaries(publishedData);
+    createCharts(publishedData);
   })
   .catch((error) => {
     console.error(error);
     showLoadError();
+    fillFallbackIntro();
     fillFallbackSummaries();
   });
 
 async function loadData() {
-  const response = await fetch('./matrice-globale_refactor.json');
+  const response = await fetch('./matrice-globale.json');
   if (!response.ok) {
-    throw new Error('Impossible de charger matrice-globale_refactor.json');
+    throw new Error('Impossible de charger matrice-globale.json');
   }
   return response.json();
 }
@@ -57,7 +60,12 @@ function showLoadError() {
   const el = document.getElementById('data-load-error');
   if (!el) return;
   el.hidden = false;
-  el.innerHTML = '<p><strong>Chargement impossible :</strong> les données n\'ont pas pu être chargées. Vérifier la présence du fichier <code>matrice-globale_refactor.json</code> et les chemins de déploiement.</p>';
+  el.innerHTML = '<p><strong>Chargement impossible :</strong> les données n\'ont pas pu être chargées. Vérifier la présence du fichier <code>matrice-globale.json</code> et les chemins de déploiement.</p>';
+}
+
+function fillFallbackIntro() {
+  setText('intro-context-text', "Cette page propose une lecture transversale des projets APEI regroupés par année de jury, avant le détail par établissement, en ne retenant que les collèges suffisamment documentés.");
+  setText('intro-method-text', "La matrice présente cinq axes communs, notés sur une échelle de 1 à 4. Les années 2023 et 2024 citées dans certaines sources renvoient aux documents d'analyse, pas aux cohortes comparées.");
 }
 
 function fillFallbackSummaries() {
@@ -70,9 +78,58 @@ function fillFallbackSummaries() {
 function hydrateIntro(data) {
   const intro = data.pageIntro || {};
   setText('intro-context-title', intro.context?.title || 'Ce que présente cette page');
-  setText('intro-context-text', intro.context?.text || "Lecture synthétique des cohortes de jury APEI.");
+  setText('intro-context-text', intro.context?.text || "Cette page propose une lecture transversale des projets APEI regroupés par année de jury, avant le détail par établissement, en ne retenant que les collèges suffisamment documentés.");
   setText('intro-method-title', intro.method?.title || 'Comment lire la matrice');
-  setText('intro-method-text', intro.method?.text || 'Cinq axes, notés sur une échelle de 1 à 4.');
+  setText('intro-method-text', intro.method?.text || "La matrice présente cinq axes communs, notés sur une échelle de 1 à 4. Les années 2023 et 2024 citées dans certaines sources renvoient aux documents d'analyse, pas aux cohortes comparées.");
+}
+
+function sanitizePublishedData(data) {
+  const publishedCohorts = new Set(data.sourcePolicy?.publishedCohorts || COHORTS);
+  const sanitized = {
+    ...data,
+    axes: Array.isArray(data.axes) ? data.axes.map((axis) => ({
+      ...axis,
+      values: Object.fromEntries(
+        Object.entries(axis.values || {}).filter(([cohort]) => publishedCohorts.has(cohort))
+      )
+    })) : [],
+    cohorts: {},
+    cohortMeta: {}
+  };
+
+  COHORTS.forEach((cohort) => {
+    if (!publishedCohorts.has(cohort)) return;
+    const list = Array.isArray(data.cohorts?.[cohort]) ? data.cohorts[cohort] : [];
+    sanitized.cohorts[cohort] = list.filter(isDocumentedCollege);
+    if (data.cohortMeta?.[cohort]) {
+      sanitized.cohortMeta[cohort] = data.cohortMeta[cohort];
+    }
+  });
+
+  return sanitized;
+}
+
+function isDocumentedCollege(item) {
+  return Boolean(
+    item &&
+    item.nom &&
+    item.ville &&
+    item.sourceRef &&
+    item.scoreStatus &&
+    Array.isArray(item.scores) &&
+    item.scores.length === 5 &&
+    item.scores.every((score) => typeof score === 'number' && Number.isFinite(score))
+  );
+}
+
+function syncCohortLabels(data) {
+  COHORTS.forEach((cohort) => {
+    const button = document.getElementById(`tabbtn${cohort}`);
+    if (!button) return;
+
+    const count = Array.isArray(data.cohorts?.[cohort]) ? data.cohorts[cohort].length : 0;
+    button.textContent = `${COHORT_LABELS[cohort]} - ${count} collège${count > 1 ? 's' : ''}`;
+  });
 }
 
 function setText(id, text) {
@@ -372,7 +429,8 @@ function buildTable(id, list, defaultStatus = '') {
     const nameCell = document.createElement('td');
     nameCell.className = 'name';
     const status = item.statut || defaultStatus;
-    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)} - Jury ${escapeHtml(item.jury || '')}${status ? ` - ${escapeHtml(status)}` : ''}</small>`;
+    const sourceLine = item.sourceRef ? `<br><small style="color:var(--muted)">${escapeHtml(item.sourceRef)}</small>` : '';
+    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)} - Jury ${escapeHtml(item.jury || '')}${status ? ` - ${escapeHtml(status)}` : ''}</small>${sourceLine}`;
     row.appendChild(nameCell);
 
     item.scores.forEach((score) => {
@@ -438,23 +496,14 @@ function writeChartSummaries(data) {
   const topAxis = axisSorted[0];
   const lowAxis = axisSorted[axisSorted.length - 1];
 
-  const deltas = data.axes
-    .map((axis) => ({
-      label: axis.label,
-      diff: +(axis.values['2021'] - axis.values['2017']).toFixed(1)
-    }))
-    .sort((a, b) => b.diff - a.diff);
-
-  const bestDelta = deltas[0];
-  const worstDelta = deltas[deltas.length - 1];
   const avg2017 = averageAxisValue(data.axes, '2017').toFixed(1);
   const avg2018 = averageAxisValue(data.axes, '2018').toFixed(1);
   const avg2021 = averageAxisValue(data.axes, '2021').toFixed(1);
 
-  setText('summary-radar', `Lecture rapide : à l'échelle des trois cohortes, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
+  setText('summary-radar', `Lecture rapide : à l'échelle des trois jurys affichés, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
   setText('summary-bar', `La comparaison par axe confirme une structure globalement stable : des acquis durables sur les espaces, des évolutions plus contrastées sur les autres axes et une fragilité persistante sur la relation avec les autres parties prenantes.`);
-  setText('summary-line', `La moyenne globale est proche d'une cohorte à l'autre : ${avg2017} /4 pour le jury 2017, ${avg2018} /4 pour le jury 2018 et ${avg2021} /4 pour le jury 2021. L'ensemble traduit surtout des degrés de maturité différents.`);
-  setText('summary-line-axes', `Entre les cohortes les plus anciennes et les plus récentes, la progression la plus nette concerne "${bestDelta.label}" (${bestDelta.diff >= 0 ? '+' : ''}${bestDelta.diff}), tandis que "${worstDelta.label}" reste l'axe le moins dynamique (${worstDelta.diff >= 0 ? '+' : ''}${worstDelta.diff}).`);
+  setText('summary-line', `La moyenne globale reste proche d'un jury à l'autre : ${avg2017} /4 pour le jury 2017, ${avg2018} /4 pour le jury 2018 et ${avg2021} /4 pour le jury 2021. Cette lecture traduit surtout des contextes documentés à des stades différents.`);
+  setText('summary-line-axes', `La lecture par axe doit être interprétée avec prudence : les jurys 2017, 2018 et 2021 sont documentés à des moments différents. Le graphique aide à repérer des écarts de profil, sans les lire comme une trajectoire linéaire unique.`);
 }
 
 function averageAcrossCohorts(values) {

@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Analyse d'impact qualitative - Espaces innovants - Val d'Oise</title>
-  <meta name="description" content="Lecture transversale des projets APEI par jury pour les espaces innovants dans les collèges du Val-d'Oise." />
+  <meta name="description" content="Lecture transversale des projets APEI par année de jury pour les espaces innovants dans les collèges du Val-d'Oise." />
   <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   <link rel="stylesheet" href="style.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-  <script defer src="app_refactor_jury.js"></script>
+  <script defer src="app.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Aller au contenu principal</a>
@@ -30,7 +30,7 @@
     <div id="data-load-error" class="callout callout-error" role="alert" hidden></div>
     <section class="section section-intro" id="vue-ensemble">
       <h2>Vue d'ensemble</h2>
-      <p>Une synthèse transversale organisée par cohorte de jury, avant le détail par établissement.</p>
+      <p>Une synthèse transversale organisée par jury, avant le détail par établissement.</p>
       <div class="section-line"></div>
     </section>
 
@@ -45,24 +45,10 @@
       </article>
     </section>
 
-    <section class="overview-grid" aria-label="Repères de lecture">
-      <article class="card overview-card">
-        <h3>Cohorte la plus mûre</h3>
-        <p>Le jury 2018 correspond ici à des projets arrivés en clôture, ce qui donne une lecture plus stabilisée de leurs usages.</p>
-      </article>
-      <article class="card overview-card">
-        <h3>Point de fragilité durable</h3>
-        <p>La relation avec les autres parties prenantes reste l'axe le plus fragile d'une cohorte à l'autre.</p>
-      </article>
-      <article class="card overview-card overview-card-scale">
-        <h3>Échelle de lecture</h3>
-        <ul class="scale-list">
-          <li><strong>1</strong> - Faible impact</li>
-          <li><strong>2</strong> - Impact modéré</li>
-          <li><strong>3</strong> - Fort impact</li>
-          <li><strong>4</strong> - Très fort impact</li>
-        </ul>
-      </article>
+    <section class="callout callout-neutral" aria-label="Repère sur les années de jury et d'analyse">
+      <p><strong>Repère de lecture :</strong> les libellés <strong>Jury 2017</strong>, <strong>Jury 2018</strong> et <strong>Jury 2021</strong> renvoient aux années de jury comparées dans la matrice.</p>
+      <p><strong>Sources citées :</strong> les mentions <strong>Analyse APEI 2023</strong> ou <strong>Analyse APEI 2024</strong> désignent les documents d'analyse mobilisés pour documenter ces jurys, pas de nouvelles années de jury.</p>
+      <p><strong>Périmètre affiché :</strong> la page ne retient que les collèges pour lesquels une analyse qualitative exploitable permet de renseigner les cinq axes. Les autres lauréats ne sont pas affichés tant que la source n'est pas disponible.</p>
     </section>
 
     <section class="card card-full executive-summary" aria-label="Synthèse exécutive de la page">
@@ -72,9 +58,9 @@
         <div>
           <h3>3 enseignements majeurs</h3>
           <ul class="bullet-clean">
-            <li>La comparaison devient plus robuste quand elle regroupe les collèges par année de jury.</li>
             <li>Les effets les plus visibles concernent les élèves, l'autonomie et certains cadres de vie scolaire.</li>
-            <li>Les écarts entre cohortes tiennent surtout à la maturité des projets et à leur appropriation par les équipes.</li>
+            <li>Les usages ne se diffusent pas au même rythme d'un établissement à l'autre.</li>
+            <li>Les écarts tiennent surtout à l'appropriation par les équipes et aux conditions de mise en oeuvre.</li>
           </ul>
         </div>
         <div>
@@ -95,7 +81,7 @@
     </section>
 
     <section class="callout callout-neutral" aria-label="Clé de lecture de la matrice">
-      <p><strong>À retenir :</strong> cette matrice ne compare pas des résultats scolaires. Elle regroupe des observations qualitatives par cohorte de jury afin de comparer des projets plus homogènes.</p>
+      <p><strong>À retenir :</strong> cette matrice ne compare pas des résultats scolaires. Elle regroupe des observations qualitatives sur cinq axes communs.</p>
       <p><strong>Fil rouge :</strong> l'écart principal ne se joue pas entre un espace livré et un espace non livré, mais entre un espace simplement aménagé et un espace réellement mis en vie par les usages.</p>
     </section>
 
@@ -111,14 +97,14 @@
         <h2>Comparaison par axe</h2>
         <div class="subtitle">Lecture plus précise des écarts entre jurys</div>
         <canvas id="barChart" role="img" aria-label="Histogramme horizontal comparant les scores par axe pour les jurys 2017, 2018 et 2021."></canvas>
-        <p class="chart-note">Ce graphique complète le radar et permet de comparer plus finement les écarts entre cohortes sur chacun des cinq axes.</p>
+        <p class="chart-note">Ce graphique complète le radar et permet de comparer plus finement les écarts entre jurys sur chacun des cinq axes.</p>
         <p class="chart-summary" id="summary-bar"></p>
       </article>
     </section>
 
     <section class="card card-full" aria-label="Méthodologie et axes d'analyse" style="margin-top:24px;">
       <h2>Méthode d'analyse</h2>
-      <div class="subtitle">Une base commune pour comparer les cohortes de jury</div>
+      <div class="subtitle">Une base commune pour lire les jurys de manière cohérente</div>
       <div class="method-grid">
         <div>
           <h3>5 axes communs</h3>
@@ -136,32 +122,32 @@
         </div>
         <div>
           <h3>Logique de lecture</h3>
-          <p>La page donne d'abord une lecture transversale par cohorte, puis descend vers les écarts entre établissements et enfin vers le détail propre à chaque jury.</p>
+          <p>La page donne d'abord une lecture transversale par année de jury, puis descend vers les écarts entre établissements et enfin vers le détail propre à chaque jury.</p>
         </div>
       </div>
     </section>
 
     <section class="section" id="points-cles">
       <h2>Points clés transversaux</h2>
-      <p>Les constats récurrents à l'échelle des cohortes, avant le détail par jury.</p>
+      <p>Les constats récurrents à l'échelle des jurys, avant le détail par jury.</p>
       <div class="section-line"></div>
     </section>
 
-    <section class="card maturity-card" aria-label="Lecture par maturité des projets">
-      <h2>Lecture par maturité</h2>
-      <div class="subtitle">Les cohortes ne racontent pas la même chose selon leur stade d'avancement</div>
+    <section class="card maturity-card" aria-label="Lecture par jury des projets">
+      <h2>Lecture par jury</h2>
+      <div class="subtitle">Repères de lecture propres à chaque jury</div>
       <div class="maturity-grid">
         <div>
           <h3>Jury 2017</h3>
-          <p>Cohorte historique observée avec plus de recul sur les usages réels et leur diffusion interne.</p>
+          <p>Projets plus anciens, documentés avec davantage de recul sur les usages réels, leur diffusion interne et leurs limites persistantes.</p>
         </div>
         <div>
           <h3>Jury 2018</h3>
-          <p>Projets en clôture, utiles pour lire la stabilisation, les acquis durables et les limites qui subsistent.</p>
+          <p>Projets documentés en clôture, avec une lecture plus stabilisée des usages, des acquis durables et des limites encore présentes.</p>
         </div>
         <div>
           <h3>Jury 2021</h3>
-          <p>Projets en mi-parcours, pertinents pour lire la dynamique d'appropriation et les besoins de consolidation.</p>
+          <p>Projets documentés en mi-parcours, qui montrent surtout la dynamique d'appropriation et les besoins de consolidation.</p>
         </div>
       </div>
     </section>
@@ -169,7 +155,7 @@
     <section class="grid-2" aria-label="Synthèse transversale globale">
       <article class="card">
         <h2 class="section-title-pos">Points forts globaux</h2>
-        <div class="subtitle">Les tendances positives les plus récurrentes d'une cohorte à l'autre</div>
+        <div class="subtitle">Les tendances positives les plus récurrentes d'un jury à l'autre</div>
         <div class="timeline" id="tl-global-pos"></div>
       </article>
       <article class="card">
@@ -179,7 +165,7 @@
       </article>
     </section>
 
-    <section class="grid-2" style="margin-top:24px" aria-label="Évolutions entre cohortes">
+    <section class="grid-2" style="margin-top:24px" aria-label="Évolutions entre jurys">
       <article class="card">
         <h2>Évolution moyenne globale</h2>
         <div class="subtitle">Moyenne des cinq axes pour chaque jury</div>
@@ -196,7 +182,7 @@
 
     <section class="section" id="etablissements">
       <h2>Scores par établissement</h2>
-      <p>Lecture détaillée des scores par établissement, regroupés par jury et à interpréter comme des repères qualitatifs.</p>
+      <p>Lecture détaillée des scores par établissement, regroupés par jury et à interpréter comme des repères qualitatifs. Seuls les collèges documentés de manière exploitable sont affichés.</p>
       <div class="section-line"></div>
     </section>
 
@@ -204,18 +190,19 @@
       <p><strong>Important :</strong> les scores affichés restent des repères qualitatifs de lecture. Ils ne mesurent ni la performance scolaire ni la réussite globale d'un établissement.</p>
       <p><strong>Lecture :</strong> les écarts entre collèges doivent être lus comme des différences d'appropriation, de contexte et de mise en oeuvre, pas comme un classement de performance.</p>
       <p><strong>Point de vigilance :</strong> un même collège peut apparaître dans plusieurs jurys quand il porte plusieurs projets distincts, comme Pierre et Marie Curie.</p>
+      <p><strong>Règle d'affichage :</strong> les tableaux ci-dessous montrent uniquement les établissements pour lesquels une base qualitative suffisamment précise est disponible.</p>
     </section>
 
     <section class="card" aria-label="Tables des scores par établissement">
       <p class="table-intro">Les écarts entre établissements restent surtout visibles sur l'appropriation des espaces, l'organisation des enseignements et la capacité des équipes à faire vivre les usages dans la durée.</p>
       <div class="tabs" role="tablist" aria-label="Choix du jury">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab2017" id="tabbtn2017" tabindex="0">Jury 2017 - 5 collèges</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2018" id="tabbtn2018" tabindex="-1">Jury 2018 - 4 collèges</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2021" id="tabbtn2021" tabindex="-1">Jury 2021 - 4 collèges</button>
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab2017" id="tabbtn2017" tabindex="0">Jury 2017</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2018" id="tabbtn2018" tabindex="-1">Jury 2018</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2021" id="tabbtn2021" tabindex="-1">Jury 2021</button>
       </div>
 
       <div id="tab2017" class="tab-pane active" role="tabpanel" aria-labelledby="tabbtn2017">
-        <p class="table-meta">Jury 2017 - cohorte historique. La lecture porte sur des projets plus anciens, avec davantage de recul sur les usages réels.</p>
+        <p class="table-meta">Jury 2017 - projets plus anciens, documentés dans l'analyse 2023. La lecture porte sur des usages observés avec davantage de recul.</p>
         <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour le jury 2017, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
@@ -235,7 +222,7 @@
       </div>
 
       <div id="tab2018" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2018" hidden>
-        <p class="table-meta">Jury 2018 - projets observés en clôture. Cette cohorte permet de lire les acquis stabilisés et les limites qui persistent à la fin des projets.</p>
+        <p class="table-meta">Jury 2018 - projets documentés dans l'analyse 2024 en mesure de clôture. Cette lecture met en évidence les acquis stabilisés et les limites qui persistent en fin de projet.</p>
         <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour le jury 2018, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
@@ -255,7 +242,7 @@
       </div>
 
       <div id="tab2021" class="tab-pane" role="tabpanel" aria-labelledby="tabbtn2021" hidden>
-        <p class="table-meta">Jury 2021 - projets observés à mi-parcours. La lecture met davantage l'accent sur la dynamique d'appropriation et les besoins de consolidation.</p>
+        <p class="table-meta">Jury 2021 - projets documentés dans l'analyse 2024 en mesure de mi-parcours. La lecture met davantage l'accent sur la dynamique d'appropriation et les besoins de consolidation.</p>
         <div class="table-scroll" tabindex="0" aria-label="Tableau des scores par établissement pour le jury 2021, défilement horizontal disponible">
         <table class="heat-table">
           <thead>
@@ -277,7 +264,7 @@
 
     <section class="section" id="details">
       <h2>Détail par jury</h2>
-      <p>Ce niveau de lecture permet de retrouver les constats propres à chaque cohorte.</p>
+      <p>Ce niveau de lecture permet de retrouver les constats propres à chaque jury affiché.</p>
       <div class="section-line"></div>
     </section>
 
@@ -286,7 +273,7 @@
       <div class="accordion-years">
         <details class="year-detail">
           <summary>Jury 2017</summary>
-          <p class="year-summary">La cohorte 2017 donne une lecture de projets historiques, avec plus de recul sur les usages, les transformations réelles et les limites persistantes.</p>
+          <p class="year-summary">Le jury 2017 donne une lecture de projets historiques, documentés plus tard dans l'analyse 2023, avec plus de recul sur les usages, les transformations réelles et les limites persistantes.</p>
           <div class="grid-2 detail-grid detail-panel">
             <div>
               <h3 class="detail-col-title section-title-pos">Points positifs</h3>
@@ -301,7 +288,7 @@
 
         <details class="year-detail">
           <summary>Jury 2018</summary>
-          <p class="year-summary">La cohorte 2018 correspond ici à des projets observés en clôture. Elle met bien en évidence les acquis durables, mais aussi les limites d'usage qui subsistent.</p>
+          <p class="year-summary">Le jury 2018 est documenté dans l'analyse 2024 en mesure de clôture. Il met bien en évidence les acquis durables, mais aussi les limites d'usage qui subsistent.</p>
           <div class="grid-2 detail-grid detail-panel">
             <div>
               <h3 class="detail-col-title section-title-pos">Points positifs</h3>
@@ -316,7 +303,7 @@
 
         <details class="year-detail">
           <summary>Jury 2021</summary>
-          <p class="year-summary">La cohorte 2021 est lue à mi-parcours. Elle montre surtout les dynamiques d'appropriation en cours et les besoins d'accompagnement encore présents.</p>
+          <p class="year-summary">Le jury 2021 est documenté dans l'analyse 2024 en mesure de mi-parcours. Il montre surtout les dynamiques d'appropriation en cours et les besoins d'accompagnement encore présents.</p>
           <div class="grid-2 detail-grid detail-panel">
             <div>
               <h3 class="detail-col-title section-title-pos">Points positifs</h3>

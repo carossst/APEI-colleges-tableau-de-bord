@@ -1,4 +1,50 @@
 {
+  "sourcePolicy": {
+    "readingKey": "jury",
+    "publishedCohorts": [
+      "2017",
+      "2018",
+      "2021"
+    ],
+    "displayRule": "Ne publier que les jurys et etablissements disposant d'une base qualitative exploitable sur les cinq axes.",
+    "priority": [
+      "Rapports PDF d'analyse",
+      "Analyses detaillees redigees",
+      "Classeurs d'extraction",
+      "matrice-globale.json"
+    ]
+  },
+  "cohortMeta": {
+    "2017": {
+      "label": "Jury 2017",
+      "documentationBasis": "Documente par l'analyse 2023",
+      "publicationStatus": "published",
+      "scopeNote": "Cohorte historique documentee dans l'analyse 2023 sur cinq etablissements exploitables.",
+      "sources": [
+        "2023_Analyse_impact_qualitative_Valdoise.pptx.pdf"
+      ]
+    },
+    "2018": {
+      "label": "Jury 2018",
+      "documentationBasis": "Documente par l'analyse 2024 - mesure de cloture",
+      "publicationStatus": "published",
+      "scopeNote": "Cohorte de cloture 2018 documentee dans l'analyse 2024 sur quatre etablissements exploitables.",
+      "sources": [
+        "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
+        "analyse_scores_2024.md"
+      ]
+    },
+    "2021": {
+      "label": "Jury 2021",
+      "documentationBasis": "Documente par l'analyse 2024 - mesure de mi-parcours",
+      "publicationStatus": "published",
+      "scopeNote": "Cohorte en mi-parcours documentee dans l'analyse 2024 sur quatre etablissements exploitables.",
+      "sources": [
+        "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
+        "analyse_scores_2024.md"
+      ]
+    }
+  },
   "axes": [
     {
       "label": "Transformation des espaces",
@@ -54,7 +100,9 @@
           2
         ],
         "jury": "2017",
-        "statut": "Cohorte historique"
+        "statut": "Cohorte historique",
+        "sourceRef": "Analyse 2023 - matrice individuelle",
+        "scoreStatus": "documente"
       },
       {
         "nom": "Epine Guyon",
@@ -67,7 +115,9 @@
           1.5
         ],
         "jury": "2017",
-        "statut": "Cohorte historique"
+        "statut": "Cohorte historique",
+        "sourceRef": "Analyse 2023 - matrice individuelle",
+        "scoreStatus": "documente"
       },
       {
         "nom": "Georges Charpak",
@@ -80,7 +130,9 @@
           1.5
         ],
         "jury": "2017",
-        "statut": "Cohorte historique"
+        "statut": "Cohorte historique",
+        "sourceRef": "Analyse 2023 - matrice individuelle",
+        "scoreStatus": "documente"
       },
       {
         "nom": "Pierre et Marie Curie",
@@ -93,7 +145,9 @@
           1.5
         ],
         "jury": "2017",
-        "statut": "Cohorte historique"
+        "statut": "Cohorte historique",
+        "sourceRef": "Analyse 2023 - matrice individuelle",
+        "scoreStatus": "documente"
       },
       {
         "nom": "L'Ardillière-de-Nézant",
@@ -106,7 +160,9 @@
           3
         ],
         "jury": "2017",
-        "statut": "Cohorte historique"
+        "statut": "Cohorte historique",
+        "sourceRef": "Analyse 2023 - matrice individuelle",
+        "scoreStatus": "documente"
       }
     ],
     "2018": [
@@ -121,7 +177,9 @@
           2.5
         ],
         "jury": "2018",
-        "statut": "Clôture"
+        "statut": "Clôture",
+        "sourceRef": "Analyse 2024 - reconstitution argumentee",
+        "scoreStatus": "reconstitue"
       },
       {
         "nom": "Paul Vaillant Couturier",
@@ -134,7 +192,9 @@
           1.5
         ],
         "jury": "2018",
-        "statut": "Clôture"
+        "statut": "Clôture",
+        "sourceRef": "Analyse 2024 - reconstitution argumentee",
+        "scoreStatus": "reconstitue"
       },
       {
         "nom": "Pablo Picasso",
@@ -147,7 +207,9 @@
           2
         ],
         "jury": "2018",
-        "statut": "Clôture"
+        "statut": "Clôture",
+        "sourceRef": "Analyse 2024 - reconstitution argumentee",
+        "scoreStatus": "reconstitue"
       },
       {
         "nom": "Les Hautiers",
@@ -160,7 +222,9 @@
           2.5
         ],
         "jury": "2018",
-        "statut": "Clôture"
+        "statut": "Clôture",
+        "sourceRef": "Analyse 2024 - reconstitution argumentee",
+        "scoreStatus": "reconstitue"
       }
     ],
     "2021": [
@@ -175,7 +239,9 @@
           2
         ],
         "jury": "2021",
-        "statut": "Mi-parcours"
+        "statut": "Mi-parcours",
+        "sourceRef": "Analyse 2024 - reconstitution argumentee",
+        "scoreStatus": "reconstitue"
       },
       {
         "nom": "Montesquieu",
@@ -188,7 +254,9 @@
           2
         ],
         "jury": "2021",
-        "statut": "Mi-parcours"
+        "statut": "Mi-parcours",
+        "sourceRef": "Analyse 2024 - reconstitution argumentee",
+        "scoreStatus": "reconstitue"
       },
       {
         "nom": "Jean-Claude Chabanne",
@@ -201,7 +269,9 @@
           1.5
         ],
         "jury": "2021",
-        "statut": "Mi-parcours"
+        "statut": "Mi-parcours",
+        "sourceRef": "Analyse 2024 - reconstitution argumentee",
+        "scoreStatus": "reconstitue"
       },
       {
         "nom": "Nicolas Flamel",
@@ -214,7 +284,9 @@
           2
         ],
         "jury": "2021",
-        "statut": "Mi-parcours"
+        "statut": "Mi-parcours",
+        "sourceRef": "Analyse 2024 - reconstitution argumentee",
+        "scoreStatus": "reconstitue"
       }
     ]
   },
@@ -325,11 +397,11 @@
     },
     {
       "titre": "Les effets élèves sont les plus visibles",
-      "detail": "Autonomie, engagement, climat scolaire et travail en groupe ressortent dans toutes les cohortes."
+      "detail": "Autonomie, engagement, climat scolaire et travail en groupe ressortent dans tous les jurys documentés."
     },
     {
       "titre": "Les projets mûrissent à des rythmes différents",
-      "detail": "Les cohortes ne se lisent pas pareil selon qu’elles sont historiques, en clôture ou en mi-parcours."
+      "detail": "Les jurys ne se lisent pas de la même manière selon qu'ils sont documentés avec plus de recul, en clôture ou en mi-parcours."
     },
     {
       "titre": "L’appropriation reste le vrai sujet",
@@ -357,11 +429,11 @@
   "pageIntro": {
     "context": {
       "title": "Ce que présente cette page",
-      "text": "Cette page propose une lecture transversale des projets APEI par cohorte de jury. Elle regroupe les établissements selon leur année de lauréat afin de comparer des situations plus homogènes : cohorte historique 2017, clôture des projets 2018 et mi-parcours des projets 2021."
+      "text": "Cette page propose une lecture transversale des projets APEI regroupés par année de jury, avant le détail par établissement. Seuls les collèges pour lesquels une analyse qualitative exploitable permet de renseigner les cinq axes sont affichés."
     },
     "method": {
       "title": "Comment lire la matrice",
-      "text": "La lecture repose sur cinq axes communs : transformation des espaces, organisation des enseignements, usage des outils numériques, relation aux élèves et relation avec les autres parties prenantes. Les scores sont agrégés par cohorte de jury pour produire une comparaison cohérente entre groupes de projets."
+      "text": "La matrice présente cinq axes communs, notés sur une échelle de 1 à 4. Les mentions Analyse APEI 2023 et Analyse APEI 2024 renvoient aux documents d'analyse cités, tandis que la comparaison porte ici sur les jurys 2017, 2018 et 2021."
     }
   }
 }

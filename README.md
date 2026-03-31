@@ -1,6 +1,12 @@
 # Dashboard APEI Val d'Oise
 
-Dashboard statique de lecture transversale des analyses qualitatives APEI 2021, 2023 et 2024.
+Dashboard statique de lecture transversale des projets APEI compares par annee de jury 2017, 2018 et 2021.
+
+Important :
+- les annees de jury affichees dans la page correspondent aux cohortes de projets comparees
+- les mentions "Analyse APEI 2023" ou "Analyse APEI 2024" presentes dans certaines citations correspondent aux documents d'analyse sources, pas aux jurys compares
+- la page n'affiche que les colleges disposant d'une base qualitative suffisamment exploitable pour renseigner les cinq axes
+- ne pas ajouter un laureat dans l'interface tant que ses scores ne sont pas documentes de maniere verifiable
 
 ## Finalite du code
 
@@ -21,6 +27,27 @@ Le code doit prioriser :
 - `matrice-globale.json` : donnees affichees dans la page
 - `favicon-32.png` : favicon
 
+## Hierarchie des sources a utiliser
+
+La page reste organisee par annee de jury. Les annees d'analyse servent a documenter ces jurys, pas a structurer l'interface.
+
+Ordre de priorite :
+- `matrice-globale.json` = source affichee dans le site, a modifier seulement avec appui d'une source verifiable
+- rapports d'analyse exportes en PDF = source principale pour confirmer le perimetre des colleges, les formulations et les matrices globales
+- fichiers d'analyse detaillee rediges en Markdown = source privilegiee pour les scores par axe quand ils explicitent la methode et justifient les notes
+- classeurs d'extraction = source de travail utile, mais a utiliser avec prudence si leurs scores reconstruits ne sont pas explicitement confirmes dans les rapports
+
+Regle de lecture actuelle par jury :
+- jury 2017 : jury documente par l'analyse 2023 ; s'appuyer d'abord sur `2023_Analyse_impact_qualitative_Valdoise.pptx.pdf`
+- jury 2018 : jury documente par l'analyse 2024 en mesure de cloture ; s'appuyer sur `V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf` pour le perimetre et les moyennes globales, puis sur `analyse_scores_2024.md` pour les scores par axe par college
+- jury 2019 : jury documente dans l'analyse 2021 quand un college est effectivement couvert ; s'appuyer sur `20210727_Valdoise_Lab2034_Analyse_impact_quali_Livrable.pptx.pdf`
+- jury 2021 : jury documente par l'analyse 2024 en mesure de mi-parcours ; s'appuyer sur `V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf` pour le perimetre et les moyennes globales, puis sur `analyse_scores_2024.md` pour les scores par axe par college
+
+Point de vigilance :
+- le fichier `extraction_donnees_valdoise.xlsx` contient des feuilles de travail utiles mais certaines valeurs 2024 ne sont pas strictement alignees avec `analyse_scores_2024.md`
+- si une divergence apparait en 2024 entre le classeur et le Markdown detaille, privilegier le Markdown detaille tant qu'aucune source plus forte ne vient le contredire explicitement
+- ne pas afficher un college absent ou incomplet tant qu'aucune source exploitable ne permet de renseigner les cinq axes
+
 ## Principes de developpement a conserver
 
 ### 1. Rester en site statique simple
@@ -30,7 +57,7 @@ Le code doit prioriser :
 - Code lisible, modifiable rapidement, compatible GitHub Pages
 
 ### 2. Ne pas changer le cadrage editorial sans raison forte
-- La page est une analyse transversale 2021 / 2023 / 2024
+- La page est une analyse transversale par jury 2017 / 2018 / 2021
 - L'ouverture doit rester institutionnelle et sobre
 - Ne pas retransformer la page en dashboard marketing ou en page promotionnelle
 - Eviter les blocs demonstratifs, gadgets ou sur-signaux visuels

@@ -250,6 +250,7 @@ a {
 }
 
 
+
 @media (max-width: 900px) {
   .grid-2,
   .intro-grid,
@@ -420,6 +421,7 @@ a {
   border: none;
   min-width: 220px;
 }
+
 
 .score-cell {
   min-width: 78px;
