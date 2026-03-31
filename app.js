@@ -61,12 +61,12 @@ function showLoadError() {
   const el = document.getElementById('data-load-error');
   if (!el) return;
   el.hidden = false;
-  el.innerHTML = '<p><strong>Chargement impossible :</strong> les données n\'ont pas pu être chargées. Vérifier la présence du fichier <code>matrice-globale.json</code> et les chemins de déploiement.</p>';
+  el.innerHTML = '<p><strong>Chargement impossible:</strong> les données n\'ont pas pu être chargées. Vérifier la présence du fichier <code>matrice-globale.json</code> et les chemins de déploiement.</p>';
 }
 
 function fillFallbackIntro() {
   setText('frame-summary', "Le périmètre des collèges analysés n'est pas disponible tant que les données ne sont pas chargées.");
-  setText('scope-counts', "Périmètre affiché : les totaux ne sont pas disponibles tant que les données ne sont pas chargées.");
+  setText('scope-counts', "Périmètre affiché: les totaux ne sont pas disponibles tant que les données ne sont pas chargées.");
 }
 
 function fillFallbackSummaries() {
@@ -81,7 +81,7 @@ function writeScopeCounts(data) {
   const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
   const collegeCount = uniqueColleges.size;
   const projectCount = items.length;
-  setText('scope-counts', `Périmètre affiché : ${collegeCount} collèges et ${projectCount} projets affichés sur les jurys 2017, 2018 et 2021.`);
+  setText('scope-counts', `Périmètre affiché: ${collegeCount} collèges et ${projectCount} projets affichés sur les jurys 2017, 2018 et 2021.`);
 }
 
 function writeFrameSummary(data) {
@@ -89,7 +89,7 @@ function writeFrameSummary(data) {
   const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
   const collegeCount = uniqueColleges.size;
   const projectCount = items.length;
-  setText('frame-summary', `Cette page présente les projets APEI par année de jury, avec ${collegeCount} collèges et ${projectCount} projets affichés. Pour chaque jury, le cadre indique les collèges concernés, le projet, son type et le stade observé.`);
+  setText('frame-summary', `${collegeCount} collèges et ${projectCount} projets affichés. Dans la lecture 2024, 4 collèges du jury 2018 sont observés en clôture et 4 collèges du jury 2021 en mi-parcours.`);
 
   const container = document.getElementById('frame-cohorts');
   if (!container) return;
@@ -98,32 +98,21 @@ function writeFrameSummary(data) {
   COHORTS.forEach((cohort) => {
     const meta = data.cohortMeta?.[cohort] || {};
     const list = Array.isArray(data.cohorts?.[cohort]) ? data.cohorts[cohort] : [];
-    const unique = new Set(list.map((item) => `${item.nom}||${item.ville}`));
-    const juryYear = String(cohort);
     const description = meta.description || '';
-    const startYear = meta.startYear || 'n.d.';
-    const observedEndYear = meta.observedEndYear || 'n.d.';
 
     const article = document.createElement('article');
     article.className = 'frame-item';
     article.innerHTML = `
-      <h3>${escapeHtml(meta.label || `Jury ${juryYear}`)}</h3>
+      <h3>${escapeHtml(meta.label || `Projets du jury ${cohort}`)}</h3>
       <p class="frame-desc">${escapeHtml(description)}</p>
-      <ul class="frame-meta-list">
-        <li><strong>Collèges :</strong> ${escapeHtml(String(unique.size))}</li>
-        <li><strong>Projets :</strong> ${escapeHtml(String(list.length))}</li>
-        <li><strong>Année de jury :</strong> ${escapeHtml(juryYear)}</li>
-        <li><strong>Année de début :</strong> ${escapeHtml(startYear)}</li>
-        <li><strong>Stade observé :</strong> ${escapeHtml(observedEndYear)}</li>
-      </ul>
       <ul class="frame-project-list">
-      ${list.map((item) => `<li><strong>${escapeHtml(item.nom)}</strong>${item.project ? ` : ${escapeHtml(item.project)}` : ''}${item.projectDetail ? `<span class="frame-project-detail">${escapeHtml(item.projectDetail)}</span>` : ''}${item.projectType ? `<span class="frame-project-type">${escapeHtml(item.projectType)}</span>` : ''}</li>`).join('')}
+      ${list.map((item) => `<li><strong>${escapeHtml(item.nom)}</strong>${item.project ? `: ${escapeHtml(item.project)}` : ''}${item.projectDetail ? `<span class="frame-project-detail">${escapeHtml(item.projectDetail)}</span>` : ''}${item.projectType ? `<span class="frame-project-type">${escapeHtml(item.projectType)}</span>` : ''}</li>`).join('')}
       </ul>
       ${cohort === '2021' && data.analysisYears?.['2021']?.ulis ? `
         <div class="analysis-subgroup">
           <h4>${escapeHtml(data.analysisYears['2021'].ulis.label || 'Dispositif ULIS')}</h4>
           <p class="frame-desc">${escapeHtml(data.analysisYears['2021'].ulis.note || '')}</p>
-          <p class="frame-desc">Projet : ${escapeHtml(data.analysisYears['2021'].ulis.project || '')}</p>
+          <p class="frame-desc">Projet: ${escapeHtml(data.analysisYears['2021'].ulis.project || '')}</p>
           <ul class="frame-project-list">
             ${(Array.isArray(data.analysisYears['2021'].ulis.establishments) ? data.analysisYears['2021'].ulis.establishments : []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
@@ -281,7 +270,7 @@ function createRadarChart(data) {
         },
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
+            label: (ctx) => `${ctx.dataset.label}: ${Number(ctx.raw).toFixed(1)} /4`
           }
         }
       }
@@ -350,7 +339,7 @@ function createBarChart(data) {
         },
         tooltip: {
           callbacks: {
-            label: (ctx) => `${ctx.dataset.label} : ${Number(ctx.raw).toFixed(1)} /4`
+            label: (ctx) => `${ctx.dataset.label}: ${Number(ctx.raw).toFixed(1)} /4`
           }
         }
       }
@@ -462,7 +451,7 @@ function heatClass(value) {
 }
 
 function buildHeatmapTables(data) {
-  buildTable('tbody2017', data.cohorts?.['2017'], 'Cohorte historique');
+  buildTable('tbody2017', data.cohorts?.['2017'], '');
   buildTable('tbody2018', data.cohorts?.['2018'], 'Clôture');
   buildTable('tbody2021', data.cohorts?.['2021'], 'Mi-parcours');
 }
@@ -479,7 +468,8 @@ function buildTable(id, list, defaultStatus = '') {
 
     const nameCell = document.createElement('td');
     nameCell.className = 'name';
-    const status = item.statut || defaultStatus;
+    const rawStatus = item.statut || defaultStatus;
+    const status = /historique/i.test(rawStatus) ? '' : rawStatus;
     nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)} - Jury ${escapeHtml(item.jury || '')}${status ? ` - ${escapeHtml(status)}` : ''}</small>`;
     row.appendChild(nameCell);
 
@@ -522,7 +512,7 @@ function renderTimeline(items, containerId, type) {
         <div class="tl-content">
           <strong>${escapeHtml(item.titre)}</strong>
           <p>${escapeHtml(item.detail)}</p>
-          ${item.role && item.citation ? `<div class="src"><strong>${escapeHtml(item.role)} :</strong> "${escapeHtml(item.citation)}"</div>` : ''}
+          ${item.role && item.citation ? `<div class="src"><strong>${escapeHtml(item.role)}:</strong> "${escapeHtml(item.citation)}"</div>` : ''}
         </div>
       </div>`;
   });
@@ -534,11 +524,6 @@ function buildTimelines(data) {
 
   renderTimeline(globalPos, 'tl-global-pos', 'pos');
   renderTimeline(globalNeg, 'tl-global-neg', 'neg');
-
-  COHORTS.forEach((cohort) => {
-    renderTimeline((data.pointsPositifs || []).filter((item) => item.jury === cohort), `tl-pos-${cohort}`, 'pos');
-    renderTimeline((data.difficultes || []).filter((item) => item.jury === cohort), `tl-neg-${cohort}`, 'neg');
-  });
 }
 
 function writeChartSummaries(data) {
@@ -551,9 +536,9 @@ function writeChartSummaries(data) {
   const avg2021 = averageAxisValue(data.axes, '2021').toFixed(1);
 
   setText('summary-radar', `À l'échelle des trois jurys affichés, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
-  setText('summary-bar', `La comparaison par axe confirme une structure globalement stable : des acquis durables sur les espaces, des évolutions plus contrastées sur les autres axes et une fragilité persistante sur la relation avec les autres parties prenantes.`);
-  setText('summary-line', `La moyenne globale reste proche d'un groupe de projets à l'autre : ${avg2017} /4 pour les projets sélectionnés en 2017, ${avg2018} /4 pour les projets sélectionnés en 2018 et ${avg2021} /4 pour les projets sélectionnés en 2021.`);
-  setText('summary-line-axes', `La lecture par axe doit être interprétée avec prudence : les projets sélectionnés en 2017, 2018 et 2021 ne sont pas observés au même stade. Le graphique aide à repérer des écarts de profil, sans les lire comme une trajectoire linéaire unique.`);
+  setText('summary-bar', `La comparaison par axe confirme une structure globalement stable: des acquis durables sur les espaces, des évolutions plus contrastées sur les autres axes et une fragilité persistante sur la relation avec les autres parties prenantes.`);
+  setText('summary-line', `La moyenne globale reste proche d'un groupe de projets à l'autre: ${avg2017} /4 pour les projets sélectionnés en 2017, ${avg2018} /4 pour les projets sélectionnés en 2018 et ${avg2021} /4 pour les projets sélectionnés en 2021.`);
+  setText('summary-line-axes', `La lecture par axe doit être interprétée avec prudence: les projets sélectionnés en 2017, 2018 et 2021 ne sont pas observés au même stade. Le graphique aide à repérer des écarts de profil, sans les lire comme une trajectoire linéaire unique.`);
 }
 
 function averageAcrossCohorts(values) {

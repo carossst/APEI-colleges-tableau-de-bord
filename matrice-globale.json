@@ -6,7 +6,7 @@
       "2018",
       "2021"
     ],
-    "displayRule": "Ne publier que les jurys et etablissements disposant d'une base qualitative exploitable sur les cinq axes.",
+    "displayRule": "Ne publier que les jurys et établissements disposant d'une base qualitative exploitable sur les cinq axes.",
     "priority": [
       "Rapports PDF d'analyse",
       "Analyses detaillees redigees",
@@ -16,44 +16,44 @@
   },
   "cohortMeta": {
     "2017": {
-      "label": "Jury 2017",
-      "description": "5 collèges.",
+      "label": "Projets du jury 2017",
+      "description": "5 collèges du jury 2017, observés en bilan.",
       "startYear": "2017/2018",
       "analysisYear": "2023",
       "analysisType": "historique",
       "observedEndYear": "historique",
-      "documentationBasis": "Documente par l'analyse 2023",
+      "documentationBasis": "Documenté par l'analyse 2023",
       "publicationStatus": "published",
-      "scopeNote": "Cohorte historique analysee dans l'analyse 2023 sur cinq etablissements exploitables.",
+      "scopeNote": "Cohorte historique analysée dans l'analyse 2023 sur cinq établissements exploitables.",
       "sources": [
         "2023_Analyse_impact_qualitative_Valdoise.pptx.pdf"
       ]
     },
     "2018": {
-      "label": "Jury 2018",
-      "description": "4 collèges.",
+      "label": "Projets du jury 2018",
+      "description": "4 collèges du jury 2018, observés en clôture.",
       "startYear": "2018",
       "analysisYear": "2024",
       "analysisType": "clôture",
       "observedEndYear": "clôture observée",
-      "documentationBasis": "Documente par l'analyse 2024 - mesure de cloture",
+      "documentationBasis": "Documenté par l'analyse 2024 - mesure de clôture",
       "publicationStatus": "published",
-      "scopeNote": "Cohorte de cloture 2018 analysee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
+      "scopeNote": "Cohorte de clôture 2018 analysée dans l'analyse 2024, qui couvre huit établissements au total, dont quatre dans cette cohorte.",
       "sources": [
         "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
         "analyse_scores_2024.md"
       ]
     },
     "2021": {
-      "label": "Jury 2021",
-      "description": "4 collèges.",
+      "label": "Projets du jury 2021",
+      "description": "4 collèges du jury 2021, observés en mi-parcours.",
       "startYear": "2021",
       "analysisYear": "2024",
       "analysisType": "mi-parcours",
       "observedEndYear": "mi-parcours observé",
-      "documentationBasis": "Documente par l'analyse 2024 - mesure de mi-parcours",
+      "documentationBasis": "Documenté par l'analyse 2024 - mesure de mi-parcours",
       "publicationStatus": "published",
-      "scopeNote": "Cohorte en mi-parcours analysee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
+      "scopeNote": "Cohorte en mi-parcours analysée dans l'analyse 2024, qui couvre huit établissements au total, dont quatre dans cette cohorte.",
       "sources": [
         "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
         "analyse_scores_2024.md"
@@ -210,9 +210,9 @@
     "2017": [
       {
         "nom": "Ariane",
-        "project": "Creer un fablab",
+        "project": "Créer un fablab",
         "projectDetail": "FabLab, Web Radio, machines de fabrication",
-        "projectType": "Fablab / creativite",
+        "projectType": "Fablab / créativité",
         "ville": "Argenteuil",
         "scores": [
           3,
@@ -229,8 +229,8 @@
       {
         "nom": "Epine Guyon",
         "project": "Apprendre autrement",
-        "projectDetail": "Salle connectee, Web TV / Web Radio, iPads",
-        "projectType": "Transformation pedagogique",
+        "projectDetail": "Salle connectée, Web TV / Web Radio, iPads",
+        "projectType": "Transformation pédagogique",
         "ville": "Franconville",
         "scores": [
           3,
@@ -246,9 +246,9 @@
       },
       {
         "nom": "Georges Charpak",
-        "project": "Creer un fablab et des projets innovants",
-        "projectDetail": "FabLab, salle connectee, tableaux Velléda, iPads",
-        "projectType": "Fablab / creativite",
+        "project": "Créer un fablab et des projets innovants",
+        "projectDetail": "FabLab, salle connectée, tableaux Velléda, iPads",
+        "projectType": "Fablab / créativité",
         "ville": "Goussainville",
         "scores": [
           3,
@@ -264,9 +264,9 @@
       },
       {
         "nom": "Pierre et Marie Curie",
-        "project": "Approche differente de la pedagogie",
-        "projectDetail": "Salle connectee, Web TV",
-        "projectType": "Transformation pedagogique",
+        "project": "Approche différente de la pédagogie",
+        "projectDetail": "Salle connectée, Web TV",
+        "projectType": "Transformation pédagogique",
         "ville": "L'Isle-Adam",
         "scores": [
           3,
@@ -284,7 +284,7 @@
         "nom": "L'Ardillière-de-Nézant",
         "project": "Apprendre autrement",
         "projectDetail": "Deux salles innovantes, Web TV, iPads, Velléda",
-        "projectType": "Transformation pedagogique",
+        "projectType": "Transformation pédagogique",
         "ville": "Saint-Brice-sous-Forêt",
         "scores": [
           4,
@@ -302,7 +302,7 @@
     "2018": [
       {
         "nom": "Eugénie Cotton",
-        "project": "Innover pour un climat apaise",
+        "project": "Innover pour un climat apaisé",
         "projectDetail": "Ludospace, Workspace, Zenspace, Creaspace, Mediaspace",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Argenteuil",
@@ -322,7 +322,7 @@
         "nom": "Paul Vaillant Couturier",
         "project": "Enseigner et apprendre ensemble",
         "projectDetail": "Espaces d'apprentissage collaboratif",
-        "projectType": "Transformation pedagogique",
+        "projectType": "Transformation pédagogique",
         "ville": "Argenteuil",
         "scores": [
           2,
@@ -338,8 +338,8 @@
       },
       {
         "nom": "Pablo Picasso",
-        "project": "Innover pour un climat apaise",
-        "projectDetail": "Espaces modulables, tablettes, usages oraux et video",
+        "project": "Innover pour un climat apaisé",
+        "projectDetail": "Espaces modulables, tablettes, usages oraux et vidéo",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Éragny",
         "scores": [
@@ -356,7 +356,7 @@
       },
       {
         "nom": "Les Hautiers",
-        "project": "Innover pour un climat apaise",
+        "project": "Innover pour un climat apaisé",
         "projectDetail": "Salle polyvalente, Web TV / Web Radio",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Marines",
@@ -376,8 +376,8 @@
     "2021": [
       {
         "nom": "Pierre et Marie Curie",
-        "project": "Innover pour un climat apaise",
-        "projectDetail": "Espaces de permanence et de travail, salle connectee",
+        "project": "Innover pour un climat apaisé",
+        "projectDetail": "Espaces de permanence et de travail, salle connectée",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "L'Isle-Adam",
         "scores": [
@@ -394,8 +394,8 @@
       },
       {
         "nom": "Montesquieu",
-        "project": "Innover pour un climat apaise",
-        "projectDetail": "Salle modulable et usages numeriques",
+        "project": "Innover pour un climat apaisé",
+        "projectDetail": "Salle modulable et usages numériques",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Beauchamp",
         "scores": [
@@ -412,8 +412,8 @@
       },
       {
         "nom": "Jean-Claude Chabanne",
-        "project": "Innover pour un climat apaise",
-        "projectDetail": "Espaces calmes, travail autonome, usages numeriques",
+        "project": "Innover pour un climat apaisé",
+        "projectDetail": "Espaces calmes, travail autonome, usages numériques",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Pontoise",
         "scores": [
@@ -430,8 +430,8 @@
       },
       {
         "nom": "Nicolas Flamel",
-        "project": "Innover pour un climat apaise",
-        "projectDetail": "Espaces de travail et de permanence apaises",
+        "project": "Innover pour un climat apaisé",
+        "projectDetail": "Espaces de travail et de permanence apaisés",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Pontoise",
         "scores": [
@@ -598,28 +598,40 @@
   ],
   "pointsGlobaux": [
     {
-      "titre": "Les espaces seuls ne suffisent pas",
-      "detail": "L’impact dépend moins de la livraison d’un lieu que de sa mise en usage par les équipes.",
-      "role": "Principale adjointe",
-      "citation": "Pour le moment, cela n’a pas eu beaucoup d’impact au niveau pédagogique, cela n’a pas infusé suffisamment chez certains enseignants. Plusieurs professeurs se posent des questions parce qu’ils aiment bien les différents espaces et se demandent comment les adapter."
+      "titre": "Des espaces réellement utilisés dans plusieurs collèges",
+      "detail": "Dans plusieurs établissements, les espaces innovants sont entrés dans les usages et remplissent leur fonction auprès des élèves.",
+      "role": "Chef d’établissement",
+      "citation": "Les espaces sont utilisés et remplissent leur fonction première, c’est à dire apaiser le climat scolaire et permettre aux élèves de choisir ce qu’ils ont envie de faire pendant les temps de permanence."
     },
     {
       "titre": "Les effets élèves sont les plus visibles",
       "detail": "Autonomie, engagement, climat scolaire et travail en groupe ressortent dans tous les jurys analysés.",
-      "role": "Professeure",
-      "citation": "Nous voyons que les élèves sont heureux d’être ensemble lorsque nous réalisons ces projets, il y a une émulation positive. Le fait de travailler en petit groupe, ça permet à tout le monde de trouver sa place."
+      "role": "Élève de 3e",
+      "citation": "C’est bien, parce qu’on peut se mettre dans un coin de la salle et travailler en autonomie sur notre tableau puis poser des questions, alors que dans certains cours, il y en a qui n’osent pas lever la main pour poser des questions."
     },
     {
-      "titre": "L’appropriation reste le vrai sujet",
-      "detail": "Les écarts entre établissements tiennent surtout à la capacité à faire vivre les espaces dans la durée.",
-      "role": "Chef d’établissement",
-      "citation": "Les espaces sont utilisés et remplissent leur fonction première, c’est à dire apaiser le climat scolaire et permettre aux élèves de choisir ce qu’ils ont envie de faire pendant les temps de permanence."
+      "titre": "Des usages numériques appréciés quand ils sont intégrés aux cours",
+      "detail": "Quand les outils sont bien intégrés, ils rendent les apprentissages plus accessibles et plus motivants pour les élèves.",
+      "role": "Élève",
+      "citation": "Avec les tablettes on est plus à l’aise, plus autonome. Sur les cahiers si tu comprends pas, tu es un peu gêné, tu n'oses pas trop demander aux profs. Avec les tablettes tu peux juste relire, réécouter de ton côté."
     },
     {
       "titre": "Les projets changent la relation pédagogique",
       "detail": "Quand les enseignants investissent réellement les espaces, ils décrivent un rapport plus proche, plus mobile et plus engageant avec les élèves.",
       "role": "Professeure",
       "citation": "Aujourd’hui ça a du sens d’être en classe parce qu’il y a ce projet. Pour moi, ça a changé complètement la façon d’enseigner et c’est la raison qui fait que je suis encore devant des élèves aujourd’hui."
+    },
+    {
+      "titre": "Le travail en groupe et l’autonomie progressent",
+      "detail": "Les espaces modulables permettent plus facilement le travail en binôme, en petits groupes et des formes d’autonomie plus visibles.",
+      "role": "Élève de 3e",
+      "citation": "Ça permet d’apprendre dans de meilleures conditions. On s’investit plus dans le cours. Quand c’est plus amusant, on travaille sérieusement, oui on s’amuse mais on travaille quand même."
+    },
+    {
+      "titre": "Certaines pratiques pédagogiques évoluent réellement",
+      "detail": "Dans plusieurs collèges, des enseignants ont repris leurs séquences ou adapté leurs cours pour tirer parti des nouveaux espaces.",
+      "role": "Professeure",
+      "citation": "À partir du moment où j’ai été à plein temps dans cette salle, j’ai repris toutes mes séquences pour pouvoir justement intégrer beaucoup plus de choses qui étaient réalisables dans cet espace et avec le matériel."
     }
   ],
   "difficultesGlobales": [
@@ -652,6 +664,18 @@
       "detail": "Dans certains collèges, la diffusion des mallettes d’iPads réduit l’intérêt pratique des salles connectées quand elles ne sont pas reconfigurées.",
       "role": "Principale adjointe",
       "citation": "Aujourd’hui l’espace n’est plus intéressant pour certains collègues car ils ont les valises mobiles d’iPads. Ils se disent que maintenant qu’ils peuvent connecter les tablettes directement dans leur classe, ils n’ont pas besoin d’aller en salle connectée."
+    },
+    {
+      "titre": "Des espaces restent sous-utilisés",
+      "detail": "Dans plusieurs collèges, le potentiel des espaces est reconnu mais ils ne sont pas encore investis à leur juste niveau.",
+      "role": "Professeur",
+      "citation": "Je suis assez content, le bilan est bon, mais ce n’est pas exploité à 100%. Au niveau du temps et de ce qu’on pourrait en faire c’est exploité même pas à 50%."
+    },
+    {
+      "titre": "La dynamique dépend parfois d’un petit noyau moteur",
+      "detail": "Quand un projet repose sur quelques adultes seulement, sa continuité et sa diffusion dans l’établissement restent fragiles.",
+      "role": "Cheffe d’établissement",
+      "citation": "Certains professeurs qui ont porté le projet ont muté. La relève n’est pas encore complètement assurée : en terme de passage de flambeaux c’est toujours une difficulté."
     }
   ],
   "pageIntro": {

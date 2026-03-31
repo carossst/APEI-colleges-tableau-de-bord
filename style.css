@@ -286,8 +286,18 @@ a {
 }
 
 .analysis-subgroup h4 {
-  font-size: 1rem;
-  margin-bottom: 8px;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.analysis-subgroup .frame-desc {
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.analysis-subgroup .frame-project-list li {
+  font-size: 0.92rem;
+  margin-bottom: 4px;
 }
 
 .executive-summary-grid,

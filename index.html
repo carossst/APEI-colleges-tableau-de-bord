@@ -21,9 +21,8 @@
   <nav class="nav" aria-label="Navigation des sections">
     <a href="#vue-ensemble" class="active">Repères</a>
     <a href="#matrice">Matrice</a>
-    <a href="#points-cles">Éléments</a>
+    <a href="#points-cles">Enseignements</a>
     <a href="#etablissements">Établissements</a>
-    <a href="#details">Enseignements</a>
   </nav>
 
   <main id="main" class="container">
@@ -31,6 +30,18 @@
     <section class="section section-intro" id="vue-ensemble">
       <h2>Vue d'ensemble</h2>
       <div class="section-line"></div>
+    </section>
+
+    <section class="callout callout-neutral" aria-label="Présentation de la démarche">
+      <p>L’analyse qualitative vise à apprécier l’impact de cette démarche sur l’aménagement des salles de classe, l’évolution des postures d’enseignement, l’ouverture des établissements à de nouvelles formes de collaboration, et les modalités de co-construction entre le Département et l’Éducation nationale.</p>
+      <p>Elle s’appuie sur cinq axes communs:</p>
+      <ul class="bullet-clean">
+        <li>La transformation et la fonctionnalité des espaces</li>
+        <li>L’organisation des enseignements</li>
+        <li>L’usage des nouveaux outils numériques</li>
+        <li>La relation aux élèves</li>
+        <li>La relation avec les autres parties prenantes</li>
+      </ul>
     </section>
 
     <section class="card card-full frame-card" aria-label="Périmètre des collèges analysés par l'analyse qualitative">
@@ -43,7 +54,7 @@
       <h2>Synthèse</h2>
       <h3>3 messages à retenir</h3>
       <ul class="bullet-clean">
-        <li>Les effets les plus visibles concernent les élèves : autonomie, engagement, climat scolaire et qualité d'usage des espaces.</li>
+        <li>Les effets les plus visibles concernent les élèves: autonomie, engagement, climat scolaire et qualité d'usage des espaces.</li>
         <li>L'écart principal se joue dans l'appropriation par les équipes, pas dans l'équipement seul.</li>
         <li>Les différences entre établissements tiennent surtout à la capacité à faire circuler les usages au-delà de quelques porteurs.</li>
       </ul>
@@ -73,24 +84,24 @@
     </section>
 
     <section class="section" id="points-cles">
-      <h2>Éléments</h2>
+      <h2>Enseignements</h2>
       <div class="section-line"></div>
     </section>
 
     <section class="grid-2" aria-label="Synthèse transversale globale">
       <article class="card">
-        <h2 class="section-title-pos">Points forts globaux</h2>
+        <h2 class="section-title-pos">Points forts</h2>
         <div class="timeline" id="tl-global-pos"></div>
       </article>
       <article class="card">
-        <h2 class="section-title-neg">Difficultés globales</h2>
+        <h2 class="section-title-neg">Points faibles</h2>
         <div class="timeline" id="tl-global-neg"></div>
       </article>
     </section>
 
     <section class="grid-2" style="margin-top:24px" aria-label="Évolutions entre jurys">
       <article class="card">
-        <h2>Évolution moyenne globale</h2>
+        <h2>Évolution moyenne</h2>
         <canvas id="lineChart" class="chart-sm" role="img" aria-label="Courbe de la moyenne globale des scores pour les jurys 2017, 2018 et 2021."></canvas>
         <p class="chart-summary" id="summary-line"></p>
       </article>
@@ -107,14 +118,14 @@
     </section>
 
     <section class="callout callout-neutral" aria-label="Périmètre chiffré des établissements affichés">
-      <p id="scope-counts">Périmètre affiché : chargement des totaux en cours.</p>
+      <p id="scope-counts">Périmètre affiché: chargement des totaux en cours.</p>
     </section>
 
     <section class="card" aria-label="Tables des scores par établissement">
       <div class="tabs" role="tablist" aria-label="Choix du jury">
-        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab2017" id="tabbtn2017" tabindex="0">Jury 2017</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2018" id="tabbtn2018" tabindex="-1">Jury 2018</button>
-        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2021" id="tabbtn2021" tabindex="-1">Jury 2021</button>
+        <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab2017" id="tabbtn2017" tabindex="0">Projets du jury 2017</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2018" id="tabbtn2018" tabindex="-1">Projets du jury 2018</button>
+        <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab2021" id="tabbtn2021" tabindex="-1">Projets du jury 2021</button>
       </div>
 
       <div id="tab2017" class="tab-pane active" role="tabpanel" aria-labelledby="tabbtn2017">
@@ -172,57 +183,6 @@
           <tbody id="tbody2021"></tbody>
         </table>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="details">
-      <h2>Enseignements</h2>
-      <div class="section-line"></div>
-    </section>
-
-    <section class="card" aria-label="Détail par jury des points clés">
-      <div class="accordion-years">
-        <details class="year-detail">
-          <summary>Jury 2017</summary>
-          <div class="grid-2 detail-grid detail-panel">
-            <div>
-              <h3 class="detail-col-title section-title-pos">Points positifs</h3>
-              <div class="timeline" id="tl-pos-2017"></div>
-            </div>
-            <div>
-              <h3 class="detail-col-title section-title-neg">Difficultés rencontrées</h3>
-              <div class="timeline" id="tl-neg-2017"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="year-detail">
-          <summary>Jury 2018</summary>
-          <div class="grid-2 detail-grid detail-panel">
-            <div>
-              <h3 class="detail-col-title section-title-pos">Points positifs</h3>
-              <div class="timeline" id="tl-pos-2018"></div>
-            </div>
-            <div>
-              <h3 class="detail-col-title section-title-neg">Difficultés rencontrées</h3>
-              <div class="timeline" id="tl-neg-2018"></div>
-            </div>
-          </div>
-        </details>
-
-        <details class="year-detail">
-          <summary>Jury 2021</summary>
-          <div class="grid-2 detail-grid detail-panel">
-            <div>
-              <h3 class="detail-col-title section-title-pos">Points positifs</h3>
-              <div class="timeline" id="tl-pos-2021"></div>
-            </div>
-            <div>
-              <h3 class="detail-col-title section-title-neg">Difficultés rencontrées</h3>
-              <div class="timeline" id="tl-neg-2021"></div>
-            </div>
-          </div>
-        </details>
       </div>
     </section>
 
