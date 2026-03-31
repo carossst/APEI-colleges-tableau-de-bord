@@ -3,446 +3,365 @@
     {
       "label": "Transformation des espaces",
       "values": {
-        "2021": 3.4,
-        "2023": 3.2,
-        "2024": 3.4
+        "2017": 3.2,
+        "2018": 3.4,
+        "2021": 3.4
       }
     },
     {
       "label": "Organisation des enseignements",
       "values": {
-        "2021": 2.4,
-        "2023": 2.4,
-        "2024": 2.8
+        "2017": 2.4,
+        "2018": 2.6,
+        "2021": 2.9
       }
     },
     {
       "label": "Usage outils numériques",
       "values": {
-        "2021": 3.2,
-        "2023": 2.7,
-        "2024": 2.9
+        "2017": 2.7,
+        "2018": 2.9,
+        "2021": 2.6
       }
     },
     {
       "label": "Relation aux élèves",
       "values": {
-        "2021": 3.0,
-        "2023": 3.1,
-        "2024": 2.9
+        "2017": 3.1,
+        "2018": 3.0,
+        "2021": 3.1
       }
     },
     {
       "label": "Relation parties prenantes",
       "values": {
-        "2021": 2.2,
-        "2023": 1.9,
-        "2024": 1.9
+        "2017": 1.9,
+        "2018": 2.1,
+        "2021": 1.9
       }
     }
   ],
-  "etablissements2021": [
-    {
-      "nom": "L'Ardillière-de-Nézant",
-      "ville": "Saint-Brice",
-      "scores": [
-        4,
-        3,
-        3,
-        3,
-        2
-      ],
-      "eleves": 626,
-      "budget": 61000,
-      "note": 34.31
-    },
-    {
-      "nom": "Louise Weiss",
-      "ville": "Cormeilles",
-      "scores": [
-        4,
-        3,
-        4,
-        3,
-        3
-      ],
-      "eleves": 335,
-      "budget": 98613,
-      "note": null
-    },
-    {
-      "nom": "Eugénie Cotton",
-      "ville": "Argenteuil",
-      "scores": [
-        4,
-        2,
-        4,
-        3,
-        2
-      ],
-      "eleves": 710,
-      "budget": 69290,
-      "note": 32.5
-    },
-    {
-      "nom": "Epine Guyon",
-      "ville": "Franconville",
-      "scores": [
-        2,
-        2,
-        2,
-        3,
-        2
-      ],
-      "eleves": 618,
-      "budget": 64500,
-      "note": 33.58
-    },
-    {
-      "nom": "Pierre et Marie Curie",
-      "ville": "L'Isle-Adam",
-      "scores": [
-        3,
-        2,
-        3,
-        3,
-        2
-      ],
-      "eleves": 778,
-      "budget": 51500,
-      "note": 31.17
-    }
-  ],
-  "etablissements2023": [
-    {
-      "nom": "Ariane",
-      "ville": "Argenteuil",
-      "scores": [
-        3,
-        1,
-        3,
-        3,
-        2
-      ],
-      "eleves": 635
-    },
-    {
-      "nom": "Pierre et Marie Curie",
-      "ville": "L'Isle-Adam",
-      "scores": [
-        3,
-        2.5,
-        2,
-        3,
-        1.5
-      ],
-      "eleves": 820
-    },
-    {
-      "nom": "Epine Guyon",
-      "ville": "Franconville",
-      "scores": [
-        3,
-        2,
-        2.5,
-        3,
-        1.5
-      ],
-      "eleves": 720
-    },
-    {
-      "nom": "Georges Charpak",
-      "ville": "Goussainville",
-      "scores": [
-        3,
-        3,
-        3,
-        3,
-        1.5
-      ],
-      "eleves": 533
-    },
-    {
-      "nom": "L'Ardillière-de-Nézant",
-      "ville": "Saint-Brice",
-      "scores": [
-        4,
-        3.5,
-        3,
-        3.5,
-        3
-      ],
-      "eleves": 569
-    }
-  ],
-  "etablissements2024": [
-    {
-      "nom": "Eugénie Cotton",
-      "ville": "Argenteuil",
-      "type": "Clôture 2018",
-      "taux": 80,
-      "eleves": 694,
-      "enseignants": 51,
-      "scores": [
-        4,
-        2.5,
-        3,
-        3.5,
-        2.5
-      ]
-    },
-    {
-      "nom": "Paul Vaillant Couturier",
-      "ville": "Argenteuil",
-      "type": "Clôture 2018",
-      "taux": 10,
-      "eleves": 734,
-      "enseignants": 54,
-      "scores": [
-        2,
-        1.5,
-        2,
-        1.5,
-        1.5
-      ]
-    },
-    {
-      "nom": "Pablo Picasso",
-      "ville": "Éragny",
-      "type": "Clôture 2018",
-      "taux": 60,
-      "eleves": 597,
-      "enseignants": 39,
-      "scores": [
-        3.5,
-        3,
-        3,
-        3.5,
-        2
-      ]
-    },
-    {
-      "nom": "Les Hautiers",
-      "ville": "Marines",
-      "type": "Clôture 2018",
-      "taux": 90,
-      "eleves": 712,
-      "enseignants": 45,
-      "scores": [
-        4,
-        3.5,
-        3.5,
-        3.5,
-        2.5
-      ]
-    },
-    {
-      "nom": "Pierre et Marie Curie",
-      "ville": "L'Isle-Adam",
-      "type": "Mi-parcours 2021",
-      "taux": 85,
-      "eleves": 809,
-      "enseignants": 56,
-      "scores": [
-        4,
-        3,
-        2.5,
-        4,
-        2
-      ]
-    },
-    {
-      "nom": "Montesquieu",
-      "ville": "Beauchamp",
-      "type": "Mi-parcours 2021",
-      "taux": 75,
-      "eleves": 559,
-      "enseignants": 35,
-      "scores": [
-        3.5,
-        3,
-        3,
-        3,
-        2
-      ]
-    },
-    {
-      "nom": "Jean-Claude Chabanne",
-      "ville": "Pontoise",
-      "type": "Mi-parcours 2021",
-      "taux": 25,
-      "eleves": 651,
-      "enseignants": 41,
-      "scores": [
-        3,
-        2.5,
-        2.5,
-        2.5,
-        1.5
-      ]
-    },
-    {
-      "nom": "Nicolas Flamel",
-      "ville": "Pontoise",
-      "type": "Mi-parcours 2021",
-      "taux": 45,
-      "eleves": 633,
-      "enseignants": 45,
-      "scores": [
-        3,
-        3,
-        2.5,
-        3,
-        2
-      ]
-    }
-  ],
+  "cohorts": {
+    "2017": [
+      {
+        "nom": "Ariane",
+        "ville": "Argenteuil",
+        "scores": [
+          3,
+          1,
+          3,
+          3,
+          2
+        ],
+        "jury": "2017",
+        "statut": "Cohorte historique"
+      },
+      {
+        "nom": "Epine Guyon",
+        "ville": "Franconville",
+        "scores": [
+          3,
+          2,
+          2.5,
+          3,
+          1.5
+        ],
+        "jury": "2017",
+        "statut": "Cohorte historique"
+      },
+      {
+        "nom": "Georges Charpak",
+        "ville": "Goussainville",
+        "scores": [
+          3,
+          3,
+          3,
+          3,
+          1.5
+        ],
+        "jury": "2017",
+        "statut": "Cohorte historique"
+      },
+      {
+        "nom": "Pierre et Marie Curie",
+        "ville": "L'Isle-Adam",
+        "scores": [
+          3,
+          2.5,
+          2,
+          3,
+          1.5
+        ],
+        "jury": "2017",
+        "statut": "Cohorte historique"
+      },
+      {
+        "nom": "L'Ardillière-de-Nézant",
+        "ville": "Saint-Brice-sous-Forêt",
+        "scores": [
+          4,
+          3.5,
+          3,
+          3.5,
+          3
+        ],
+        "jury": "2017",
+        "statut": "Cohorte historique"
+      }
+    ],
+    "2018": [
+      {
+        "nom": "Eugénie Cotton",
+        "ville": "Argenteuil",
+        "scores": [
+          4,
+          2.5,
+          3,
+          3.5,
+          2.5
+        ],
+        "jury": "2018",
+        "statut": "Clôture"
+      },
+      {
+        "nom": "Paul Vaillant Couturier",
+        "ville": "Argenteuil",
+        "scores": [
+          2,
+          1.5,
+          2,
+          1.5,
+          1.5
+        ],
+        "jury": "2018",
+        "statut": "Clôture"
+      },
+      {
+        "nom": "Pablo Picasso",
+        "ville": "Éragny",
+        "scores": [
+          3.5,
+          3,
+          3,
+          3.5,
+          2
+        ],
+        "jury": "2018",
+        "statut": "Clôture"
+      },
+      {
+        "nom": "Les Hautiers",
+        "ville": "Marines",
+        "scores": [
+          4,
+          3.5,
+          3.5,
+          3.5,
+          2.5
+        ],
+        "jury": "2018",
+        "statut": "Clôture"
+      }
+    ],
+    "2021": [
+      {
+        "nom": "Pierre et Marie Curie",
+        "ville": "L'Isle-Adam",
+        "scores": [
+          4,
+          3,
+          2.5,
+          4,
+          2
+        ],
+        "jury": "2021",
+        "statut": "Mi-parcours"
+      },
+      {
+        "nom": "Montesquieu",
+        "ville": "Beauchamp",
+        "scores": [
+          3.5,
+          3,
+          3,
+          3,
+          2
+        ],
+        "jury": "2021",
+        "statut": "Mi-parcours"
+      },
+      {
+        "nom": "Jean-Claude Chabanne",
+        "ville": "Pontoise",
+        "scores": [
+          3,
+          2.5,
+          2.5,
+          2.5,
+          1.5
+        ],
+        "jury": "2021",
+        "statut": "Mi-parcours"
+      },
+      {
+        "nom": "Nicolas Flamel",
+        "ville": "Pontoise",
+        "scores": [
+          3,
+          3,
+          2.5,
+          3,
+          2
+        ],
+        "jury": "2021",
+        "statut": "Mi-parcours"
+      }
+    ]
+  },
   "pointsPositifs": [
     {
-      "annee": "2021",
-      "titre": "Transformation des pratiques",
-      "detail": "Enseignants commencent à transformer leurs pratiques pédagogiques"
-    },
-    {
-      "annee": "2021",
-      "titre": "Nouvelles compétences élèves",
-      "detail": "Élèves développent compétences vidéo, montage, travail autonome"
-    },
-    {
-      "annee": "2021",
-      "titre": "Bien-être élèves",
-      "detail": "Élèves plus épanouis dans les nouveaux environnements",
-      "source": "Professeure - analyse qualitative 2021"
-    },
-    {
-      "annee": "2023",
+      "jury": "2017",
       "titre": "Nouvelles compétences",
-      "detail": "Web TV développe compétences et valorise les élèves"
+      "detail": "Les espaces et la Web TV permettent de développer des compétences nouvelles et de valoriser les élèves."
     },
     {
-      "annee": "2023",
+      "jury": "2017",
       "titre": "Autonomie renforcée",
-      "detail": "Élèves travaillent en autonomie avec tableaux et espaces dédiés",
+      "detail": "Les élèves travaillent davantage en autonomie, en petits groupes et avec des supports variés.",
       "role": "Élève de 3e",
       "citation": "C’est bien, parce qu’on peut se mettre dans un coin de la salle et travailler en autonomie sur notre tableau puis poser des questions, alors que dans certains cours il y en a qui n’osent pas lever la main pour poser des questions.",
       "source": "Analyse APEI 2023 - 6 décembre 2023"
     },
     {
-      "annee": "2023",
-      "titre": "Évolution pratiques",
-      "detail": "Certains professeurs revoient entièrement leurs séquences",
-      "role": "Professeure",
-      "citation": "À partir du moment où j’ai été à plein temps dans cette salle, j’ai repris toutes mes séquences pour pouvoir justement intégrer beaucoup plus de choses qui étaient réalisables dans cet espace et avec le matériel.",
-      "source": "Analyse APEI 2023 - 6 décembre 2023"
+      "jury": "2017",
+      "titre": "Évolution des pratiques",
+      "detail": "Dans plusieurs collèges, certains enseignants ont revu leurs séquences et leur posture pédagogique."
     },
     {
-      "annee": "2024",
-      "titre": "Travail de groupe et autonomie",
-      "detail": "Pédagogie active, coopérative, raccrochage des élèves en difficulté"
+      "jury": "2018",
+      "titre": "Climat scolaire apaisé",
+      "detail": "Les espaces de vie scolaire ont réduit les tensions sur les temps de permanence et amélioré le bien-être des élèves.",
+      "role": "Chef d’établissement",
+      "citation": "Les espaces sont utilisés et remplissent leur fonction première, c’est à dire apaiser le climat scolaire et permettre aux élèves de choisir ce qu’ils ont envie de faire pendant les temps de permanence.",
+      "source": "Analyse APEI 2024 - Eugénie Cotton"
     },
     {
-      "annee": "2024",
-      "titre": "Apaisement du climat scolaire",
-      "detail": "Quasi-absence de conflits en permanence, bien-être des élèves",
-      "role": "CPE",
-      "citation": "Ça a impacté le climat scolaire et de fait, le bien-être des élèves. On a quasiment plus de conflits en salle de permanence et je pense que c’est grâce aux espaces.",
-      "source": "CR APEI Eugénie Cotton - 23 septembre 2024 ; repris dans l'Analyse APEI 2024"
+      "jury": "2018",
+      "titre": "Usages stabilisés",
+      "detail": "Dans les projets arrivés à clôture, certains espaces font désormais partie du fonctionnement ordinaire du collège."
+    },
+    {
+      "jury": "2018",
+      "titre": "Polyvalence des lieux",
+      "detail": "Les salles innovantes servent à la fois aux apprentissages, aux projets et parfois à des événements culturels."
+    },
+    {
+      "jury": "2021",
+      "titre": "Mi-parcours encourageant",
+      "detail": "Les projets 2021 montrent déjà des effets positifs sur l’autonomie, le travail en groupe et l’engagement des élèves."
+    },
+    {
+      "jury": "2021",
+      "titre": "Vie scolaire transformée",
+      "detail": "Quand les espaces de permanence sont investis, les élèves peuvent choisir leurs usages et le climat scolaire s’apaise."
+    },
+    {
+      "jury": "2021",
+      "titre": "Cadres de travail renouvelés",
+      "detail": "Les équipes commencent à exploiter des espaces plus modulables, mieux adaptés aux pédagogies actives."
     }
   ],
   "difficultes": [
     {
-      "annee": "2021",
-      "titre": "Manque accompagnement",
-      "detail": "Besoin d'appui humain et de formation entre pairs"
-    },
-    {
-      "annee": "2021",
-      "titre": "Réticence enseignants",
-      "detail": "Enseignants encore ancrés dans des pratiques traditionnelles"
-    },
-    {
-      "annee": "2021",
-      "titre": "Classes de 30 élèves",
-      "detail": "Organisation difficile avec des effectifs importants"
-    },
-    {
-      "annee": "2023",
+      "jury": "2017",
       "titre": "Appréhension numérique",
-      "detail": "Enseignants n'osent pas se lancer par peur ou méconnaissance"
+      "detail": "Une partie des équipes n’ose pas se lancer par peur ou méconnaissance des outils."
     },
     {
-      "annee": "2023",
+      "jury": "2017",
       "titre": "Manque de temps",
-      "detail": "Temps de cours trop court pour certains usages des espaces"
+      "detail": "Les temps de cours sont parfois trop courts pour exploiter pleinement les espaces."
     },
     {
-      "annee": "2023",
+      "jury": "2017",
       "titre": "Communication interne",
-      "detail": "Les équipes ne savent pas toujours ce qu'il est possible de faire dans les espaces",
-      "role": "Professeur",
-      "citation": "C’est connu de tous, le matériel est connu, on fait des réunions dans ces salles, donc je pense que personne n’ignore leur existence. En revanche, tout le monde ne sait pas ce qui est possible de faire avec les élèves au sein de ces salles.",
-      "source": "Analyse APEI 2023 - 6 décembre 2023"
+      "detail": "Les usages possibles des espaces restent insuffisamment diffusés dans les établissements."
     },
     {
-      "annee": "2024",
+      "jury": "2018",
       "titre": "Moyens humains",
-      "detail": "Espaces innovants gourmands en personnel, besoin de co-animation"
+      "detail": "Les espaces innovants, la Web TV et la Web Radio restent gourmands en encadrement."
     },
     {
-      "annee": "2024",
-      "titre": "Espaces petits groupes",
-      "detail": "Web TV et Web Radio limitées à de petits groupes, usage chronophage"
+      "jury": "2018",
+      "titre": "Petits groupes",
+      "detail": "Certains espaces ne peuvent être investis qu’avec un nombre réduit d’élèves, ce qui freine les usages."
     },
     {
-      "annee": "2024",
-      "titre": "Communication interne",
-      "detail": "Former les nouveaux arrivants et formaliser les usages à chaque rentrée"
+      "jury": "2018",
+      "titre": "Fragilité des équipes projet",
+      "detail": "La dynamique dépend encore beaucoup de quelques adultes moteurs."
+    },
+    {
+      "jury": "2021",
+      "titre": "Stabilité des équipes",
+      "detail": "Le besoin de continuité dans les équipes de vie scolaire et d’encadrement reste fort."
+    },
+    {
+      "jury": "2021",
+      "titre": "Surveillance et co-animation",
+      "detail": "Certains dispositifs fonctionnent mieux avec des adultes supplémentaires ou du co-enseignement."
+    },
+    {
+      "jury": "2021",
+      "titre": "Montée en compétence",
+      "detail": "Les nouveaux espaces demandent encore des temps de formation et d’appropriation."
     }
   ],
   "pointsGlobaux": [
     {
-      "titre": "Transformation concrète des usages",
-      "detail": "Les analyses montrent d'abord une transformation concrète des usages à travers les espaces aménagés."
+      "titre": "Les espaces seuls ne suffisent pas",
+      "detail": "L’impact dépend moins de la livraison d’un lieu que de sa mise en usage par les équipes."
     },
     {
-      "titre": "Autonomie et engagement des élèves",
-      "detail": "Les effets les plus visibles concernent l'autonomie, l'engagement et l'implication des élèves."
+      "titre": "Les effets élèves sont les plus visibles",
+      "detail": "Autonomie, engagement, climat scolaire et travail en groupe ressortent dans toutes les cohortes."
     },
     {
-      "titre": "Évolution de certaines pratiques pédagogiques",
-      "detail": "Certains projets conduisent à une évolution réelle des pratiques pédagogiques, mais de manière inégale selon les équipes."
+      "titre": "Les projets mûrissent à des rythmes différents",
+      "detail": "Les cohortes ne se lisent pas pareil selon qu’elles sont historiques, en clôture ou en mi-parcours."
     },
     {
-      "titre": "Effets sur le climat scolaire",
-      "detail": "Plusieurs projets produisent des effets perceptibles sur le climat scolaire et les conditions de travail au sein du collège."
+      "titre": "L’appropriation reste le vrai sujet",
+      "detail": "Les écarts entre établissements tiennent surtout à la capacité à faire vivre les espaces dans la durée."
     }
   ],
   "difficultesGlobales": [
     {
-      "titre": "Appropriation inégale selon les équipes",
-      "detail": "Les écarts entre projets tiennent d'abord à une appropriation inégale selon les équipes et les contextes locaux."
+      "titre": "Diffusion inégale des usages",
+      "detail": "Les innovations restent souvent portées par un noyau réduit d’adultes moteurs."
     },
     {
-      "titre": "Formation, transmission et relais adultes",
-      "detail": "La formation, la transmission des usages et l'existence de relais adultes restent décisives dans la durée."
+      "titre": "Temps et formation",
+      "detail": "Former, transmettre et documenter les usages reste indispensable pour consolider les projets."
     },
     {
-      "titre": "Contraintes d'organisation des espaces",
-      "detail": "Des contraintes d'organisation, de réservation et de disponibilité continuent de freiner certains usages."
+      "titre": "Contraintes d’organisation",
+      "detail": "Réservation, petits groupes, disponibilité des salles et encadrement freinent certains usages."
     },
     {
-      "titre": "Mutualisation encore fragile",
-      "detail": "La mutualisation reste fragile, à la fois à l'intérieur des collèges et entre établissements."
+      "titre": "Mutualisation encore limitée",
+      "detail": "Les échanges de pratiques entre établissements restent moins structurés qu’ils pourraient l’être."
     }
   ],
   "pageIntro": {
     "context": {
       "title": "Ce que présente cette page",
-      "text": "Depuis 2017, le Département du Val d'Oise soutient l'innovation pédagogique dans les collèges à travers l'Appel à projets éducatifs innovants. Cette page en propose une lecture transversale à partir des analyses d'impact qualitatives menées en 2021, 2023 et 2024, avant d'entrer dans le détail par établissement et par année."
+      "text": "Cette page propose une lecture transversale des projets APEI par cohorte de jury. Elle regroupe les établissements selon leur année de lauréat afin de comparer des situations plus homogènes : cohorte historique 2017, clôture des projets 2018 et mi-parcours des projets 2021."
     },
     "method": {
       "title": "Comment lire la matrice",
-      "text": "L'analyse repose sur cinq axes communs : transformation des espaces, organisation des enseignements, usage des outils numériques, relation aux élèves et relation avec les autres parties prenantes. Pour chaque axe, le niveau d'impact est positionné sur une échelle de 1 à 4, du changement faible au changement très fort."
+      "text": "La lecture repose sur cinq axes communs : transformation des espaces, organisation des enseignements, usage des outils numériques, relation aux élèves et relation avec les autres parties prenantes. Les scores sont agrégés par cohorte de jury pour produire une comparaison cohérente entre groupes de projets."
     }
   }
 }

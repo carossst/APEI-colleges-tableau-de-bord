@@ -1,6 +1,6 @@
 // ===================================================
 // Val-d'Oise Lab2034 - Analyse d'impact qualitative
-// app.js - version renforcée (robustesse, cohérence, accessibilité)
+// app.js - refactorisation par jury
 // ===================================================
 
 if (window.Chart) {
@@ -11,21 +11,21 @@ if (window.Chart) {
 }
 
 const C = {
-  b2021: '#1f77b4',
-  b2023: '#f2c94c',
-  b2024: '#e8634a',
+  b2017: '#1f77b4',
+  b2018: '#f2c94c',
+  b2021: '#e8634a',
   navy: '#1a2744',
   teal: '#27ae60',
   coral: '#e8634a',
   gold: '#f2994a'
 };
 
-const YEARS = ['2021', '2023', '2024'];
+const COHORTS = ['2017', '2018', '2021'];
 
-const YEAR_LABELS = {
-  '2021': 'Jury 2017 (analyse 2021)',
-  '2023': 'Jury 2017 (analyse 2023)',
-  '2024': 'Jury 2018 & 2021 (analyse 2024)'
+const COHORT_LABELS = {
+  '2017': 'Jury 2017',
+  '2018': 'Jury 2018',
+  '2021': 'Jury 2021'
 };
 
 initTabs();
@@ -46,9 +46,9 @@ loadData()
   });
 
 async function loadData() {
-  const response = await fetch('./matrice-globale.json');
+  const response = await fetch('./matrice-globale_refactor.json');
   if (!response.ok) {
-    throw new Error('Impossible de charger matrice-globale.json');
+    throw new Error('Impossible de charger matrice-globale_refactor.json');
   }
   return response.json();
 }
@@ -57,7 +57,7 @@ function showLoadError() {
   const el = document.getElementById('data-load-error');
   if (!el) return;
   el.hidden = false;
-  el.innerHTML = '<p><strong>Chargement impossible :</strong> les données n\'ont pas pu être chargées. Vérifier la présence du fichier <code>matrice-globale.json</code> et les chemins de déploiement.</p>';
+  el.innerHTML = '<p><strong>Chargement impossible :</strong> les données n\'ont pas pu être chargées. Vérifier la présence du fichier <code>matrice-globale_refactor.json</code> et les chemins de déploiement.</p>';
 }
 
 function fillFallbackSummaries() {
@@ -70,7 +70,7 @@ function fillFallbackSummaries() {
 function hydrateIntro(data) {
   const intro = data.pageIntro || {};
   setText('intro-context-title', intro.context?.title || 'Ce que présente cette page');
-  setText('intro-context-text', intro.context?.text || "Lecture synthétique des analyses d'impact qualitatives.");
+  setText('intro-context-text', intro.context?.text || "Lecture synthétique des cohortes de jury APEI.");
   setText('intro-method-title', intro.method?.title || 'Comment lire la matrice');
   setText('intro-method-text', intro.method?.text || 'Cinq axes, notés sur une échelle de 1 à 4.');
 }
@@ -111,31 +111,31 @@ function createRadarChart(data) {
       labels: data.axes.map((a) => a.label),
       datasets: [
         {
-          label: YEAR_LABELS['2021'],
+          label: COHORT_LABELS['2017'],
+          data: data.axes.map((a) => a.values['2017']),
+          borderColor: C.b2017,
+          backgroundColor: 'rgba(31,119,180,0.16)',
+          pointBackgroundColor: C.b2017,
+          pointRadius: 4,
+          pointHoverRadius: 5,
+          borderWidth: 2
+        },
+        {
+          label: COHORT_LABELS['2018'],
+          data: data.axes.map((a) => a.values['2018']),
+          borderColor: C.b2018,
+          backgroundColor: 'rgba(242,201,76,0.16)',
+          pointBackgroundColor: C.b2018,
+          pointRadius: 4,
+          pointHoverRadius: 5,
+          borderWidth: 2
+        },
+        {
+          label: COHORT_LABELS['2021'],
           data: data.axes.map((a) => a.values['2021']),
           borderColor: C.b2021,
-          backgroundColor: 'rgba(31,119,180,0.16)',
-          pointBackgroundColor: C.b2021,
-          pointRadius: 4,
-          pointHoverRadius: 5,
-          borderWidth: 2
-        },
-        {
-          label: YEAR_LABELS['2023'],
-          data: data.axes.map((a) => a.values['2023']),
-          borderColor: C.b2023,
-          backgroundColor: 'rgba(242,201,76,0.16)',
-          pointBackgroundColor: C.b2023,
-          pointRadius: 4,
-          pointHoverRadius: 5,
-          borderWidth: 2
-        },
-        {
-          label: YEAR_LABELS['2024'],
-          data: data.axes.map((a) => a.values['2024']),
-          borderColor: C.b2024,
           backgroundColor: 'rgba(232,99,74,0.16)',
-          pointBackgroundColor: C.b2024,
+          pointBackgroundColor: C.b2021,
           pointRadius: 4,
           pointHoverRadius: 5,
           borderWidth: 2
@@ -191,25 +191,25 @@ function createBarChart(data) {
       labels: data.axes.map((a) => a.label),
       datasets: [
         {
-          label: YEAR_LABELS['2021'],
+          label: COHORT_LABELS['2017'],
+          data: data.axes.map((a) => a.values['2017']),
+          backgroundColor: C.b2017,
+          borderRadius: 6,
+          barPercentage: 0.7,
+          categoryPercentage: 0.6
+        },
+        {
+          label: COHORT_LABELS['2018'],
+          data: data.axes.map((a) => a.values['2018']),
+          backgroundColor: C.b2018,
+          borderRadius: 6,
+          barPercentage: 0.7,
+          categoryPercentage: 0.6
+        },
+        {
+          label: COHORT_LABELS['2021'],
           data: data.axes.map((a) => a.values['2021']),
           backgroundColor: C.b2021,
-          borderRadius: 6,
-          barPercentage: 0.7,
-          categoryPercentage: 0.6
-        },
-        {
-          label: YEAR_LABELS['2023'],
-          data: data.axes.map((a) => a.values['2023']),
-          backgroundColor: C.b2023,
-          borderRadius: 6,
-          barPercentage: 0.7,
-          categoryPercentage: 0.6
-        },
-        {
-          label: YEAR_LABELS['2024'],
-          data: data.axes.map((a) => a.values['2024']),
-          backgroundColor: C.b2024,
           borderRadius: 6,
           barPercentage: 0.7,
           categoryPercentage: 0.6
@@ -254,12 +254,12 @@ function createLineChart(data) {
   const el = document.getElementById('lineChart');
   if (!el) return;
 
-  const avgs = YEARS.map((year) => averageAxisValue(data.axes, year));
+  const avgs = COHORTS.map((cohort) => averageAxisValue(data.axes, cohort));
 
   new Chart(el, {
     type: 'line',
     data: {
-      labels: YEARS.map((year) => YEAR_LABELS[year]),
+      labels: COHORTS.map((cohort) => COHORT_LABELS[cohort]),
       datasets: [{
         label: 'Moyenne globale /4',
         data: avgs,
@@ -297,15 +297,15 @@ function createLineAxesChart(data) {
   const el = document.getElementById('lineAxesChart');
   if (!el) return;
 
-  const axColors = [C.b2021, C.b2023, C.b2024, C.teal, C.gold];
+  const axColors = [C.b2017, C.b2018, C.b2021, C.teal, C.gold];
 
   new Chart(el, {
     type: 'line',
     data: {
-      labels: YEARS,
+      labels: COHORTS.map((cohort) => COHORT_LABELS[cohort]),
       datasets: data.axes.map((axis, index) => ({
         label: axis.label,
-        data: YEARS.map((year) => axis.values[year]),
+        data: COHORTS.map((cohort) => axis.values[cohort]),
         borderColor: axColors[index],
         backgroundColor: 'transparent',
         tension: 0.3,
@@ -334,8 +334,8 @@ function createLineAxesChart(data) {
   });
 }
 
-function averageAxisValue(axes, year) {
-  const sum = axes.reduce((acc, axis) => acc + axis.values[year], 0);
+function averageAxisValue(axes, cohort) {
+  const sum = axes.reduce((acc, axis) => acc + axis.values[cohort], 0);
   return +(sum / axes.length).toFixed(1);
 }
 
@@ -354,12 +354,12 @@ function heatClass(value) {
 }
 
 function buildHeatmapTables(data) {
-  buildTable('tbody2021', data.etablissements2021, '2021');
-  buildTable('tbody2023', data.etablissements2023, '2023');
-  buildTable('tbody2024', data.etablissements2024, '2024');
+  buildTable('tbody2017', data.cohorts?.['2017'], 'Cohorte historique');
+  buildTable('tbody2018', data.cohorts?.['2018'], 'Clôture');
+  buildTable('tbody2021', data.cohorts?.['2021'], 'Mi-parcours');
 }
 
-function buildTable(id, list, analysisYear) {
+function buildTable(id, list, defaultStatus = '') {
   const tbody = document.getElementById(id);
   if (!tbody || !Array.isArray(list)) return;
 
@@ -369,11 +369,10 @@ function buildTable(id, list, analysisYear) {
     const row = document.createElement('tr');
     const avg = +(item.scores.reduce((a, b) => a + b, 0) / 5).toFixed(1);
 
-    const context = buildEstablishmentContext(item, analysisYear);
-
     const nameCell = document.createElement('td');
     nameCell.className = 'name';
-    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)} - ${escapeHtml(context)}</small>`;
+    const status = item.statut || defaultStatus;
+    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)} - Jury ${escapeHtml(item.jury || '')}${status ? ` - ${escapeHtml(status)}` : ''}</small>`;
     row.appendChild(nameCell);
 
     item.scores.forEach((score) => {
@@ -384,35 +383,6 @@ function buildTable(id, list, analysisYear) {
     row.appendChild(avgCell);
     tbody.appendChild(row);
   });
-}
-
-
-function buildEstablishmentContext(item, analysisYear) {
-  if (analysisYear === '2021' || analysisYear === '2023') {
-    return `Jury 2017 - analyse ${analysisYear}`;
-  }
-
-  const rawType = String(item.type || '').trim();
-  let jury = '';
-  let status = '';
-
-  if (/clôture\s+2018/i.test(rawType)) {
-    jury = '2018';
-    status = 'Clôture';
-  } else if (/mi-parcours\s+2021/i.test(rawType)) {
-    jury = '2021';
-    status = 'Mi-parcours';
-  } else {
-    const juryMatch = rawType.match(/(20\d{2})/);
-    jury = juryMatch ? juryMatch[1] : '';
-    if (/clôture/i.test(rawType)) status = 'Clôture';
-    if (/mi-parcours/i.test(rawType)) status = 'Mi-parcours';
-  }
-
-  if (jury && status) return `Jury ${jury} - ${status} - analyse ${analysisYear}`;
-  if (jury) return `Jury ${jury} - analyse ${analysisYear}`;
-  if (status) return `${status} - analyse ${analysisYear}`;
-  return `Analyse ${analysisYear}`;
 }
 
 function buildScoreCell(score, isAverage = false) {
@@ -457,39 +427,38 @@ function buildTimelines(data) {
   renderTimeline(globalPos, 'tl-global-pos', 'pos');
   renderTimeline(globalNeg, 'tl-global-neg', 'neg');
 
-  YEARS.forEach((year) => {
-    renderTimeline((data.pointsPositifs || []).filter((item) => item.annee === year), `tl-pos-${year}`, 'pos');
-    renderTimeline((data.difficultes || []).filter((item) => item.annee === year), `tl-neg-${year}`, 'neg');
+  COHORTS.forEach((cohort) => {
+    renderTimeline((data.pointsPositifs || []).filter((item) => item.jury === cohort), `tl-pos-${cohort}`, 'pos');
+    renderTimeline((data.difficultes || []).filter((item) => item.jury === cohort), `tl-neg-${cohort}`, 'neg');
   });
 }
 
-
 function writeChartSummaries(data) {
-  const axisSorted = [...data.axes].sort((a, b) => averageAcrossYears(b.values) - averageAcrossYears(a.values));
+  const axisSorted = [...data.axes].sort((a, b) => averageAcrossCohorts(b.values) - averageAcrossCohorts(a.values));
   const topAxis = axisSorted[0];
   const lowAxis = axisSorted[axisSorted.length - 1];
 
   const deltas = data.axes
     .map((axis) => ({
       label: axis.label,
-      diff: +(axis.values['2024'] - axis.values['2021']).toFixed(1)
+      diff: +(axis.values['2021'] - axis.values['2017']).toFixed(1)
     }))
     .sort((a, b) => b.diff - a.diff);
 
   const bestDelta = deltas[0];
   const worstDelta = deltas[deltas.length - 1];
+  const avg2017 = averageAxisValue(data.axes, '2017').toFixed(1);
+  const avg2018 = averageAxisValue(data.axes, '2018').toFixed(1);
   const avg2021 = averageAxisValue(data.axes, '2021').toFixed(1);
-  const avg2023 = averageAxisValue(data.axes, '2023').toFixed(1);
-  const avg2024 = averageAxisValue(data.axes, '2024').toFixed(1);
 
-  setText('summary-radar', `Lecture rapide : sur les trois analyses, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
+  setText('summary-radar', `Lecture rapide : à l'échelle des trois cohortes, "${topAxis.label}" apparaît comme l'axe le plus solide, tandis que "${lowAxis.label}" reste le plus fragile.`);
   setText('summary-bar', `La comparaison par axe confirme une structure globalement stable : des acquis durables sur les espaces, des évolutions plus contrastées sur les autres axes et une fragilité persistante sur la relation avec les autres parties prenantes.`);
-  setText('summary-line', `La moyenne globale reste proche d'une analyse à l'autre : ${avg2021} /4 en 2021, ${avg2023} /4 en 2023 et ${avg2024} /4 en 2024. L'ensemble traduit davantage une continuité qu'une rupture.`);
-  setText('summary-line-axes', `Sur l'ensemble de la période, la progression la plus nette concerne "${bestDelta.label}" (${bestDelta.diff >= 0 ? '+' : ''}${bestDelta.diff}), tandis que "${worstDelta.label}" apparaît comme l'axe le moins dynamique (${worstDelta.diff >= 0 ? '+' : ''}${worstDelta.diff}).`);
+  setText('summary-line', `La moyenne globale est proche d'une cohorte à l'autre : ${avg2017} /4 pour le jury 2017, ${avg2018} /4 pour le jury 2018 et ${avg2021} /4 pour le jury 2021. L'ensemble traduit surtout des degrés de maturité différents.`);
+  setText('summary-line-axes', `Entre les cohortes les plus anciennes et les plus récentes, la progression la plus nette concerne "${bestDelta.label}" (${bestDelta.diff >= 0 ? '+' : ''}${bestDelta.diff}), tandis que "${worstDelta.label}" reste l'axe le moins dynamique (${worstDelta.diff >= 0 ? '+' : ''}${worstDelta.diff}).`);
 }
 
-function averageAcrossYears(values) {
-  return (values['2021'] + values['2023'] + values['2024']) / 3;
+function averageAcrossCohorts(values) {
+  return (values['2017'] + values['2018'] + values['2021']) / 3;
 }
 
 function initTabs() {
@@ -546,7 +515,6 @@ function activateTab(tabs, activeTab) {
     panel.hidden = false;
   }
 }
-
 
 function initNavScrollSpy() {
   const links = [...document.querySelectorAll('.nav a')];
