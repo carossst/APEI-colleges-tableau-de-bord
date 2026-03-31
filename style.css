@@ -244,7 +244,7 @@ a {
 
 .frame-meta {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 10px;
 }
 
@@ -343,10 +343,6 @@ a {
   .method-grid,
   .executive-summary-grid,
   .maturity-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .frame-meta {
     grid-template-columns: 1fr;
   }
 }

@@ -65,7 +65,7 @@ function showLoadError() {
 }
 
 function fillFallbackIntro() {
-  setText('frame-summary', "Le cadre d'analyse n'est pas disponible tant que les donnees ne sont pas chargees.");
+  setText('frame-summary', "Le cadre de lecture n'est pas disponible tant que les donnees ne sont pas chargees.");
   setText('scope-counts', "Périmètre affiché : les totaux ne sont pas disponibles tant que les données ne sont pas chargées.");
 }
 
@@ -89,7 +89,7 @@ function writeFrameSummary(data) {
   const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
   const collegeCount = uniqueColleges.size;
   const projectCount = items.length;
-  setText('frame-summary', `Cette page présente les projets APEI par année de jury, avec ${collegeCount} collèges documentés et ${projectCount} projets affichés. Pour chaque jury, le cadrage indique les collèges concernés, le stade observé du projet, l'année d'analyse et le type d'analyse mobilisé.`);
+  setText('frame-summary', `Cette page présente les projets APEI par année de jury, avec ${collegeCount} collèges documentés et ${projectCount} projets affichés. Pour chaque jury, le cadrage indique les collèges concernés, le projet, son type et le stade observé.`);
 
   const container = document.getElementById('frame-cohorts');
   if (!container) return;
@@ -102,8 +102,6 @@ function writeFrameSummary(data) {
     const juryYear = String(cohort);
     const description = meta.description || '';
     const startYear = meta.startYear || 'n.d.';
-    const analysisYear = meta.analysisYear || 'n.d.';
-    const analysisType = meta.analysisType || 'n.d.';
     const observedEndYear = meta.observedEndYear || 'n.d.';
 
     const article = document.createElement('article');
@@ -117,8 +115,6 @@ function writeFrameSummary(data) {
         <div><span>Année de jury</span><strong>${escapeHtml(juryYear)}</strong></div>
         <div><span>Année de début</span><strong>${escapeHtml(startYear)}</strong></div>
         <div><span>Stade observé</span><strong>${escapeHtml(observedEndYear)}</strong></div>
-        <div><span>Année d'analyse</span><strong>${escapeHtml(analysisYear)}</strong></div>
-        <div><span>Type d'analyse</span><strong>${escapeHtml(analysisType)}</strong></div>
       </div>
       <ul class="bullet-clean compact-list">
       ${list.map((item) => `<li><strong>${escapeHtml(item.nom)}</strong>${item.project ? ` : ${escapeHtml(item.project)}` : ''}${item.projectType ? `<br><small>${escapeHtml(item.projectType)}</small>` : ''}</li>`).join('')}
@@ -484,8 +480,7 @@ function buildTable(id, list, defaultStatus = '') {
     const nameCell = document.createElement('td');
     nameCell.className = 'name';
     const status = item.statut || defaultStatus;
-    const sourceLine = item.sourceRef ? `<br><small style="color:var(--muted)">${escapeHtml(item.sourceRef)}</small>` : '';
-    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)} - Jury ${escapeHtml(item.jury || '')}${status ? ` - ${escapeHtml(status)}` : ''}</small>${sourceLine}`;
+    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)} - Jury ${escapeHtml(item.jury || '')}${status ? ` - ${escapeHtml(status)}` : ''}</small>`;
     row.appendChild(nameCell);
 
     item.scores.forEach((score) => {
