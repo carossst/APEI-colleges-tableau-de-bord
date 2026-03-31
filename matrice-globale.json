@@ -17,7 +17,7 @@
   "cohortMeta": {
     "2017": {
       "label": "Projets du jury 2017",
-      "description": "5 collèges du jury 2017, observés en bilan.",
+      "description": "5 collèges du jury 2017.",
       "startYear": "2017/2018",
       "analysisYear": "2023",
       "analysisType": "historique",
@@ -31,7 +31,7 @@
     },
     "2018": {
       "label": "Projets du jury 2018",
-      "description": "4 collèges du jury 2018, observés en clôture.",
+      "description": "4 collèges du jury 2018.",
       "startYear": "2018",
       "analysisYear": "2024",
       "analysisType": "clôture",
@@ -46,7 +46,7 @@
     },
     "2021": {
       "label": "Projets du jury 2021",
-      "description": "4 collèges du jury 2021, observés en mi-parcours.",
+      "description": "4 collèges du jury 2021.",
       "startYear": "2021",
       "analysisYear": "2024",
       "analysisType": "mi-parcours",
@@ -672,7 +672,7 @@
       "citation": "Je suis assez content, le bilan est bon, mais ce n’est pas exploité à 100%. Au niveau du temps et de ce qu’on pourrait en faire c’est exploité même pas à 50%."
     },
     {
-      "titre": "La dynamique dépend parfois d’un petit noyau moteur",
+      "titre": "La dynamique dépend souvent d’un petit noyau moteur",
       "detail": "Quand un projet repose sur quelques adultes seulement, sa continuité et sa diffusion dans l’établissement restent fragiles.",
       "role": "Cheffe d’établissement",
       "citation": "Certains professeurs qui ont porté le projet ont muté. La relève n’est pas encore complètement assurée : en terme de passage de flambeaux c’est toujours une difficulté."

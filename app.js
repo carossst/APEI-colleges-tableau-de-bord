@@ -89,7 +89,7 @@ function writeFrameSummary(data) {
   const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
   const collegeCount = uniqueColleges.size;
   const projectCount = items.length;
-  setText('frame-summary', `${collegeCount} collèges et ${projectCount} projets affichés. Dans la lecture 2024, 4 collèges du jury 2018 sont observés en clôture et 4 collèges du jury 2021 en mi-parcours.`);
+  setText('frame-summary', `${collegeCount} collèges et ${projectCount} projets affichés.`);
 
   const container = document.getElementById('frame-cohorts');
   if (!container) return;
