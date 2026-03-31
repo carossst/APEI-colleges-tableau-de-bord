@@ -22,6 +22,12 @@ const C = {
 
 const YEARS = ['2021', '2023', '2024'];
 
+const YEAR_LABELS = {
+  '2021': 'Jury 2017 (analyse 2021)',
+  '2023': 'Jury 2017 (analyse 2023)',
+  '2024': 'Jury 2018 & 2021 (analyse 2024)'
+};
+
 initTabs();
 initNavScrollSpy();
 
@@ -105,7 +111,7 @@ function createRadarChart(data) {
       labels: data.axes.map((a) => a.label),
       datasets: [
         {
-          label: '2021',
+          label: YEAR_LABELS['2021'],
           data: data.axes.map((a) => a.values['2021']),
           borderColor: C.b2021,
           backgroundColor: 'rgba(31,119,180,0.16)',
@@ -115,7 +121,7 @@ function createRadarChart(data) {
           borderWidth: 2
         },
         {
-          label: '2023',
+          label: YEAR_LABELS['2023'],
           data: data.axes.map((a) => a.values['2023']),
           borderColor: C.b2023,
           backgroundColor: 'rgba(242,201,76,0.16)',
@@ -125,7 +131,7 @@ function createRadarChart(data) {
           borderWidth: 2
         },
         {
-          label: '2024',
+          label: YEAR_LABELS['2024'],
           data: data.axes.map((a) => a.values['2024']),
           borderColor: C.b2024,
           backgroundColor: 'rgba(232,99,74,0.16)',
@@ -185,7 +191,7 @@ function createBarChart(data) {
       labels: data.axes.map((a) => a.label),
       datasets: [
         {
-          label: '2021',
+          label: YEAR_LABELS['2021'],
           data: data.axes.map((a) => a.values['2021']),
           backgroundColor: C.b2021,
           borderRadius: 6,
@@ -193,7 +199,7 @@ function createBarChart(data) {
           categoryPercentage: 0.6
         },
         {
-          label: '2023',
+          label: YEAR_LABELS['2023'],
           data: data.axes.map((a) => a.values['2023']),
           backgroundColor: C.b2023,
           borderRadius: 6,
@@ -201,7 +207,7 @@ function createBarChart(data) {
           categoryPercentage: 0.6
         },
         {
-          label: '2024',
+          label: YEAR_LABELS['2024'],
           data: data.axes.map((a) => a.values['2024']),
           backgroundColor: C.b2024,
           borderRadius: 6,
@@ -253,7 +259,7 @@ function createLineChart(data) {
   new Chart(el, {
     type: 'line',
     data: {
-      labels: YEARS,
+      labels: YEARS.map((year) => YEAR_LABELS[year]),
       datasets: [{
         label: 'Moyenne globale /4',
         data: avgs,
@@ -348,12 +354,12 @@ function heatClass(value) {
 }
 
 function buildHeatmapTables(data) {
-  buildTable('tbody2021', data.etablissements2021);
-  buildTable('tbody2023', data.etablissements2023);
-  buildTable('tbody2024', data.etablissements2024);
+  buildTable('tbody2021', data.etablissements2021, '2021');
+  buildTable('tbody2023', data.etablissements2023, '2023');
+  buildTable('tbody2024', data.etablissements2024, '2024');
 }
 
-function buildTable(id, list) {
+function buildTable(id, list, analysisYear) {
   const tbody = document.getElementById(id);
   if (!tbody || !Array.isArray(list)) return;
 
@@ -363,9 +369,11 @@ function buildTable(id, list) {
     const row = document.createElement('tr');
     const avg = +(item.scores.reduce((a, b) => a + b, 0) / 5).toFixed(1);
 
+    const context = buildEstablishmentContext(item, analysisYear);
+
     const nameCell = document.createElement('td');
     nameCell.className = 'name';
-    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)}${item.type ? ` - ${escapeHtml(item.type)}` : ''}</small>`;
+    nameCell.innerHTML = `${escapeHtml(item.nom)}<br><small style="color:var(--muted)">${escapeHtml(item.ville)} - ${escapeHtml(context)}</small>`;
     row.appendChild(nameCell);
 
     item.scores.forEach((score) => {
@@ -376,6 +384,35 @@ function buildTable(id, list) {
     row.appendChild(avgCell);
     tbody.appendChild(row);
   });
+}
+
+
+function buildEstablishmentContext(item, analysisYear) {
+  if (analysisYear === '2021' || analysisYear === '2023') {
+    return `Jury 2017 - analyse ${analysisYear}`;
+  }
+
+  const rawType = String(item.type || '').trim();
+  let jury = '';
+  let status = '';
+
+  if (/clôture\s+2018/i.test(rawType)) {
+    jury = '2018';
+    status = 'Clôture';
+  } else if (/mi-parcours\s+2021/i.test(rawType)) {
+    jury = '2021';
+    status = 'Mi-parcours';
+  } else {
+    const juryMatch = rawType.match(/(20\d{2})/);
+    jury = juryMatch ? juryMatch[1] : '';
+    if (/clôture/i.test(rawType)) status = 'Clôture';
+    if (/mi-parcours/i.test(rawType)) status = 'Mi-parcours';
+  }
+
+  if (jury && status) return `Jury ${jury} - ${status} - analyse ${analysisYear}`;
+  if (jury) return `Jury ${jury} - analyse ${analysisYear}`;
+  if (status) return `${status} - analyse ${analysisYear}`;
+  return `Analyse ${analysisYear}`;
 }
 
 function buildScoreCell(score, isAverage = false) {
