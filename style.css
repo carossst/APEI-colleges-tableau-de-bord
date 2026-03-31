@@ -226,6 +226,10 @@ a {
   max-width: 70ch;
 }
 
+#frame-cohorts {
+  grid-template-columns: 1fr;
+}
+
 .frame-item {
   background: var(--surface-2);
   border: 1px solid var(--border);
