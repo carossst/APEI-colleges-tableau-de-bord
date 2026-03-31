@@ -231,63 +231,57 @@ a {
 }
 
 .frame-item {
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 18px;
+  padding: 16px 0 18px;
+  border-top: 1px solid var(--border);
 }
 
 .frame-item h3 {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .frame-desc {
   color: var(--muted);
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
-.frame-meta {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
+.frame-meta-list,
+.frame-project-list {
+  margin: 0;
+  padding-left: 18px;
 }
 
-.frame-meta div {
-  padding: 10px 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
+.frame-meta-list {
+  margin-bottom: 10px;
 }
 
-.frame-meta span {
-  display: block;
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.frame-meta strong {
-  display: block;
-  margin-top: 4px;
+.frame-meta-list li,
+.frame-project-list li {
+  margin: 0 0 6px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
   font-size: 0.98rem;
   color: var(--text);
 }
 
-.compact-list {
-  margin-top: 14px;
-  gap: 8px;
+.frame-project-type {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
-.compact-list li {
-  padding: 8px 10px;
-  font-size: 0.95rem;
+.frame-project-detail {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-2);
+  font-size: 0.94rem;
 }
 
 .analysis-subgroup {
   margin-top: 16px;
-  padding-top: 14px;
+  padding-top: 12px;
   border-top: 1px solid var(--border);
 }
 

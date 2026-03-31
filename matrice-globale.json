@@ -24,7 +24,7 @@
       "observedEndYear": "historique",
       "documentationBasis": "Documente par l'analyse 2023",
       "publicationStatus": "published",
-      "scopeNote": "Cohorte historique documentee dans l'analyse 2023 sur cinq etablissements exploitables.",
+      "scopeNote": "Cohorte historique analysee dans l'analyse 2023 sur cinq etablissements exploitables.",
       "sources": [
         "2023_Analyse_impact_qualitative_Valdoise.pptx.pdf"
       ]
@@ -38,7 +38,7 @@
       "observedEndYear": "clôture observée",
       "documentationBasis": "Documente par l'analyse 2024 - mesure de cloture",
       "publicationStatus": "published",
-      "scopeNote": "Cohorte de cloture 2018 documentee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
+      "scopeNote": "Cohorte de cloture 2018 analysee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
       "sources": [
         "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
         "analyse_scores_2024.md"
@@ -53,7 +53,7 @@
       "observedEndYear": "mi-parcours observé",
       "documentationBasis": "Documente par l'analyse 2024 - mesure de mi-parcours",
       "publicationStatus": "published",
-      "scopeNote": "Cohorte en mi-parcours documentee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
+      "scopeNote": "Cohorte en mi-parcours analysee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
       "sources": [
         "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
         "analyse_scores_2024.md"
@@ -89,7 +89,7 @@
       "ulis": {
         "label": "Dispositif ULIS 2021",
         "project": "Apprendre autrement",
-        "note": "5 établissements nommés et 6 coordonnateurs cités dans le document.",
+        "note": "5 établissements et 6 coordonnateurs.",
         "establishments": [
           "Lucie Aubrac",
           "Daubigny",
@@ -211,6 +211,7 @@
       {
         "nom": "Ariane",
         "project": "Creer un fablab",
+        "projectDetail": "FabLab, Web Radio, machines de fabrication",
         "projectType": "Fablab / creativite",
         "ville": "Argenteuil",
         "scores": [
@@ -228,6 +229,7 @@
       {
         "nom": "Epine Guyon",
         "project": "Apprendre autrement",
+        "projectDetail": "Salle connectee, Web TV / Web Radio, iPads",
         "projectType": "Transformation pedagogique",
         "ville": "Franconville",
         "scores": [
@@ -245,6 +247,7 @@
       {
         "nom": "Georges Charpak",
         "project": "Creer un fablab et des projets innovants",
+        "projectDetail": "FabLab, salle connectee, tableaux Velléda, iPads",
         "projectType": "Fablab / creativite",
         "ville": "Goussainville",
         "scores": [
@@ -262,6 +265,7 @@
       {
         "nom": "Pierre et Marie Curie",
         "project": "Approche differente de la pedagogie",
+        "projectDetail": "Salle connectee, Web TV",
         "projectType": "Transformation pedagogique",
         "ville": "L'Isle-Adam",
         "scores": [
@@ -279,6 +283,7 @@
       {
         "nom": "L'Ardillière-de-Nézant",
         "project": "Apprendre autrement",
+        "projectDetail": "Deux salles innovantes, Web TV, iPads, Velléda",
         "projectType": "Transformation pedagogique",
         "ville": "Saint-Brice-sous-Forêt",
         "scores": [
@@ -298,6 +303,7 @@
       {
         "nom": "Eugénie Cotton",
         "project": "Innover pour un climat apaise",
+        "projectDetail": "Ludospace, Workspace, Zenspace, Creaspace, Mediaspace",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Argenteuil",
         "scores": [
@@ -315,6 +321,7 @@
       {
         "nom": "Paul Vaillant Couturier",
         "project": "Enseigner et apprendre ensemble",
+        "projectDetail": "Espaces d'apprentissage collaboratif",
         "projectType": "Transformation pedagogique",
         "ville": "Argenteuil",
         "scores": [
@@ -332,6 +339,7 @@
       {
         "nom": "Pablo Picasso",
         "project": "Innover pour un climat apaise",
+        "projectDetail": "Espaces modulables, tablettes, usages oraux et video",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Éragny",
         "scores": [
@@ -349,6 +357,7 @@
       {
         "nom": "Les Hautiers",
         "project": "Innover pour un climat apaise",
+        "projectDetail": "Salle polyvalente, Web TV / Web Radio",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Marines",
         "scores": [
@@ -368,6 +377,7 @@
       {
         "nom": "Pierre et Marie Curie",
         "project": "Innover pour un climat apaise",
+        "projectDetail": "Espaces de permanence et de travail, salle connectee",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "L'Isle-Adam",
         "scores": [
@@ -385,6 +395,7 @@
       {
         "nom": "Montesquieu",
         "project": "Innover pour un climat apaise",
+        "projectDetail": "Salle modulable et usages numeriques",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Beauchamp",
         "scores": [
@@ -402,6 +413,7 @@
       {
         "nom": "Jean-Claude Chabanne",
         "project": "Innover pour un climat apaise",
+        "projectDetail": "Espaces calmes, travail autonome, usages numeriques",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Pontoise",
         "scores": [
@@ -419,6 +431,7 @@
       {
         "nom": "Nicolas Flamel",
         "project": "Innover pour un climat apaise",
+        "projectDetail": "Espaces de travail et de permanence apaises",
         "projectType": "Climat scolaire / temps hors cours",
         "ville": "Pontoise",
         "scores": [
@@ -592,7 +605,7 @@
     },
     {
       "titre": "Les effets élèves sont les plus visibles",
-      "detail": "Autonomie, engagement, climat scolaire et travail en groupe ressortent dans tous les jurys documentés.",
+      "detail": "Autonomie, engagement, climat scolaire et travail en groupe ressortent dans tous les jurys analysés.",
       "role": "Professeure",
       "citation": "Nous voyons que les élèves sont heureux d’être ensemble lorsque nous réalisons ces projets, il y a une émulation positive. Le fait de travailler en petit groupe, ça permet à tout le monde de trouver sa place."
     },

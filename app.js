@@ -65,7 +65,7 @@ function showLoadError() {
 }
 
 function fillFallbackIntro() {
-  setText('frame-summary', "Le cadre de lecture n'est pas disponible tant que les données ne sont pas chargées.");
+  setText('frame-summary', "Le périmètre n'est pas disponible tant que les données ne sont pas chargées.");
   setText('scope-counts', "Périmètre affiché : les totaux ne sont pas disponibles tant que les données ne sont pas chargées.");
 }
 
@@ -109,22 +109,22 @@ function writeFrameSummary(data) {
     article.innerHTML = `
       <h3>${escapeHtml(meta.label || `Jury ${juryYear}`)}</h3>
       <p class="frame-desc">${escapeHtml(description)}</p>
-      <div class="frame-meta">
-        <div><span>Collèges</span><strong>${escapeHtml(String(unique.size))}</strong></div>
-        <div><span>Projets</span><strong>${escapeHtml(String(list.length))}</strong></div>
-        <div><span>Année de jury</span><strong>${escapeHtml(juryYear)}</strong></div>
-        <div><span>Année de début</span><strong>${escapeHtml(startYear)}</strong></div>
-        <div><span>Stade observé</span><strong>${escapeHtml(observedEndYear)}</strong></div>
-      </div>
-      <ul class="bullet-clean compact-list">
-      ${list.map((item) => `<li><strong>${escapeHtml(item.nom)}</strong>${item.project ? ` : ${escapeHtml(item.project)}` : ''}${item.projectType ? `<br><small>${escapeHtml(item.projectType)}</small>` : ''}</li>`).join('')}
+      <ul class="frame-meta-list">
+        <li><strong>Collèges :</strong> ${escapeHtml(String(unique.size))}</li>
+        <li><strong>Projets :</strong> ${escapeHtml(String(list.length))}</li>
+        <li><strong>Année de jury :</strong> ${escapeHtml(juryYear)}</li>
+        <li><strong>Année de début :</strong> ${escapeHtml(startYear)}</li>
+        <li><strong>Stade observé :</strong> ${escapeHtml(observedEndYear)}</li>
+      </ul>
+      <ul class="frame-project-list">
+      ${list.map((item) => `<li><strong>${escapeHtml(item.nom)}</strong>${item.project ? ` : ${escapeHtml(item.project)}` : ''}${item.projectDetail ? `<span class="frame-project-detail">${escapeHtml(item.projectDetail)}</span>` : ''}${item.projectType ? `<span class="frame-project-type">${escapeHtml(item.projectType)}</span>` : ''}</li>`).join('')}
       </ul>
       ${cohort === '2021' && data.analysisYears?.['2021']?.ulis ? `
         <div class="analysis-subgroup">
           <h4>${escapeHtml(data.analysisYears['2021'].ulis.label || 'Dispositif ULIS')}</h4>
           <p class="frame-desc">${escapeHtml(data.analysisYears['2021'].ulis.note || '')}</p>
           <p class="frame-desc">Projet : ${escapeHtml(data.analysisYears['2021'].ulis.project || '')}</p>
-          <ul class="bullet-clean compact-list">
+          <ul class="frame-project-list">
             ${(Array.isArray(data.analysisYears['2021'].ulis.establishments) ? data.analysisYears['2021'].ulis.establishments : []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
           </ul>
         </div>
