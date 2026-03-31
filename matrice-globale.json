@@ -17,10 +17,11 @@
   "cohortMeta": {
     "2017": {
       "label": "Jury 2017",
-      "description": "Cohorte historique avec cinq colleges documentes dans l'analyse 2023.",
+      "description": "Cinq colleges documentes.",
+      "startYear": "2017/2018",
       "analysisYear": "2023",
       "analysisType": "historique",
-      "observedEndYear": "anterieure a 2023",
+      "observedEndYear": "historique",
       "documentationBasis": "Documente par l'analyse 2023",
       "publicationStatus": "published",
       "scopeNote": "Cohorte historique documentee dans l'analyse 2023 sur cinq etablissements exploitables.",
@@ -30,10 +31,11 @@
     },
     "2018": {
       "label": "Jury 2018",
-      "description": "Quatre colleges documentes dans l'analyse 2024 sur une mesure de cloture.",
+      "description": "Quatre colleges documentes.",
+      "startYear": "2018",
       "analysisYear": "2024",
       "analysisType": "cloture",
-      "observedEndYear": "2024",
+      "observedEndYear": "cloture observee",
       "documentationBasis": "Documente par l'analyse 2024 - mesure de cloture",
       "publicationStatus": "published",
       "scopeNote": "Cohorte de cloture 2018 documentee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
@@ -44,16 +46,121 @@
     },
     "2021": {
       "label": "Jury 2021",
-      "description": "Quatre colleges documentes dans l'analyse 2024 sur une mesure de mi-parcours.",
+      "description": "Quatre colleges documentes.",
+      "startYear": "2021",
       "analysisYear": "2024",
       "analysisType": "mi-parcours",
-      "observedEndYear": "projet en cours au moment de l'analyse",
+      "observedEndYear": "mi-parcours observe",
       "documentationBasis": "Documente par l'analyse 2024 - mesure de mi-parcours",
       "publicationStatus": "published",
       "scopeNote": "Cohorte en mi-parcours documentee dans l'analyse 2024, qui couvre huit etablissements au total, dont quatre dans cette cohorte.",
       "sources": [
         "V2_2024_Analyse_impact_qualitative_Valdoise.pptx.pdf",
         "analyse_scores_2024.md"
+      ]
+    }
+  },
+  "analysisYears": {
+    "2021": {
+      "label": "Analyse 2021",
+      "note": "Collèges associés à l'analyse 2021.",
+      "colleges": [
+        {
+          "name": "L'Ardilliere-de-Nezant",
+          "project": "Apprendre autrement"
+        },
+        {
+          "name": "Louise Weiss",
+          "project": "Repenser le rez-de-chaussee des espaces de vie de l'eleve ainsi que la salle ULIS"
+        },
+        {
+          "name": "Eugenie Cotton",
+          "project": "Innover pour un climat apaise"
+        },
+        {
+          "name": "Epine Guyon",
+          "project": "Apprendre autrement"
+        },
+        {
+          "name": "Pierre et Marie Curie",
+          "project": "Approche differente de la pedagogie"
+        }
+      ],
+      "ulis": {
+        "label": "Dispositif ULIS 2021",
+        "project": "Apprendre autrement",
+        "note": "5 etablissements nommes et 6 coordonnateurs cites dans le document.",
+        "establishments": [
+          "Lucie Aubrac",
+          "Daubigny",
+          "Jacques Yves Cousteau",
+          "Les Explorateurs",
+          "Voltaire"
+        ]
+      }
+    },
+    "2023": {
+      "label": "Analyse 2023",
+      "note": "Collèges associés à l'analyse 2023.",
+      "colleges": [
+        {
+          "name": "Ariane",
+          "project": "Creer un fablab"
+        },
+        {
+          "name": "Pierre et Marie Curie",
+          "project": "Approche differente de la pedagogie"
+        },
+        {
+          "name": "Epine Guyon",
+          "project": "Apprendre autrement"
+        },
+        {
+          "name": "Georges Charpak",
+          "project": "Creer un fablab et des projets innovants"
+        },
+        {
+          "name": "L'Ardilliere-de-Nezant",
+          "project": "Apprendre autrement"
+        }
+      ]
+    },
+    "2024": {
+      "label": "Analyse 2024",
+      "note": "Collèges associés à l'analyse 2024.",
+      "colleges": [
+        {
+          "name": "Eugenie Cotton",
+          "project": "Innover pour un climat apaise"
+        },
+        {
+          "name": "Paul Vaillant Couturier",
+          "project": "Enseigner et apprendre ensemble"
+        },
+        {
+          "name": "Pablo Picasso",
+          "project": "Innover pour un climat apaise"
+        },
+        {
+          "name": "Les Hautiers",
+          "project": "Innover pour un climat apaise"
+        },
+        {
+          "name": "Pierre et Marie Curie",
+          "project": "Innover pour un climat apaise"
+        },
+        {
+          "name": "Montesquieu",
+          "project": "Innover pour un climat apaise"
+        },
+        {
+          "name": "Jean-Claude Chabanne",
+          "project": "Innover pour un climat apaise"
+        },
+        {
+          "name": "Nicolas Flamel",
+          "project": "Innover pour un climat apaise"
+        }
       ]
     }
   },
@@ -103,6 +210,8 @@
     "2017": [
       {
         "nom": "Ariane",
+        "project": "Creer un fablab",
+        "projectType": "Fablab / creativite",
         "ville": "Argenteuil",
         "scores": [
           3,
@@ -118,6 +227,8 @@
       },
       {
         "nom": "Epine Guyon",
+        "project": "Apprendre autrement",
+        "projectType": "Transformation pedagogique",
         "ville": "Franconville",
         "scores": [
           3,
@@ -133,6 +244,8 @@
       },
       {
         "nom": "Georges Charpak",
+        "project": "Creer un fablab et des projets innovants",
+        "projectType": "Fablab / creativite",
         "ville": "Goussainville",
         "scores": [
           3,
@@ -148,6 +261,8 @@
       },
       {
         "nom": "Pierre et Marie Curie",
+        "project": "Approche differente de la pedagogie",
+        "projectType": "Transformation pedagogique",
         "ville": "L'Isle-Adam",
         "scores": [
           3,
@@ -163,6 +278,8 @@
       },
       {
         "nom": "L'Ardillière-de-Nézant",
+        "project": "Apprendre autrement",
+        "projectType": "Transformation pedagogique",
         "ville": "Saint-Brice-sous-Forêt",
         "scores": [
           4,
@@ -180,6 +297,8 @@
     "2018": [
       {
         "nom": "Eugénie Cotton",
+        "project": "Innover pour un climat apaise",
+        "projectType": "Climat scolaire / temps hors cours",
         "ville": "Argenteuil",
         "scores": [
           4,
@@ -195,6 +314,8 @@
       },
       {
         "nom": "Paul Vaillant Couturier",
+        "project": "Enseigner et apprendre ensemble",
+        "projectType": "Transformation pedagogique",
         "ville": "Argenteuil",
         "scores": [
           2,
@@ -210,6 +331,8 @@
       },
       {
         "nom": "Pablo Picasso",
+        "project": "Innover pour un climat apaise",
+        "projectType": "Climat scolaire / temps hors cours",
         "ville": "Éragny",
         "scores": [
           3.5,
@@ -225,6 +348,8 @@
       },
       {
         "nom": "Les Hautiers",
+        "project": "Innover pour un climat apaise",
+        "projectType": "Climat scolaire / temps hors cours",
         "ville": "Marines",
         "scores": [
           4,
@@ -242,6 +367,8 @@
     "2021": [
       {
         "nom": "Pierre et Marie Curie",
+        "project": "Innover pour un climat apaise",
+        "projectType": "Climat scolaire / temps hors cours",
         "ville": "L'Isle-Adam",
         "scores": [
           4,
@@ -257,6 +384,8 @@
       },
       {
         "nom": "Montesquieu",
+        "project": "Innover pour un climat apaise",
+        "projectType": "Climat scolaire / temps hors cours",
         "ville": "Beauchamp",
         "scores": [
           3.5,
@@ -272,6 +401,8 @@
       },
       {
         "nom": "Jean-Claude Chabanne",
+        "project": "Innover pour un climat apaise",
+        "projectType": "Climat scolaire / temps hors cours",
         "ville": "Pontoise",
         "scores": [
           3,
@@ -287,6 +418,8 @@
       },
       {
         "nom": "Nicolas Flamel",
+        "project": "Innover pour un climat apaise",
+        "projectType": "Climat scolaire / temps hors cours",
         "ville": "Pontoise",
         "scores": [
           3,

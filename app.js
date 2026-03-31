@@ -89,7 +89,7 @@ function writeFrameSummary(data) {
   const uniqueColleges = new Set(items.map((item) => `${item.nom}||${item.ville}`));
   const collegeCount = uniqueColleges.size;
   const projectCount = items.length;
-  setText('frame-summary', `${collegeCount} collèges documentés, ${projectCount} projets affichés. Chaque jury est présenté avec son année, le stade observé et le document d'analyse mobilisé.`);
+  setText('frame-summary', `Cette page présente les projets APEI par année de jury, avec ${collegeCount} collèges documentés et ${projectCount} projets affichés. Pour chaque jury, le cadrage indique les collèges concernés, le stade observé du projet, l'année d'analyse et le type d'analyse mobilisé.`);
 
   const container = document.getElementById('frame-cohorts');
   if (!container) return;
@@ -101,6 +101,7 @@ function writeFrameSummary(data) {
     const unique = new Set(list.map((item) => `${item.nom}||${item.ville}`));
     const juryYear = String(cohort);
     const description = meta.description || '';
+    const startYear = meta.startYear || 'n.d.';
     const analysisYear = meta.analysisYear || 'n.d.';
     const analysisType = meta.analysisType || 'n.d.';
     const observedEndYear = meta.observedEndYear || 'n.d.';
@@ -114,10 +115,24 @@ function writeFrameSummary(data) {
         <div><span>Collèges</span><strong>${escapeHtml(String(unique.size))}</strong></div>
         <div><span>Projets</span><strong>${escapeHtml(String(list.length))}</strong></div>
         <div><span>Année de jury</span><strong>${escapeHtml(juryYear)}</strong></div>
+        <div><span>Année de début</span><strong>${escapeHtml(startYear)}</strong></div>
         <div><span>Stade observé</span><strong>${escapeHtml(observedEndYear)}</strong></div>
         <div><span>Année d'analyse</span><strong>${escapeHtml(analysisYear)}</strong></div>
         <div><span>Type d'analyse</span><strong>${escapeHtml(analysisType)}</strong></div>
       </div>
+      <ul class="bullet-clean compact-list">
+      ${list.map((item) => `<li><strong>${escapeHtml(item.nom)}</strong>${item.project ? ` : ${escapeHtml(item.project)}` : ''}${item.projectType ? `<br><small>${escapeHtml(item.projectType)}</small>` : ''}</li>`).join('')}
+      </ul>
+      ${cohort === '2021' && data.analysisYears?.['2021']?.ulis ? `
+        <div class="analysis-subgroup">
+          <h4>${escapeHtml(data.analysisYears['2021'].ulis.label || 'Dispositif ULIS')}</h4>
+          <p class="frame-desc">${escapeHtml(data.analysisYears['2021'].ulis.note || '')}</p>
+          <p class="frame-desc">Projet : ${escapeHtml(data.analysisYears['2021'].ulis.project || '')}</p>
+          <ul class="bullet-clean compact-list">
+            ${(Array.isArray(data.analysisYears['2021'].ulis.establishments) ? data.analysisYears['2021'].ulis.establishments : []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}
+          </ul>
+        </div>
+      ` : ''}
     `;
     container.appendChild(article);
   });
